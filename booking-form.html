@@ -71,11 +71,11 @@
     <!-- NAVBAR -->
     <nav class="navbar bg-transparent backdrop-blur-sm sticky top-0 z-50 border-b border-white/5 px-4 lg:px-8">
       <div class="navbar-start">
-        <a href="landing-page-v2.html" class="font-display font-bold text-lg tracking-tight hover:text-brand-coral transition-colors">Pun Nattapatch</a>
+        <a href="index.html" class="font-display font-bold text-lg tracking-tight hover:text-brand-coral transition-colors">Pun Nattapatch</a>
       </div>
       <div class="navbar-end">
-        <a href="landing-page-v2.html#pricing" class="btn btn-sm btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30">
-          ดู Services ทั้งหมด
+        <a href="index.html" class="btn btn-sm btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30">
+          กลับหน้าหลัก
         </a>
       </div>
     </nav>
@@ -90,7 +90,7 @@
             <i data-lucide="calendar-check" class="w-4 h-4 text-brand-coral"></i>
             <span class="text-sm font-semibold text-brand-coral tracking-wide">BOOKING</span>
           </div>
-          <h1 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">จองคิวคุยกับปัน</h1>
+          <h1 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">จอง Workshop / Consulting กับปัน</h1>
           <p class="text-white/50">กรอกข้อมูลแค่ 2 นาที — ปันอ่านเองทุกฟอร์ม แล้วจะรีบติดต่อกลับภายใน 24 ชม.</p>
         </div>
 
@@ -163,15 +163,16 @@
           <!-- 4. Position -->
           <div>
             <label for="f-position" class="block text-sm font-semibold text-white/80 mb-2">
-              ตำแหน่ง
+              <span class="text-brand-coral">*</span> ตำแหน่ง
             </label>
             <input type="text" id="f-position" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="เช่น เจ้าของกิจการ, ผู้จัดการฝ่ายขาย">
+            <p class="text-xs text-brand-coral mt-1 hidden" id="err-position">กรุณากรอกตำแหน่ง</p>
           </div>
 
           <!-- 5. Team Size -->
           <div>
             <label for="f-team" class="block text-sm font-semibold text-white/80 mb-2">
-              จำนวนทีมขาย (ประมาณ)
+              <span class="text-brand-coral">*</span> จำนวนทีมขาย (ประมาณ)
             </label>
             <select id="f-team" class="select select-bordered w-full bg-white/[0.06] border-white/10 text-white focus:border-brand-coral focus:outline-none">
               <option value="" disabled selected>เลือกจำนวน</option>
@@ -181,15 +182,17 @@
               <option value="20+">20+ คน</option>
               <option value="ยังไม่มีทีม">ยังไม่มีทีม</option>
             </select>
+            <p class="text-xs text-brand-coral mt-1 hidden" id="err-team">กรุณาเลือกจำนวนทีม</p>
           </div>
 
           <!-- 6. Preferred Date — date picker -->
           <div>
             <label for="f-date" class="block text-sm font-semibold text-white/80 mb-2">
-              วันที่สะดวก
+              <span class="text-brand-coral">*</span> วันที่สะดวก
             </label>
             <input type="date" id="f-date" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white focus:border-brand-coral focus:outline-none [color-scheme:dark]" min="">
             <p class="text-xs text-white/30 mt-1">เลือกวันที่สะดวก — ปันจะติดต่อกลับเพื่อยืนยันอีกครั้ง</p>
+            <p class="text-xs text-brand-coral mt-1 hidden" id="err-date">กรุณาเลือกวันที่</p>
           </div>
 
           <!-- 7. Phone / LINE -->
@@ -236,10 +239,10 @@
           <p class="text-white/40 text-sm mb-8" id="success-pkg-name"></p>
 
           <div class="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="landing-page-v2.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30">
+            <a href="index.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30">
               กลับหน้าหลัก
             </a>
-            <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="btn bg-emerald-600 border-none text-white hover:bg-emerald-700">
+            <a href="https://lin.ee/ioSnSUG" target="_blank" rel="noopener" class="btn bg-emerald-600 border-none text-white hover:bg-emerald-700">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
               แอดไลน์ปันไว้ก่อน
             </a>
@@ -317,6 +320,30 @@
         valid = false;
       } else {
         document.getElementById('err-company').classList.add('hidden');
+      }
+
+      var position = document.getElementById('f-position').value.trim();
+      if (!position) {
+        document.getElementById('err-position').classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('err-position').classList.add('hidden');
+      }
+
+      var team = document.getElementById('f-team').value;
+      if (!team) {
+        document.getElementById('err-team').classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('err-team').classList.add('hidden');
+      }
+
+      var dateVal = document.getElementById('f-date').value;
+      if (!dateVal) {
+        document.getElementById('err-date').classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('err-date').classList.add('hidden');
       }
 
       var phone = document.getElementById('f-phone').value.trim();
