@@ -50,7 +50,8 @@
     .pkg-card { cursor: pointer; transition: all 0.2s; }
     .pkg-card:hover { border-color: rgba(221,65,85,0.4); }
     .pkg-card.selected { border-color: #dd4155; background: rgba(221,65,85,0.08); }
-    .pkg-card.selected .pkg-dot { background: #dd4155; box-shadow: 0 0 8px rgba(221,65,85,0.5); }
+    .pkg-card.selected .pkg-check { color: #dd4155; }
+    .pkg-card .pkg-check { color: rgba(255,255,255,0.15); transition: color 0.2s; }
     .pkg-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; transition: all 0.2s; }
     /* Success animation */
     @keyframes checkPop { 0% { transform: scale(0); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
@@ -100,46 +101,51 @@
           <!-- 1. Package Selection -->
           <div>
             <label class="block text-sm font-semibold text-white/80 mb-3">
-              <span class="text-brand-coral">*</span> เลือก Package ที่สนใจ
+              <span class="text-brand-coral">*</span> เลือกบริการที่สนใจ <span class="text-white/40 font-normal">(เลือกได้มากกว่า 1)</span>
             </label>
             <div class="space-y-2" id="pkg-group">
-              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="ai-day-workshop" data-price="30,000">
-                <div class="pkg-dot"></div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-start gap-4" data-pkg="ai-day-workshop" data-price="30,000">
+                <div class="pkg-check mt-0.5">&#9744;</div>
                 <div class="flex-1">
                   <div class="font-display font-bold text-sm">AI Day Workshop</div>
                   <div class="text-xs text-white/40">1 วัน | &#3647;30,000</div>
+                  <div class="text-xs text-white/30 mt-1">สอนทีมขายใช้ AI ทำงานจริงได้ภายใน 1 วัน — สร้าง workflow ใช้ได้ทันที</div>
                 </div>
               </div>
-              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="ai-workshop-followup" data-price="50,000">
-                <div class="pkg-dot"></div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-start gap-4" data-pkg="ai-workshop-followup" data-price="50,000">
+                <div class="pkg-check mt-0.5">&#9744;</div>
                 <div class="flex-1">
                   <div class="font-display font-bold text-sm">AI Workshop + Follow-up 30 วัน</div>
                   <div class="text-xs text-white/40">1 วัน + 30 วัน | &#3647;50,000</div>
+                  <div class="text-xs text-white/30 mt-1">Workshop + ปันดูแลทีมต่ออีก 30 วัน ให้ทีมใช้ระบบเป็นเองจริงๆ</div>
                 </div>
               </div>
-              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="sale-training-bundle" data-price="42,500">
-                <div class="pkg-dot"></div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-start gap-4" data-pkg="sale-training-bundle" data-price="42,500">
+                <div class="pkg-check mt-0.5">&#9744;</div>
                 <div class="flex-1">
                   <div class="font-display font-bold text-sm">Sale Training Bundle (B+C)</div>
                   <div class="text-xs text-white/40">2 วัน | &#3647;42,500</div>
+                  <div class="text-xs text-white/30 mt-1">ฝึกทีมขายให้ปิดดีลด้วยคุณค่า ไม่ต้องพึ่งส่วนลด — ได้ทั้ง mindset + เทคนิค</div>
                 </div>
               </div>
-              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="sales-system-sprint" data-price="65,000">
-                <div class="pkg-dot"></div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-start gap-4" data-pkg="sales-system-sprint" data-price="65,000">
+                <div class="pkg-check mt-0.5">&#9744;</div>
                 <div class="flex-1">
                   <div class="font-display font-bold text-sm">Sales System Sprint</div>
                   <div class="text-xs text-white/40">1 เดือน | &#3647;65,000</div>
+                  <div class="text-xs text-white/30 mt-1">วางระบบขายครบวงจร KPI + Commission + AI Workflow ให้ทีมวิ่งเองได้</div>
                 </div>
               </div>
-              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="trust-content-tiktok" data-price="39,900">
-                <div class="pkg-dot"></div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-start gap-4" data-pkg="trust-content-tiktok" data-price="39,900">
+                <div class="pkg-check mt-0.5">&#9744;</div>
                 <div class="flex-1">
                   <div class="font-display font-bold text-sm">Trust Content Workshop for TikTok</div>
                   <div class="text-xs text-white/40">1 วัน | &#3647;39,900 <span class="text-brand-coral">(5 ธุรกิจแรก)</span></div>
+                  <div class="text-xs text-white/30 mt-1">สร้าง content ที่เปลี่ยนยอดวิวเป็นยอดขาย สำหรับธุรกิจ B2B โดยเฉพาะ</div>
                 </div>
               </div>
             </div>
-            <p class="text-xs text-brand-coral mt-1 hidden" id="err-pkg">กรุณาเลือก Package</p>
+            <p class="text-xs text-brand-coral mt-1 hidden" id="err-pkg">กรุณาเลือกอย่างน้อย 1 บริการ</p>
           </div>
 
           <!-- 2. Name -->
@@ -281,18 +287,19 @@
     if (pkgParam) {
       var targetCard = document.querySelector('.pkg-card[data-pkg="' + CSS.escape(pkgParam) + '"]');
       if (targetCard) {
-        document.querySelectorAll('.pkg-card').forEach(function(c) { c.classList.remove('selected'); });
         targetCard.classList.add('selected');
+        targetCard.querySelector('.pkg-check').textContent = '\u2611';
       }
     }
 
-    /* === PACKAGE CARD CLICK === */
+    /* === PACKAGE CARD CLICK — multi-select toggle === */
     document.querySelectorAll('.pkg-card').forEach(function(card) {
       card.addEventListener('click', function() {
-        document.querySelectorAll('.pkg-card').forEach(function(c) { c.classList.remove('selected'); });
-        card.classList.add('selected');
+        card.classList.toggle('selected');
+        var check = card.querySelector('.pkg-check');
+        check.textContent = card.classList.contains('selected') ? '\u2611' : '\u2610';
         var errEl = document.getElementById('err-pkg');
-        if (errEl) errEl.classList.add('hidden');
+        if (errEl && document.querySelector('.pkg-card.selected')) errEl.classList.add('hidden');
       });
     });
 
@@ -300,8 +307,8 @@
     function validate() {
       var valid = true;
 
-      var selectedPkg = document.querySelector('.pkg-card.selected');
-      if (!selectedPkg) {
+      var selectedPkgs = document.querySelectorAll('.pkg-card.selected');
+      if (selectedPkgs.length === 0) {
         document.getElementById('err-pkg').classList.remove('hidden');
         valid = false;
       }
@@ -362,15 +369,20 @@
       e.preventDefault();
       if (!validate()) return;
 
-      var selectedPkg = document.querySelector('.pkg-card.selected');
-      var pkgKey = selectedPkg.dataset.pkg;
-      var pkgPrice = selectedPkg.dataset.price;
+      var selectedPkgs = document.querySelectorAll('.pkg-card.selected');
+      var pkgNames = [];
+      var pkgPrices = [];
+      selectedPkgs.forEach(function(card) {
+        var key = card.dataset.pkg;
+        pkgNames.push(PKG_MAP[key] || key);
+        pkgPrices.push(card.dataset.price);
+      });
 
       var payload = {
         source_page: 'booking-form',
         booking_type: 'package-booking',
-        package: PKG_MAP[pkgKey] || pkgKey,
-        package_price: pkgPrice,
+        package: pkgNames.join(', '),
+        package_price: pkgPrices.join(', '),
         name: document.getElementById('f-name').value.trim(),
         company: document.getElementById('f-company').value.trim(),
         position: document.getElementById('f-position').value.trim(),
@@ -400,7 +412,7 @@
       document.getElementById('booking-form').classList.add('hidden');
       var successEl = document.getElementById('success-state');
       successEl.classList.remove('hidden');
-      document.getElementById('success-pkg-name').textContent = 'Package: ' + (PKG_MAP[pkgKey] || pkgKey);
+      document.getElementById('success-pkg-name').textContent = 'Package: ' + pkgNames.join(', ');
 
       // Re-init lucide for success icons
       lucide.createIcons();
