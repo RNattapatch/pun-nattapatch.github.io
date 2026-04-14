@@ -183,12 +183,13 @@
             </select>
           </div>
 
-          <!-- 6. Preferred Date -->
+          <!-- 6. Preferred Date — date picker -->
           <div>
             <label for="f-date" class="block text-sm font-semibold text-white/80 mb-2">
-              ช่วงเวลาที่สะดวก
+              วันที่สะดวก
             </label>
-            <input type="text" id="f-date" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="เช่น สัปดาห์ที่ 3 ของ พ.ค., หรือ ยืดหยุ่นได้">
+            <input type="date" id="f-date" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white focus:border-brand-coral focus:outline-none [color-scheme:dark]" min="">
+            <p class="text-xs text-white/30 mt-1">เลือกวันที่สะดวก — ปันจะติดต่อกลับเพื่อยืนยันอีกครั้ง</p>
           </div>
 
           <!-- 7. Phone / LINE -->
@@ -392,6 +393,11 @@
 
   <script> AOS.init({ duration: 600, once: true, offset: 60 }); </script>
   <script> lucide.createIcons(); </script>
+  <script>
+    // Set min date to today for date picker
+    var d = document.getElementById('f-date');
+    if (d) { d.min = new Date().toISOString().split('T')[0]; }
+  </script>
 
 </body>
 </html>
