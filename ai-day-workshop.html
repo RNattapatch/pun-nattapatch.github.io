@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advance AI & Business Automation — Workshop 1 วัน | Pun Nattapatch</title>
+  <meta name="description" content="Workshop 1 วัน — กลับไปพร้อม AI tool ที่ใช้ได้จริงเลย ทีมขายคืนเวลา 5+ ชั่วโมง/สัปดาห์ ไม่ใช่แค่ slide สวยๆ">
+
+  <!-- DaisyUI + Tailwind v4 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Fonts: Bai Jamjuree (Display) + Sarabun (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- AOS Scroll Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: "Bai Jamjuree", sans-serif;
+      --font-body: "Sarabun", sans-serif;
+      --color-brand-navy: #072b4e;
+      --color-brand-coral: #dd4155;
+      --color-brand-coral-dark: #c43245;
+    }
+  </style>
+
+  <style>
+    .dynamic-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(7,43,78,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(221,65,85,0.08) 0%, transparent 50%);
+      animation: bgShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+    .dot-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .avatar-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
+  </style>
+</head>
+
+<body class="font-body bg-[#0a0a0a] text-white min-h-screen relative">
+
+  <!-- Dynamic Background -->
+  <div class="dynamic-bg"></div>
+  <div class="dot-overlay"></div>
+
+  <!-- Content wrapper -->
+  <div class="relative z-10">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar bg-transparent backdrop-blur-sm sticky top-0 z-50 border-b border-white/5 px-4 lg:px-8">
+      <div class="navbar-start">
+        <a href="landing-page-v2.html" class="font-display font-bold text-lg tracking-tight hover:text-brand-coral transition-colors">Pun Nattapatch</a>
+      </div>
+      <div class="navbar-end">
+        <a href="#pricing" class="btn btn-sm bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20">
+          ดูราคา
+        </a>
+      </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="min-h-[80vh] flex items-center px-4 lg:px-8 py-20">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <!-- Package badge -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-coral/30 bg-brand-coral/10 px-4 py-1.5 mb-8" data-aos="fade-up">
+          <i data-lucide="cpu" class="w-4 h-4 text-brand-coral"></i>
+          <span class="text-sm font-semibold text-brand-coral tracking-wide">AI WORKSHOP</span>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6" data-aos="fade-up" data-aos-delay="100" id="headline-main">
+          ทีมขายเสียเวลา <span class="text-brand-coral" id="headline-accent">5+ ชั่วโมง/สัปดาห์</span><br class="hidden md:block" id="headline-br">
+          กับงานที่ AI ทำได้ใน 10 นาที
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed mb-8" data-aos="fade-up" data-aos-delay="200">
+          Workshop 1 วัน — กลับไปพร้อม AI tool ที่ใช้ได้จริงเลย ไม่ใช่แค่ slide สวยๆ
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-12" data-aos="fade-up" data-aos-delay="300">
+          <a href="booking-form.html?package=ai-day-workshop" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 px-8">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            ประเมินปัญหาทีมขายก่อน →
+          </a>
+          <a href="intake-form.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30 px-8">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            ไม่แน่ใจ? นัดคุยกับปันก่อน
+          </a>
+        </div>
+
+        <!-- Proof stats -->
+        <div class="flex gap-8 md:gap-12 justify-center flex-wrap" data-aos="fade-up" data-aos-delay="400">
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">10+</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Clients</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">100+</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Sessions</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">40%+</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Growth Goal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROBLEM ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Problem</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4" data-aos="fade-up">
+          ปัญหาที่ทีมขาย SME ทุกคนเจอ
+        </h2>
+        <p class="text-white/50 mb-12" data-aos="fade-up">ถ้าคุณรู้สึกแบบนี้ — คุณไม่ได้อยู่คนเดียว</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+            <div class="text-3xl mb-4">&#128548;</div>
+            <h3 class="font-display font-bold mb-2">ทีมเสียเวลากับงานซ้ำทุกวัน</h3>
+            <p class="text-sm text-white/70 leading-relaxed">ทำ report ด้วยมือ, copy-paste ข้อมูลลูกค้า, พิมพ์ follow-up ทีละคน งานพวกนี้กินเวลาวันละ 1-2 ชม. ไม่มีใครตั้งคำถามว่าทำไมต้องทำเอง?</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-3xl mb-4">&#129302;</div>
+            <h3 class="font-display font-bold mb-2">ลอง ChatGPT แล้ว ไม่รู้จะเอาไปทำอะไร</h3>
+            <p class="text-sm text-white/70 leading-relaxed">ทุกคนรู้ว่า AI มาแล้ว แต่ทีมเซลส์ส่วนใหญ่ยังใช้แค่ถามเรื่องทั่วไป ไม่เคยเอามาสร้าง workflow ที่ช่วยงานขายได้จริงๆ</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-3xl mb-4">&#128553;</div>
+            <h3 class="font-display font-bold mb-2">ไปเรียน Workshop มาแล้ว ก็ไม่ได้ใช้</h3>
+            <p class="text-sm text-white/70 leading-relaxed">Workshop ส่วนใหญ่สอน concept + demo แล้วจบ ไม่มี tool กลับไปใช้ได้เลย ไม่มีคนช่วย setup กลับมาก็ลืม</p>
+          </div>
+        </div>
+
+        <!-- Cost of Inaction -->
+        <div class="mt-8 rounded-2xl border border-brand-coral/20 bg-brand-coral/5 p-6 text-center" data-aos="fade-up">
+          <div class="text-xs text-brand-coral tracking-widest uppercase mb-2">ถ้าไม่แก้ คุณเสียอะไร</div>
+          <div class="font-display text-2xl md:text-3xl font-bold text-brand-coral mb-2">20+ ชั่วโมง/เดือน</div>
+          <p class="text-sm text-white/50">ทุกสัปดาห์ที่ทีมยังทำงานซ้ำด้วยมือ = เวลาที่ควรเอาไปขาย</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA after Problem ===== -->
+    <section class="py-8 px-4 lg:px-8">
+      <div class="max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="rounded-2xl border-2 border-dashed border-brand-coral/30 bg-brand-coral/5 p-8 text-center hover:border-brand-coral/50 transition-all duration-300">
+          <p class="font-display text-xl font-bold mb-4">อยากรู้ว่า AI ช่วยทีมขายคุณได้จริงไหม?</p>
+          <a href="booking-form.html?package=ai-day-workshop" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 px-8">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            ประเมินปัญหาทีมขายก่อน →
+          </a>
+          <p class="text-xs text-white/30 mt-3">ไม่มีค่าใช้จ่าย | ปันอ่านเองทุกใบ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUTCOME ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Outcome</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          สิ่งที่คุณจะได้จริง — เห็นผลวันเดียว
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="0">
+            <div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="clock" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">ได้เวลาคืน 5+ ชม./สัปดาห์</h3>
+            <p class="text-sm text-white/50">เห็นผลวันเดียวกัน ไม่ต้องรอ</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="wrench" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">AI Tool ที่ใช้ได้จริง</h3>
+            <p class="text-sm text-white/50">ไม่ใช่แค่ความรู้ แต่ได้ workflow และ AI tool กลับไปใช้จริง</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="bar-chart-3" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">วัดผลได้ทันที</h3>
+            <p class="text-sm text-white/50">วัด baseline ก่อน workshop → วัดผลหลังในวันเดียวกัน</p>
+          </div>
+        </div>
+
+        <!-- Case Study -->
+        <div class="mt-8 rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up">
+          <div class="text-xs text-brand-coral tracking-widest uppercase mb-3">Case Study</div>
+          <blockquote class="text-white/80 leading-relaxed italic mb-3">
+            "จ่าย ฿20,000 ได้ n8n workflow + AI agent ลดงาน manual report จาก 2 ชม. เหลือ 10 นาที — ทีม 16 คนใช้ได้ทันที"
+          </blockquote>
+          <p class="text-sm text-white/40">— SME วัสดุก่อสร้าง</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5" id="pricing">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Investment</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          ราคาและสิ่งที่รวม
+        </h2>
+
+        <div class="rounded-2xl border border-brand-coral/20 bg-white/[0.03] p-8" data-aos="fade-up">
+          <h3 class="font-display text-xl font-bold mb-1">Advance AI &amp; Business Automation</h3>
+          <p class="text-sm text-white/40 mb-6">1 วัน (6-7 ชั่วโมง) | On-site หรือ Online</p>
+
+          <div class="font-display text-4xl font-bold text-brand-coral mb-1">&#3647;30,000</div>
+          <p class="text-sm text-white/40 mb-6">ต่อครั้ง</p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">วิเคราะห์ workflow ทีมขาย</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">Build AI tool ที่ใช้ได้จริงในวันนั้น</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">สอน team lead maintain เอง</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">วัดผล Before / After ทันที</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">ไม่จำกัดจำนวนผู้เข้าร่วม</span>
+            </li>
+          </ul>
+
+          <a href="booking-form.html?package=ai-day-workshop" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 w-full">
+            ประเมินปัญหาทีมขาย →
+          </a>
+        </div>
+
+        <!-- Upsell -->
+        <div class="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center" data-aos="fade-up">
+          <p class="font-display font-bold mb-2">อยากให้ระบบที่สร้างวันนี้อยู่ไปตลอด?</p>
+          <p class="text-sm text-white/50 mb-4">เพิ่ม Follow-up 1 เดือน (&#3647;50,000) — ปันช่วยปรับ workflow ให้ fit กับงานจริงของทีมอีก 4 ครั้ง</p>
+          <a href="ai-workshop-followup.html" class="btn btn-sm btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30">
+            ดูรายละเอียด Workshop + Follow-up →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUALIFY ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Is this for you?</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          เช็คก่อนว่าเราเหมาะกัน
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="rounded-2xl bg-emerald-500/5 border border-emerald-500/20 p-6" data-aos="fade-up">
+            <h3 class="font-display font-bold text-emerald-400 mb-4">เหมาะกับคุณถ้า...</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">มีทีมขายที่เสียเวลากับงาน manual ซ้ำๆ</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">อยากเห็น AI ทำงานจริงก่อนตัดสินใจลงทุนเพิ่ม</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">ต้องการผลลัพธ์วันเดียว ไม่ต้องรอ project ยาว</span>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="font-display font-bold text-white/40 mb-4">ไม่เหมาะถ้า...</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <i data-lucide="minus" class="w-5 h-5 text-white/30 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/50">ยังไม่มี process พื้นฐานเลย (ต้องแก้ process ก่อน ค่อย automate)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="minus" class="w-5 h-5 text-white/30 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/50">ต้องการเรียน AI แบบ theory — workshop นี้ build จริงเท่านั้น</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-8" data-aos="fade-up">
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-20 h-20 rounded-full bg-brand-navy/50 border-2 border-brand-coral/30 overflow-hidden flex-shrink-0">
+              <img src="pun-avatar.png" alt="ปัน ณัฐพัชร์" class="w-full h-full object-cover" id="avatar-img">
+              <div class="avatar-fallback hidden" id="avatar-fallback">P</div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold mb-1">ปัน ณัฐพัชร์</h3>
+              <p class="text-sm text-white/40 mb-4">B2B Sales Consulting &amp; AI Transformation</p>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">ใช้ AI + n8n + Claude Code สร้างระบบจริงให้ลูกค้า</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">คลุกคลีกับงานขาย B2B มา 5 ปี — วางระบบให้ทีมขาย SME กว่า 10 ราย</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">ลูกค้าทุกคนได้ AI workflow ใช้งานได้กลับไปอย่างน้อย 1 ตัว</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CROSS-SELL ===== -->
+    <section class="px-4 lg:px-8 pb-8">
+      <div class="max-w-4xl mx-auto" data-aos="fade-up">
+        <a href="ai-workshop-followup.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-coral/30 transition-all duration-300 group">
+          <div class="flex items-center justify-between">
+            <span class="text-white/60 group-hover:text-white/80 transition-colors">กลัว Workshop จบแล้วทีมเลิกใช้? ลองดูแพ็คเกจ Follow-up 30 วัน</span>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-coral transition-colors"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="rounded-2xl border-2 border-dashed border-brand-coral/30 bg-brand-coral/5 p-8 md:p-12 text-center">
+          <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">พร้อมให้ทีมขายได้เวลาคืน?</h2>
+          <p class="text-white/50 mb-6">กรอกฟอร์มแค่ 3 นาที — ปันอ่านเองทุกเคส เพื่อดูว่าธุรกิจของคุณเหมาะกับ Workshop นี้จริงไหม</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="booking-form.html?package=ai-day-workshop" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 px-8">
+              ประเมินปัญหาทีมขายของคุณ →
+            </a>
+            <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30 px-8">
+              นัดคุยกับปัน 15 นาที
+            </a>
+          </div>
+          <p class="text-xs text-white/30 mt-4">ไม่มีค่าใช้จ่าย | ไม่มี spam | ปันอ่านเองทุกใบ</p>
+          <p class="text-xs text-white/20 mt-2">ชำระ 100% ก่อนเริ่มงาน</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-white/5 py-8 px-4 lg:px-8 text-center">
+      <p class="text-sm text-white/30">
+        <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="hover:text-brand-coral transition-colors duration-300">@pun_nattapatch</a>
+      </p>
+      <p class="text-xs text-white/15 mt-2">&#169; 2026 Pun Nattapatch. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- A/B Hook System -->
+  <script>
+    var HOOKS = {
+      A: 'ต้นทุนขึ้นทุกวัน แต่ทีมขายคุณยังทำงานแบบเดิม?',
+      B: 'คู่แข่งคุณ กำลังให้ AI ทำงานแทนเซลล์อยู่แล้ว',
+      C: 'เจ้าของธุรกิจที่ฉลาด ไม่ได้จ้างคนเพิ่ม แต่ให้ AI ทำแทน',
+      D: 'โลกเปลี่ยน ต้นทุนเพิ่ม แต่ธุรกิจที่รอดคือธุรกิจที่มีระบบขาย',
+      E: 'คนอื่นใช้ AI ช่วยหาลูกค้าแล้ว ทีมคุณยังนั่งเคาะ Excel อยู่เลย?'
+    };
+
+    var hookParam = new URLSearchParams(window.location.search).get('hook');
+    if (hookParam && HOOKS[hookParam]) {
+      var mainEl = document.getElementById('headline-main');
+      if (mainEl) mainEl.textContent = HOOKS[hookParam];
+      var accentEl = document.getElementById('headline-accent');
+      if (accentEl) accentEl.textContent = '';
+      var brEl = document.getElementById('headline-br');
+      if (brEl) brEl.remove();
+    }
+
+    if (hookParam) {
+      var links = document.querySelectorAll('a[href*="intake-form"]');
+      for (var i = 0; i < links.length; i++) {
+        try {
+          var url = new URL(links[i].href, window.location.href);
+          url.searchParams.set('hook', hookParam);
+          links[i].href = url.toString();
+        } catch (e) {}
+      }
+    }
+
+    // Avatar fallback — safe DOM manipulation
+    var avatarImg = document.getElementById('avatar-img');
+    if (avatarImg) {
+      avatarImg.addEventListener('error', function() {
+        this.style.display = 'none';
+        var fallback = document.getElementById('avatar-fallback');
+        if (fallback) fallback.classList.remove('hidden');
+      });
+    }
+  </script>
+
+  <!-- AOS Init -->
+  <script>
+    AOS.init({ duration: 600, once: true, offset: 60 });
+  </script>
+
+  <!-- Lucide Init -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>

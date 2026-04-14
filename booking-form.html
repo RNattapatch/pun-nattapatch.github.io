@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จองบริการ — ปัน ณัฐพัชร์</title>
+  <meta name="description" content="กรอกข้อมูลจอง Workshop หรือ Consulting กับปัน ณัฐพัชร์ — ปันอ่านเองทุกใบ">
+
+  <!-- DaisyUI + Tailwind v4 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: "Bai Jamjuree", sans-serif;
+      --font-body: "Sarabun", sans-serif;
+      --color-brand-navy: #072b4e;
+      --color-brand-coral: #dd4155;
+      --color-brand-coral-dark: #c43245;
+    }
+  </style>
+
+  <style>
+    .dynamic-bg {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(7,43,78,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(221,65,85,0.08) 0%, transparent 50%);
+      animation: bgShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+    .dot-overlay {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    /* Custom radio card style */
+    .pkg-card { cursor: pointer; transition: all 0.2s; }
+    .pkg-card:hover { border-color: rgba(221,65,85,0.4); }
+    .pkg-card.selected { border-color: #dd4155; background: rgba(221,65,85,0.08); }
+    .pkg-card.selected .pkg-dot { background: #dd4155; box-shadow: 0 0 8px rgba(221,65,85,0.5); }
+    .pkg-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); flex-shrink: 0; transition: all 0.2s; }
+    /* Success animation */
+    @keyframes checkPop { 0% { transform: scale(0); } 60% { transform: scale(1.2); } 100% { transform: scale(1); } }
+    .check-pop { animation: checkPop 0.5s ease both; }
+    /* Fix dropdown overlap — force dark bg on native select options */
+    select option { background: #1a1a1a; color: #fff; }
+    select { position: relative; z-index: 20; }
+  </style>
+</head>
+
+<body class="font-body bg-[#0a0a0a] text-white min-h-screen relative">
+
+  <div class="dynamic-bg"></div>
+  <div class="dot-overlay"></div>
+
+  <div class="relative z-10">
+
+    <!-- NAVBAR -->
+    <nav class="navbar bg-transparent backdrop-blur-sm sticky top-0 z-50 border-b border-white/5 px-4 lg:px-8">
+      <div class="navbar-start">
+        <a href="landing-page-v2.html" class="font-display font-bold text-lg tracking-tight hover:text-brand-coral transition-colors">Pun Nattapatch</a>
+      </div>
+      <div class="navbar-end">
+        <a href="landing-page-v2.html#pricing" class="btn btn-sm btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30">
+          ดู Services ทั้งหมด
+        </a>
+      </div>
+    </nav>
+
+    <!-- FORM SECTION -->
+    <section class="py-12 px-4 lg:px-8">
+      <div class="max-w-xl mx-auto">
+
+        <!-- Header -->
+        <div class="text-center mb-10" data-aos="fade-up">
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-coral/30 bg-brand-coral/10 px-4 py-1.5 mb-4">
+            <i data-lucide="calendar-check" class="w-4 h-4 text-brand-coral"></i>
+            <span class="text-sm font-semibold text-brand-coral tracking-wide">BOOKING</span>
+          </div>
+          <h1 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">จองคิวคุยกับปัน</h1>
+          <p class="text-white/50">กรอกข้อมูลแค่ 2 นาที — ปันอ่านเองทุกฟอร์ม แล้วจะรีบติดต่อกลับภายใน 24 ชม.</p>
+        </div>
+
+        <!-- FORM -->
+        <form id="booking-form" class="space-y-6" data-aos="fade-up" data-aos-delay="100">
+
+          <!-- 1. Package Selection -->
+          <div>
+            <label class="block text-sm font-semibold text-white/80 mb-3">
+              <span class="text-brand-coral">*</span> เลือก Package ที่สนใจ
+            </label>
+            <div class="space-y-2" id="pkg-group">
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="ai-day-workshop" data-price="30,000">
+                <div class="pkg-dot"></div>
+                <div class="flex-1">
+                  <div class="font-display font-bold text-sm">AI Day Workshop</div>
+                  <div class="text-xs text-white/40">1 วัน | &#3647;30,000</div>
+                </div>
+              </div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="ai-workshop-followup" data-price="50,000">
+                <div class="pkg-dot"></div>
+                <div class="flex-1">
+                  <div class="font-display font-bold text-sm">AI Workshop + Follow-up 30 วัน</div>
+                  <div class="text-xs text-white/40">1 วัน + 30 วัน | &#3647;50,000</div>
+                </div>
+              </div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="sale-training-bundle" data-price="42,500">
+                <div class="pkg-dot"></div>
+                <div class="flex-1">
+                  <div class="font-display font-bold text-sm">Sale Training Bundle (B+C)</div>
+                  <div class="text-xs text-white/40">2 วัน | &#3647;42,500</div>
+                </div>
+              </div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="sales-system-sprint" data-price="65,000">
+                <div class="pkg-dot"></div>
+                <div class="flex-1">
+                  <div class="font-display font-bold text-sm">Sales System Sprint</div>
+                  <div class="text-xs text-white/40">1 เดือน | &#3647;65,000</div>
+                </div>
+              </div>
+              <div class="pkg-card rounded-xl border border-white/10 bg-white/[0.03] p-4 flex items-center gap-4" data-pkg="trust-content-tiktok" data-price="39,900">
+                <div class="pkg-dot"></div>
+                <div class="flex-1">
+                  <div class="font-display font-bold text-sm">Trust Content Workshop for TikTok</div>
+                  <div class="text-xs text-white/40">1 วัน | &#3647;39,900 <span class="text-brand-coral">(5 ธุรกิจแรก)</span></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-brand-coral mt-1 hidden" id="err-pkg">กรุณาเลือก Package</p>
+          </div>
+
+          <!-- 2. Name -->
+          <div>
+            <label for="f-name" class="block text-sm font-semibold text-white/80 mb-2">
+              <span class="text-brand-coral">*</span> ชื่อ-นามสกุล
+            </label>
+            <input type="text" id="f-name" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="ชื่อจริงหรือชื่อเล่นก็ได้ครับ">
+            <p class="text-xs text-brand-coral mt-1 hidden" id="err-name">กรุณากรอกชื่อ</p>
+          </div>
+
+          <!-- 3. Company -->
+          <div>
+            <label for="f-company" class="block text-sm font-semibold text-white/80 mb-2">
+              <span class="text-brand-coral">*</span> ชื่อบริษัท / ธุรกิจ
+            </label>
+            <input type="text" id="f-company" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="ชื่อบริษัท หรือชื่อแบรนด์">
+            <p class="text-xs text-brand-coral mt-1 hidden" id="err-company">กรุณากรอกชื่อบริษัท</p>
+          </div>
+
+          <!-- 4. Position -->
+          <div>
+            <label for="f-position" class="block text-sm font-semibold text-white/80 mb-2">
+              ตำแหน่ง
+            </label>
+            <input type="text" id="f-position" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="เช่น เจ้าของกิจการ, ผู้จัดการฝ่ายขาย">
+          </div>
+
+          <!-- 5. Team Size -->
+          <div>
+            <label for="f-team" class="block text-sm font-semibold text-white/80 mb-2">
+              จำนวนทีมขาย (ประมาณ)
+            </label>
+            <select id="f-team" class="select select-bordered w-full bg-white/[0.06] border-white/10 text-white focus:border-brand-coral focus:outline-none">
+              <option value="" disabled selected>เลือกจำนวน</option>
+              <option value="1-4">1-4 คน</option>
+              <option value="5-10">5-10 คน</option>
+              <option value="11-20">11-20 คน</option>
+              <option value="20+">20+ คน</option>
+              <option value="ยังไม่มีทีม">ยังไม่มีทีม</option>
+            </select>
+          </div>
+
+          <!-- 6. Preferred Date -->
+          <div>
+            <label for="f-date" class="block text-sm font-semibold text-white/80 mb-2">
+              ช่วงเวลาที่สะดวก
+            </label>
+            <input type="text" id="f-date" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="เช่น สัปดาห์ที่ 3 ของ พ.ค., หรือ ยืดหยุ่นได้">
+          </div>
+
+          <!-- 7. Phone / LINE -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="f-phone" class="block text-sm font-semibold text-white/80 mb-2">
+                <span class="text-brand-coral">*</span> เบอร์โทร
+              </label>
+              <input type="tel" id="f-phone" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="08x-xxx-xxxx">
+              <p class="text-xs text-brand-coral mt-1 hidden" id="err-phone">กรุณากรอกเบอร์โทร</p>
+            </div>
+            <div>
+              <label for="f-line" class="block text-sm font-semibold text-white/80 mb-2">
+                LINE ID
+              </label>
+              <input type="text" id="f-line" class="input input-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="@line-id">
+            </div>
+          </div>
+
+          <!-- 8. Comment -->
+          <div>
+            <label for="f-comment" class="block text-sm font-semibold text-white/80 mb-2">
+              หมายเหตุ / อยากบอกปันก่อน
+            </label>
+            <textarea id="f-comment" rows="3" class="textarea textarea-bordered w-full bg-white/[0.06] border-white/10 text-white placeholder-white/30 focus:border-brand-coral focus:outline-none" placeholder="เช่น อยากให้เน้นเรื่อง..., ทีมมีพื้นฐาน AI แล้ว, ฯลฯ"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" id="btn-submit" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 w-full text-lg">
+            <i data-lucide="send" class="w-5 h-5"></i>
+            ส่งข้อมูลจองเลย
+          </button>
+
+          <p class="text-xs text-white/30 text-center">ไม่มีค่าใช้จ่ายตอนจอง | ปันอ่านเองทุกเคส | ชำระเงิน 100% ก่อนเริ่มงาน</p>
+        </form>
+
+        <!-- SUCCESS STATE (hidden by default) -->
+        <div id="success-state" class="hidden text-center py-16">
+          <div class="check-pop inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-500/30 mb-6">
+            <i data-lucide="check" class="w-10 h-10 text-emerald-400"></i>
+          </div>
+          <h2 class="font-display text-2xl font-bold mb-3">ได้รับข้อมูลแล้วครับ!</h2>
+          <p class="text-white/50 mb-2">เดี๋ยวปันจะรีบติดต่อกลับไปภายใน 24 ชม. ทางเบอร์โทรหรือ LINE ที่ให้ไว้นะครับ</p>
+          <p class="text-white/40 text-sm mb-8" id="success-pkg-name"></p>
+
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="landing-page-v2.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30">
+              กลับหน้าหลัก
+            </a>
+            <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="btn bg-emerald-600 border-none text-white hover:bg-emerald-700">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              แอดไลน์ปันไว้ก่อน
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 py-8 px-4 lg:px-8 text-center">
+      <p class="text-sm text-white/30">
+        <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="hover:text-brand-coral transition-colors duration-300">@pun_nattapatch</a>
+      </p>
+      <p class="text-xs text-white/15 mt-2">&#169; 2026 Pun Nattapatch. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <script>
+    /* === CONFIG === */
+    var N8N_WEBHOOK_URL = 'https://rnat.app.n8n.cloud/webhook/intake-form-v2';
+
+    /* === PACKAGE MAP === */
+    var PKG_MAP = {
+      'ai-day-workshop': 'AI Day Workshop',
+      'ai-workshop-followup': 'AI Workshop + Follow-up 30 วัน',
+      'sale-training-bundle': 'Sale Training Bundle (B+C)',
+      'sales-system-sprint': 'Sales System Sprint',
+      'trust-content-tiktok': 'Trust Content Workshop for TikTok'
+    };
+
+    /* === AUTO-SELECT from URL param === */
+    var params = new URLSearchParams(window.location.search);
+    var pkgParam = params.get('package');
+    if (pkgParam) {
+      var targetCard = document.querySelector('.pkg-card[data-pkg="' + CSS.escape(pkgParam) + '"]');
+      if (targetCard) {
+        document.querySelectorAll('.pkg-card').forEach(function(c) { c.classList.remove('selected'); });
+        targetCard.classList.add('selected');
+      }
+    }
+
+    /* === PACKAGE CARD CLICK === */
+    document.querySelectorAll('.pkg-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.pkg-card').forEach(function(c) { c.classList.remove('selected'); });
+        card.classList.add('selected');
+        var errEl = document.getElementById('err-pkg');
+        if (errEl) errEl.classList.add('hidden');
+      });
+    });
+
+    /* === VALIDATION === */
+    function validate() {
+      var valid = true;
+
+      var selectedPkg = document.querySelector('.pkg-card.selected');
+      if (!selectedPkg) {
+        document.getElementById('err-pkg').classList.remove('hidden');
+        valid = false;
+      }
+
+      var name = document.getElementById('f-name').value.trim();
+      if (!name) {
+        document.getElementById('err-name').classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('err-name').classList.add('hidden');
+      }
+
+      var company = document.getElementById('f-company').value.trim();
+      if (!company) {
+        document.getElementById('err-company').classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('err-company').classList.add('hidden');
+      }
+
+      var phone = document.getElementById('f-phone').value.trim();
+      if (!phone) {
+        document.getElementById('err-phone').classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('err-phone').classList.add('hidden');
+      }
+
+      return valid;
+    }
+
+    /* === SUBMIT === */
+    document.getElementById('booking-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      if (!validate()) return;
+
+      var selectedPkg = document.querySelector('.pkg-card.selected');
+      var pkgKey = selectedPkg.dataset.pkg;
+      var pkgPrice = selectedPkg.dataset.price;
+
+      var payload = {
+        source_page: 'booking-form',
+        booking_type: 'package-booking',
+        package: PKG_MAP[pkgKey] || pkgKey,
+        package_price: pkgPrice,
+        name: document.getElementById('f-name').value.trim(),
+        company: document.getElementById('f-company').value.trim(),
+        position: document.getElementById('f-position').value.trim(),
+        teamSize: document.getElementById('f-team').value,
+        preferred_date: document.getElementById('f-date').value.trim(),
+        phone: document.getElementById('f-phone').value.trim(),
+        line: document.getElementById('f-line').value.trim(),
+        comment: document.getElementById('f-comment').value.trim(),
+        submittedAt: new Date().toISOString()
+      };
+
+      var btn = document.getElementById('btn-submit');
+      btn.disabled = true;
+      btn.textContent = 'กำลังส่ง...';
+
+      try {
+        await fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.error('Booking submit error:', err);
+      }
+
+      // Show success
+      document.getElementById('booking-form').classList.add('hidden');
+      var successEl = document.getElementById('success-state');
+      successEl.classList.remove('hidden');
+      document.getElementById('success-pkg-name').textContent = 'Package: ' + (PKG_MAP[pkgKey] || pkgKey);
+
+      // Re-init lucide for success icons
+      lucide.createIcons();
+    });
+
+    /* === Clear errors on input === */
+    document.getElementById('f-name').addEventListener('input', function() {
+      document.getElementById('err-name').classList.add('hidden');
+    });
+    document.getElementById('f-company').addEventListener('input', function() {
+      document.getElementById('err-company').classList.add('hidden');
+    });
+    document.getElementById('f-phone').addEventListener('input', function() {
+      document.getElementById('err-phone').classList.add('hidden');
+    });
+  </script>
+
+  <script> AOS.init({ duration: 600, once: true, offset: 60 }); </script>
+  <script> lucide.createIcons(); </script>
+
+</body>
+</html>

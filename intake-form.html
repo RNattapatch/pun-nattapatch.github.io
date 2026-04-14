@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Premium Access — ปัน ณัฐพัชร์</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:        #072b4e;
+      --navy-deep:   #040f1e;
+      --navy-mid:    #0d3a5c;
+      --coral:       #dd4155;
+      --coral-dark:  #c43245;
+      --coral-glow:  rgba(221, 65, 85, 0.18);
+      --coral-tint:  rgba(221, 65, 85, 0.08);
+      --white-80:    rgba(255,255,255,0.80);
+      --white-50:    rgba(255,255,255,0.50);
+      --white-20:    rgba(255,255,255,0.20);
+      --white-08:    rgba(255,255,255,0.08);
+      --white-04:    rgba(255,255,255,0.04);
+      --card-bg:     rgba(255,255,255,0.035);
+      --card-border: rgba(255,255,255,0.09);
+      --input-bg:    rgba(255,255,255,0.06);
+      --input-focus: rgba(221, 65, 85, 0.12);
+      --radius-sm:   10px;
+      --radius-md:   16px;
+      --radius-lg:   24px;
+      --radius-xl:   32px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Sarabun', sans-serif;
+      background: var(--navy-deep);
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* === ANIMATED BACKGROUND === */
+    .bg-canvas {
+      position: fixed; inset: 0; z-index: 0;
+      overflow: hidden; pointer-events: none;
+    }
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.35;
+      animation: orbFloat 12s ease-in-out infinite;
+    }
+    .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, #072b4e 0%, transparent 70%); top: -100px; left: -100px; }
+    .orb-2 { width: 400px; height: 400px; background: radial-gradient(circle, var(--coral) 0%, transparent 70%); top: 20%; right: -80px; opacity: 0.12; animation-delay: -4s; }
+    .orb-3 { width: 600px; height: 600px; background: radial-gradient(circle, #0d3a5c 0%, transparent 70%); bottom: -150px; left: 30%; animation-delay: -8s; }
+    .orb-4 { width: 300px; height: 300px; background: radial-gradient(circle, var(--coral) 0%, transparent 70%); bottom: 10%; right: 20%; opacity: 0.08; animation-delay: -2s; }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .dot-grid {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .accent-lines {
+      position: absolute; top: 0; right: 0;
+      width: 280px; height: 280px;
+      background: repeating-linear-gradient(-45deg, transparent, transparent 18px, rgba(221,65,85,0.06) 18px, rgba(221,65,85,0.06) 19px);
+    }
+
+    /* === PAGE === */
+    .page {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      padding: 32px 20px 60px;
+    }
+
+    /* === HEADER === */
+    .header {
+      width: 100%; max-width: 540px;
+      display: flex; flex-direction: column; align-items: center;
+      margin-bottom: 36px;
+      animation: fadeDown 0.6s ease both;
+    }
+    .brand-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white-08); border: 1px solid var(--white-20); border-radius: 999px;
+      padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--white-80);
+      letter-spacing: 0.04em; margin-bottom: 20px;
+    }
+    .brand-badge .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--coral); box-shadow: 0 0 8px var(--coral);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.3); } }
+
+    .header h1 {
+      font-size: clamp(20px, 4.5vw, 26px); font-weight: 800;
+      text-align: center; line-height: 1.35; letter-spacing: -0.02em;
+    }
+    .header h1 .accent { color: var(--coral); }
+    .header p { margin-top: 10px; font-size: 14px; color: var(--white-50); text-align: center; line-height: 1.6; max-width: 380px; }
+
+    /* === PROGRESS === */
+    .progress-wrap {
+      width: 100%; max-width: 540px; margin-bottom: 28px;
+      animation: fadeDown 0.6s 0.1s ease both;
+    }
+    .progress-steps { display: flex; align-items: center; margin-bottom: 10px; }
+    .progress-step { flex: 1; height: 3px; background: var(--white-08); transition: background 0.4s ease; border-radius: 999px; }
+    .progress-step + .progress-step { margin-left: 4px; }
+    .progress-step.done { background: var(--coral); }
+    .progress-step.active { background: var(--coral); opacity: 0.6; }
+    .progress-label { font-size: 12px; color: var(--white-50); font-weight: 500; letter-spacing: 0.02em; }
+    .progress-label .hl { color: var(--coral); font-weight: 700; }
+
+    /* === FORM CARD === */
+    .form-card {
+      width: 100%; max-width: 540px;
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-xl);
+      padding: 36px 32px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      position: relative; overflow: hidden;
+    }
+    .step-number-bg {
+      position: absolute; top: -20px; right: 20px;
+      font-size: 140px; font-weight: 800; color: var(--white-04); line-height: 1;
+      user-select: none; pointer-events: none;
+    }
+
+    .step-title { font-size: 19px; font-weight: 700; margin-bottom: 6px; position: relative; z-index: 1; }
+    .step-subtitle { font-size: 13px; color: var(--white-50); margin-bottom: 28px; line-height: 1.5; position: relative; z-index: 1; }
+
+    /* === STEP ANIMATION === */
+    .step { display: none; }
+    .step.active { display: block; animation: slideIn 0.35s cubic-bezier(0.34, 1.2, 0.64, 1) both; }
+    .step.exit { animation: slideOut 0.25s ease both; }
+
+    @keyframes slideIn { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes slideOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(-30px); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
+
+    /* === FIELDS === */
+    .field-group { margin-bottom: 20px; }
+    .field-label { display: block; font-size: 13px; font-weight: 600; color: var(--white-80); margin-bottom: 8px; letter-spacing: 0.01em; }
+    .field-label .req { color: var(--coral); margin-left: 2px; }
+
+    input[type="text"], input[type="tel"], input[type="email"], textarea {
+      width: 100%; background: var(--input-bg); border: 1.5px solid var(--white-08);
+      border-radius: var(--radius-sm); padding: 13px 16px;
+      font-family: 'Sarabun', sans-serif; font-size: 15px; color: #fff; outline: none;
+      transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+      -webkit-appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: var(--white-20); }
+    input:focus, textarea:focus {
+      border-color: var(--coral); background: var(--input-focus);
+      box-shadow: 0 0 0 3px var(--coral-glow);
+    }
+
+    /* === RADIO / CHECKBOX === */
+    .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-group.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    .radio-card, .checkbox-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 16px; background: var(--input-bg); border: 1.5px solid var(--white-08);
+      border-radius: var(--radius-sm); cursor: pointer; transition: all 0.25s ease;
+      -webkit-tap-highlight-color: transparent; user-select: none;
+    }
+    .radio-card:hover, .checkbox-card:hover { border-color: var(--white-20); background: var(--white-08); }
+    .radio-card.selected, .checkbox-card.selected {
+      border-color: var(--coral); background: var(--coral-tint);
+      box-shadow: 0 0 0 1px var(--coral-glow);
+    }
+
+    .radio-dot {
+      width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--white-20);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.25s;
+    }
+    .radio-card.selected .radio-dot { border-color: var(--coral); background: var(--coral); }
+    .radio-card.selected .radio-dot::after {
+      content: ''; width: 8px; height: 8px; border-radius: 50%; background: white; display: block;
+    }
+
+    .check-box {
+      width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--white-20);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.25s;
+    }
+    .checkbox-card.selected .check-box { border-color: var(--coral); background: var(--coral); }
+    .checkbox-card.selected .check-box::after { content: '✓'; font-size: 12px; font-weight: 700; color: white; line-height: 1; }
+
+    .option-text { font-size: 14px; font-weight: 500; color: var(--white-80); line-height: 1.4; flex: 1; }
+    .radio-card.selected .option-text, .checkbox-card.selected .option-text { color: #fff; font-weight: 600; }
+
+    .ai-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+      background: var(--coral-glow); color: var(--coral); border: 1px solid var(--coral);
+      border-radius: 4px; padding: 2px 6px; flex-shrink: 0;
+    }
+
+    /* === BUTTONS === */
+    .nav-row { display: flex; align-items: center; gap: 12px; margin-top: 32px; }
+    .btn-back {
+      display: flex; align-items: center; gap: 6px;
+      background: none; border: 1.5px solid var(--white-20); border-radius: var(--radius-md);
+      padding: 13px 20px; font-family: 'Sarabun', sans-serif; font-size: 14px; font-weight: 600;
+      color: var(--white-50); cursor: pointer; transition: all 0.25s; -webkit-tap-highlight-color: transparent;
+    }
+    .btn-back:hover { border-color: var(--white-50); color: var(--white-80); }
+    .btn-next, .btn-submit {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+      border: none; border-radius: var(--radius-md);
+      padding: 14px 28px; font-family: 'Sarabun', sans-serif; font-size: 15px; font-weight: 700;
+      color: white; cursor: pointer; transition: all 0.25s;
+      box-shadow: 0 6px 24px rgba(221,65,85,0.3); -webkit-tap-highlight-color: transparent;
+    }
+    .btn-submit { padding: 16px 28px; font-size: 16px; }
+    .btn-next:hover, .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(221,65,85,0.4); }
+    .btn-next:active, .btn-submit:active { transform: scale(0.98); }
+    .btn-next:disabled, .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* === ERROR === */
+    .error-msg { font-size: 12px; color: #ff7b8a; margin-top: 6px; display: none; }
+    .error-msg.show { display: block; }
+
+    .step-error-summary {
+      display: none; margin-bottom: 12px;
+      background: rgba(255,80,100,0.1); border: 1px solid rgba(255,80,100,0.35);
+      border-radius: var(--radius-sm); padding: 10px 14px;
+    }
+    .step-error-summary.show { display: block; }
+    .step-error-summary p {
+      font-size: 12px; font-weight: 700; color: #ff7b8a; margin-bottom: 6px;
+    }
+    .step-error-summary ul {
+      list-style: none; display: flex; flex-direction: column; gap: 3px;
+    }
+    .step-error-summary ul li {
+      font-size: 12px; color: #ffaab5;
+    }
+    .step-error-summary ul li::before { content: "· "; }
+
+    /* === THANK YOU === */
+    #screen-thankyou { display: none; width: 100%; max-width: 540px; text-align: center; animation: fadeDown 0.5s ease both; }
+
+    .score-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 28px; border-radius: 999px; font-size: 14px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 28px;
+    }
+    .score-badge.hot  { background: rgba(221,65,85,0.15); border: 1.5px solid var(--coral); color: var(--coral); }
+    .score-badge.warm { background: rgba(255,180,50,0.1); border: 1.5px solid #ffb432; color: #ffb432; }
+    .score-badge.cold { background: var(--white-08); border: 1.5px solid var(--white-20); color: var(--white-50); }
+
+    .thankyou-icon {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 24px;
+      display: flex; align-items: center; justify-content: center; font-size: 36px;
+    }
+    .thankyou-icon.hot  { background: rgba(221,65,85,0.15); }
+    .thankyou-icon.warm { background: rgba(255,180,50,0.1); }
+    .thankyou-icon.cold { background: var(--white-08); }
+
+    .thankyou-title { font-size: 26px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .thankyou-subtitle { font-size: 15px; color: var(--white-50); line-height: 1.7; max-width: 380px; margin: 0 auto 32px; }
+    .thankyou-subtitle strong { color: var(--white-80); }
+
+    .thankyou-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-lg);
+      padding: 24px; text-align: left; margin-bottom: 24px;
+    }
+    .thankyou-card h3 { font-size: 13px; font-weight: 700; color: var(--white-50); letter-spacing: 0.06em; margin-bottom: 12px; }
+    .next-step-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .next-step-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--white-80); line-height: 1.5; }
+    .next-step-list li .step-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--coral-tint); border: 1px solid var(--coral);
+      display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--coral);
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .footer { margin-top: 32px; text-align: center; font-size: 12px; color: var(--white-20); }
+    .footer a { color: var(--white-50); text-decoration: none; }
+
+    /* === OPENLINK CTA === */
+    .openlink-cta {
+      margin-top: 20px; margin-bottom: 8px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .openlink-cta p { font-size: 13px; color: var(--white-50); line-height: 1.5; }
+    .openlink-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white-08); border: 1.5px solid var(--white-20); border-radius: var(--radius-md);
+      padding: 12px 24px; font-family: 'Sarabun', sans-serif; font-size: 14px; font-weight: 600;
+      color: var(--white-80); text-decoration: none;
+      transition: all 0.25s; -webkit-tap-highlight-color: transparent;
+    }
+    .openlink-btn:hover { border-color: var(--coral); color: #fff; background: var(--coral-tint); }
+    .openlink-btn .link-arrow { color: var(--coral); font-size: 16px; }
+
+    .footer-prominent {
+      margin-top: 28px; text-align: center; padding-bottom: 8px;
+    }
+    .footer-prominent a {
+      font-size: 13px; font-weight: 600; color: var(--white-50); text-decoration: none;
+      letter-spacing: 0.01em; transition: color 0.2s;
+    }
+    .footer-prominent a:hover { color: var(--coral); }
+    .footer-copy { margin-top: 8px; font-size: 11px; color: var(--white-20); }
+
+    /* === PUN HUMAN TOUCH === */
+    .pun-bio-card {
+      border-left: 3px solid var(--coral);
+      background: rgba(221,65,85,0.05);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 16px; margin-bottom: 28px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .pun-bio-header { display: flex; align-items: center; gap: 12px; }
+    .pun-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .pun-name { font-size: 14px; font-weight: 700; color: #fff; }
+    .pun-title-label { font-size: 12px; color: var(--white-50); margin-top: 1px; }
+    .pun-creds { font-size: 11px; color: var(--coral); font-weight: 600; letter-spacing: 0.02em; margin-top: 2px; }
+    .pun-personal-note {
+      font-size: 13px; color: var(--white-80); font-style: italic;
+      line-height: 1.5; padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .pun-callout {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: rgba(221,65,85,0.08); border: 1px solid rgba(221,65,85,0.25);
+      border-radius: var(--radius-sm); padding: 12px 14px;
+      margin-bottom: 12px; font-size: 13px; color: var(--white-80); line-height: 1.6;
+    }
+    .callout-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    .pun-signoff-card {
+      background: rgba(221,65,85,0.05); border: 1px solid rgba(221,65,85,0.18);
+      border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px;
+      text-align: left; display: flex; flex-direction: column; gap: 16px;
+    }
+    .pun-signoff-header { display: flex; align-items: center; gap: 12px; }
+    .pun-signoff-avatar {
+      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+      object-fit: cover;
+    }
+    .pun-signoff-msg { font-size: 14px; font-weight: 700; color: #fff; }
+    .pun-signoff-sub { font-size: 12px; color: var(--white-50); margin-top: 2px; }
+    .pun-dm-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .pun-dm-label { font-size: 13px; font-weight: 600; color: var(--white-80); }
+    .pun-dm-input {
+      width: 100%; background: var(--input-bg); border: 1.5px solid var(--white-08);
+      border-radius: var(--radius-sm); padding: 12px 14px;
+      font-family: 'Sarabun', sans-serif; font-size: 14px; color: #fff; outline: none;
+      resize: none; transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .pun-dm-input:focus { border-color: var(--coral); box-shadow: 0 0 0 3px var(--coral-glow); }
+    .pun-dm-input::placeholder { color: var(--white-20); }
+    .pun-dm-btn {
+      align-self: flex-end; background: var(--coral); border: none;
+      border-radius: var(--radius-sm); padding: 10px 20px;
+      font-family: 'Sarabun', sans-serif; font-size: 13px; font-weight: 700;
+      color: white; cursor: pointer; transition: all 0.2s;
+    }
+    .pun-dm-btn:hover { background: var(--coral-dark); transform: translateY(-1px); }
+    .pun-dm-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .pun-dm-sent { font-size: 13px; color: #6fcf97; font-weight: 600; }
+    .pun-promise {
+      font-size: 13px; color: var(--white-50); font-style: italic;
+      padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); line-height: 1.6;
+    }
+    .pun-promise-sig { color: var(--coral); font-weight: 600; font-style: normal; }
+
+    .spinner {
+      width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 420px) {
+      .form-card { padding: 28px 20px; }
+      .btn-back { padding: 13px 14px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-canvas">
+  <div class="dot-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+  <div class="accent-lines"></div>
+</div>
+
+<div class="page">
+
+  <div class="header">
+    <div class="brand-badge"><span class="dot"></span>ระบบนัดปรึกษาส่วนตัว</div>
+    <h1>พัฒนาทีมขาย &amp; AI For Business<br><span class="accent">กับ ปัน ณัฐพัชร์</span></h1>
+    <p>คนอื่นใช้ AI ช่วยหาลูกค้ากันแล้ว ทีมคุณยังนั่งเคาะ Excel อยู่เลย?<br>กรอกฟอร์มนี้ — ผมจะอ่านเองและดูว่าผมช่วยธุรกิจคุณได้จริงไหมครับ</p>
+  </div>
+
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-steps">
+      <div class="progress-step active" id="ps-1"></div>
+      <div class="progress-step" id="ps-2"></div>
+      <div class="progress-step" id="ps-3"></div>
+      <div class="progress-step" id="ps-4"></div>
+    </div>
+    <div class="progress-label">ขั้นตอน <span class="hl" id="step-label-current">1</span>/4</div>
+  </div>
+
+  <div class="form-card" id="form-card">
+    <div class="step-number-bg" id="step-bg-num">1</div>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step-1">
+      <div class="pun-bio-card">
+        <div class="pun-bio-header">
+          <img src="pun-avatar.png" class="pun-avatar" alt="ปัน ณัฐพัชร์">
+          <div>
+            <div class="pun-name">ปัน ณัฐพัชร์</div>
+            <div class="pun-title-label">Digital B2B &amp; Agentic AI Expert</div>
+            <div class="pun-creds">เบื้องหลังการปั้นทีมขาย 100 ล้าน</div>
+          </div>
+        </div>
+        <div class="pun-personal-note">"ผมอ่านทุก form เองก่อนที่เราจะได้คุยกันครับ"</div>
+      </div>
+      <div class="step-title">แนะนำตัวให้ผมรู้จักหน่อยครับ</div>
+      <div class="step-subtitle">ผมอ่านทุกคำตอบด้วยตัวเอง เพื่อให้การคุยของเรามีประโยชน์ที่สุดครับ</div>
+
+      <div class="field-group">
+        <label class="field-label" for="field-name">ชื่อ-นามสกุล <span class="req">*</span></label>
+        <input type="text" id="field-name" placeholder="ชื่อ-นามสกุล">
+        <div class="error-msg" id="err-name">กรุณากรอกชื่อ</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">ตำแหน่ง <span class="req">*</span></label>
+        <div class="radio-group" id="rg-position">
+          <div class="radio-card" data-val="CEO / เจ้าของกิจการ"><div class="radio-dot"></div><span class="option-text">CEO / เจ้าของกิจการ</span></div>
+          <div class="radio-card" data-val="Director"><div class="radio-dot"></div><span class="option-text">Director / ผู้จัดการทั่วไป</span></div>
+          <div class="radio-card" data-val="Sales Manager"><div class="radio-dot"></div><span class="option-text">Sales Manager</span></div>
+          <div class="radio-card" data-val="Marketing Manager"><div class="radio-dot"></div><span class="option-text">Marketing Manager</span></div>
+          <div class="radio-card" data-val="อื่นๆ"><div class="radio-dot"></div><span class="option-text">อื่นๆ</span></div>
+        </div>
+        <div class="error-msg" id="err-position">กรุณาเลือกตำแหน่ง</div>
+      </div>
+
+      <div class="field-group conditional-field" id="field-position-other-wrap" style="display:none">
+        <label class="field-label" for="field-position-other">ระบุตำแหน่งของคุณ</label>
+        <input type="text" id="field-position-other" placeholder="เช่น หุ้นส่วน, ผู้จัดการฝ่ายพัฒนาธุรกิจ">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="field-company">ชื่อบริษัท <span class="req">*</span></label>
+        <input type="text" id="field-company" placeholder="เช่น บจก. เอบีซี เทรดดิ้ง">
+        <div class="error-msg" id="err-company">กรุณากรอกชื่อบริษัท</div>
+      </div>
+
+      <div class="step-error-summary" id="err-summary-1"></div>
+      <div class="nav-row">
+        <button class="btn-next" onclick="goNext(1)">ไปต่อ →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step-2">
+      <div class="step-title">เล่าเรื่องธุรกิจให้ผมฟังหน่อยครับ</div>
+      <div class="step-subtitle">ยิ่งลงรายละเอียดมากเท่าไหร่ ผมยิ่งเตรียม Session ของเราให้ตรงกับคุณได้มากเท่านั้น</div>
+
+      <div class="field-group">
+        <label class="field-label">ประเภทธุรกิจ <span class="req">*</span></label>
+        <div class="radio-group" id="rg-industry">
+          <div class="radio-card" data-val="บริการ (Service)"><div class="radio-dot"></div><span class="option-text">บริการ (Service)</span></div>
+          <div class="radio-card" data-val="ผลิต (Manufacturing)"><div class="radio-dot"></div><span class="option-text">ผลิต (Manufacturing)</span></div>
+          <div class="radio-card" data-val="ค้าส่ง/ค้าปลีก (Trading)"><div class="radio-dot"></div><span class="option-text">ค้าส่ง / ค้าปลีก (Trading)</span></div>
+          <div class="radio-card" data-val="IT/Software"><div class="radio-dot"></div><span class="option-text">IT / Software</span></div>
+          <div class="radio-card" data-val="โลจิสติกส์/ขนส่ง"><div class="radio-dot"></div><span class="option-text">โลจิสติกส์ / ขนส่ง</span></div>
+          <div class="radio-card" data-val="อื่นๆ"><div class="radio-dot"></div><span class="option-text">อื่นๆ</span></div>
+        </div>
+        <div class="error-msg" id="err-industry">กรุณาเลือกลักษณะธุรกิจ</div>
+      </div>
+
+      <div class="field-group conditional-field" id="field-industry-other-wrap" style="display:none">
+        <label class="field-label" for="field-industry-other">อธิบายธุรกิจเพิ่มเติม</label>
+        <input type="text" id="field-industry-other" placeholder="เช่น ประกันภัย, นายหน้า, ที่ปรึกษาการเงิน">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">ขนาดทีมขาย <span class="req">*</span></label>
+        <div class="radio-group cols-2" id="rg-team">
+          <div class="radio-card" data-val="1-3 คน"><div class="radio-dot"></div><span class="option-text">1–3 คน</span></div>
+          <div class="radio-card" data-val="4-10 คน"><div class="radio-dot"></div><span class="option-text">4–10 คน</span></div>
+          <div class="radio-card" data-val="11-20 คน"><div class="radio-dot"></div><span class="option-text">11–20 คน</span></div>
+          <div class="radio-card" data-val="มากกว่า 20 คน"><div class="radio-dot"></div><span class="option-text">20+ คน</span></div>
+        </div>
+        <div class="error-msg" id="err-team">กรุณาเลือกขนาดทีม</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="field-product">สินค้า / บริการหลัก <span class="req">*</span></label>
+        <input type="text" id="field-product" placeholder="เช่น เครื่องจักรอุตสาหกรรม, บริการทำความสะอาดโรงงาน, Enterprise Software">
+        <div class="error-msg" id="err-product">กรุณากรอกสินค้า/บริการ</div>
+      </div>
+
+      <div class="step-error-summary" id="err-summary-2"></div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack(2)">← กลับ</button>
+        <button class="btn-next" onclick="goNext(2)">ต่อไป →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step-3">
+      <div class="step-title">ตอนนี้ติดเรื่องอะไรอยู่ครับ?</div>
+      <div class="step-subtitle">เลือกได้หลายข้อเลยครับ ผมอยากเข้าใจสถานการณ์จริงที่คุณกำลังเจอ</div>
+
+      <div class="field-group">
+        <div class="checkbox-group" id="cg-problems">
+          <div class="checkbox-card" data-val="ทีมขายทำยอดไม่ถึงเป้า ปิดการขายไม่ค่อยได้"><div class="check-box"></div><span class="option-text">ทีมขายทำยอดไม่ถึงเป้า ปิดการขายไม่ค่อยได้</span></div>
+          <div class="checkbox-card" data-val="หาเซลล์เก่งๆ ยาก หรือทีมลาออกบ่อย"><div class="check-box"></div><span class="option-text">หาเซลล์เก่งๆ ยาก หรือทีมลาออกบ่อย</span></div>
+          <div class="checkbox-card" data-val="Owner ต้องตัดสินใจทุกเรื่อง ทำให้บริษัทโตช้า"><div class="check-box"></div><span class="option-text">Owner ต้องตัดสินใจทุกเรื่อง ทำให้บริษัทโตช้า</span></div>
+          <div class="checkbox-card" data-val="ทีมเสียเวลากับงานเอกสาร งานแอดมินเยอะ"><div class="check-box"></div><span class="option-text">ทีมเสียเวลากับงานเอกสาร งานแอดมินเยอะ</span></div>
+          <div class="checkbox-card" data-val="ใช้ AI ช่วยทำงานอยู่แล้ว แต่อยากให้ทำได้มากกว่านี้"><div class="check-box"></div><span class="option-text">ใช้ AI ช่วยทำงานอยู่แล้ว แต่อยากให้ทำได้มากกว่านี้</span></div>
+          <div class="checkbox-card" data-val="อยากทำ Automation แต่ไม่รู้จะเริ่มตรงไหน"><div class="check-box"></div><span class="option-text">อยากทำ Automation แต่ไม่รู้จะเริ่มตรงไหน</span></div>
+          <div class="checkbox-card" data-val="ไม่มีระบบคุมทีมขาย วาง Commission หรือ KPI ไม่เป็นระบบ"><div class="check-box"></div><span class="option-text">ไม่มีระบบคุมทีมขาย วาง Commission หรือ KPI ไม่เป็นระบบ</span></div>
+          <div class="checkbox-card" data-val="เจ้าของต้องลงไปทำเองทุกอย่าง ไม่มีเวลาคิดเรื่องใหญ่ๆ"><div class="check-box"></div><span class="option-text">เจ้าของต้องลงไปทำเองทุกอย่าง ไม่มีเวลาคิดเรื่องใหญ่ๆ</span></div>
+          <div class="checkbox-card" data-val="อยากเพิ่มยอดขาย แต่รู้สึกว่ามาถึงทางตันแล้ว"><div class="check-box"></div><span class="option-text">อยากเพิ่มยอดขาย แต่รู้สึกว่ามาถึงทางตันแล้ว</span></div>
+          <div class="checkbox-card" data-val="มี CRM อยู่แล้ว แต่ทีมไม่ยอมใช้"><div class="check-box"></div><span class="option-text">มี CRM อยู่แล้ว แต่ทีมไม่ยอมใช้</span></div>
+        </div>
+        <div class="error-msg" id="err-problems">กรุณาเลือกอย่างน้อย 1 ข้อ</div>
+      </div>
+
+      <div class="pun-callout">
+        <span class="callout-icon">💬</span>
+        <span>ยิ่งเล่าให้ผมฟังได้ละเอียดมากเท่าไหร่ ผมยิ่งออกแบบ Solution ให้คุณได้ตรงกับโจทย์ธุรกิจของคุณมากขึ้น</span>
+      </div>
+      <div class="field-group" style="margin-top:16px">
+        <label class="field-label" for="field-comment">มีอะไรอยากเล่าให้ผมฟังเพิ่มไหมครับ</label>
+        <textarea id="field-comment" rows="3" placeholder="เช่น สถานการณ์ของทีมตอนนี้ หรือปัญหาอื่นๆ ที่ไม่อยู่ในลิสต์"></textarea>
+      </div>
+
+      <div class="step-error-summary" id="err-summary-3"></div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack(3)">← กลับ</button>
+        <button class="btn-next" onclick="goNext(3)">ต่อไป →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" id="step-4">
+      <div class="step-title">ให้ผมติดต่อกลับช่องทางไหนสะดวกครับ</div>
+      <div class="step-subtitle">ผมอ่านทุกฟอร์มด้วยตัวเอง และจะติดต่อกลับตามความเหมาะสมของแต่ละเคสครับ</div>
+
+      <div class="field-group">
+        <label class="field-label" for="field-phone">เบอร์โทรศัพท์ <span class="req">*</span></label>
+        <input type="tel" id="field-phone" placeholder="08X-XXX-XXXX" inputmode="numeric">
+        <div class="error-msg" id="err-phone">กรุณากรอกเบอร์โทรศัพท์</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="field-line">LINE ID</label>
+        <input type="text" id="field-line" placeholder="เช่น @punnattapatch หรือ pun.n">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="field-email">อีเมล (ถ้ามี)</label>
+        <input type="email" id="field-email" placeholder="name@company.com">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">เจอผมจากที่ไหนครับ</label>
+        <div class="radio-group" id="rg-source">
+          <div class="radio-card" data-val="TikTok"><div class="radio-dot"></div><span class="option-text">TikTok</span></div>
+          <div class="radio-card" data-val="Instagram"><div class="radio-dot"></div><span class="option-text">Instagram</span></div>
+          <div class="radio-card" data-val="Facebook"><div class="radio-dot"></div><span class="option-text">Facebook</span></div>
+          <div class="radio-card" data-val="เพื่อนแนะนำ"><div class="radio-dot"></div><span class="option-text">เพื่อนแนะนำ</span></div>
+          <div class="radio-card" data-val="อื่นๆ"><div class="radio-dot"></div><span class="option-text">อื่นๆ</span></div>
+        </div>
+      </div>
+
+      <div class="step-error-summary" id="err-summary-4"></div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack(4)">← กลับ</button>
+        <button class="btn-submit" id="btn-submit" onclick="submitForm()">
+          ส่งข้อมูลให้ปัน
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU -->
+  <div id="screen-thankyou">
+    <div class="thankyou-icon" id="ty-icon"></div>
+    <div class="score-badge" id="ty-badge"></div>
+    <div class="thankyou-title" id="ty-title"></div>
+    <div class="thankyou-subtitle" id="ty-subtitle"></div>
+    <div class="thankyou-card">
+      <h3>ขั้นตอนต่อไป</h3>
+      <ul class="next-step-list" id="ty-steps"></ul>
+    </div>
+    <div class="pun-signoff-card">
+      <div class="pun-signoff-header">
+        <img src="pun-avatar.png" class="pun-signoff-avatar" alt="ปัน ณัฐพัชร์">
+        <div>
+          <div class="pun-signoff-msg">ผมได้รับข้อมูลของคุณแล้วครับ</div>
+          <div class="pun-signoff-sub">ผมอ่านข้อมูลที่คุณกรอกมาทุกเคสเอง ไม่ผ่าน AI หรือทีมงานแน่นอนครับ มีอะไรผมดูแลให้เอง ^^</div>
+        </div>
+      </div>
+      <div class="pun-dm-wrap">
+        <label class="pun-dm-label" for="field-direct-msg">มีอะไรอยากเล่าให้ผมฟังเพิ่มเติมก่อนที่เราจะคุยกันไหมครับ?</label>
+        <textarea id="field-direct-msg" class="pun-dm-input" rows="3"
+          placeholder="เช่น บริบทที่ไม่ได้กรอกไว้ หรืออะไรก็ตามที่อยากให้ผมรู้ก่อน"></textarea>
+        <button class="pun-dm-btn" id="btn-send-msg" onclick="sendDirectMessage()">ส่งข้อความหาปัน →</button>
+        <div class="pun-dm-sent" id="pun-dm-sent" style="display:none">✓ ส่งแล้วครับ ผมจะได้รับและตอบกลับเองครับ</div>
+      </div>
+      <div class="pun-promise">
+        ผมอ่านและตอบกลับทุกข้อความเองครับ มีอะไรมาคุยกัน ^^
+        <span class="pun-promise-sig">— ปัน ณัฐพัชร์</span>
+      </div>
+    </div>
+
+    <div class="openlink-cta">
+      <p>ระหว่างรอ ดู content และ บทความ เพิ่มเติมจากผมได้ที่นี่ครับ</p>
+      <a href="https://www.openlink.co/pun_nattapatch" class="openlink-btn" target="_blank" rel="noopener">
+        openlink.co/pun_nattapatch <span class="link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-prominent">
+    <a href="https://www.openlink.co/pun_nattapatch" target="_blank" rel="noopener">openlink.co/pun_nattapatch</a>
+    <div class="footer-copy">© 2026 ปัน ณัฐพัชร์</div>
+  </div>
+
+</div>
+
+<script>
+/* CONFIG */
+const N8N_WEBHOOK_URL = 'https://rnat.app.n8n.cloud/webhook/intake-form-v2';
+const MOCK_MODE = false; // set false after creating webhook node in n8n
+
+/* STATE */
+let currentStep = 1;
+const formData = {};
+
+/* === RADIO / CHECKBOX INTERACTION === */
+document.querySelectorAll('.radio-group').forEach(function(group) {
+  group.querySelectorAll('.radio-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      group.querySelectorAll('.radio-card').forEach(function(c) { c.classList.remove('selected'); });
+      card.classList.add('selected');
+      var errMap = { 'rg-position':'err-position', 'rg-industry':'err-industry', 'rg-team':'err-team' };
+      var errId = errMap[group.id];
+      if (errId) { var el = document.getElementById(errId); if (el) el.classList.remove('show'); }
+      // Show/hide conditional "อื่นๆ" text fields
+      if (group.id === 'rg-position') {
+        var wrap = document.getElementById('field-position-other-wrap');
+        if (wrap) wrap.style.display = card.dataset.val === 'อื่นๆ' ? 'block' : 'none';
+      }
+      if (group.id === 'rg-industry') {
+        var wrap = document.getElementById('field-industry-other-wrap');
+        if (wrap) wrap.style.display = card.dataset.val === 'อื่นๆ' ? 'block' : 'none';
+      }
+    });
+  });
+});
+
+document.querySelectorAll('.checkbox-group').forEach(function(group) {
+  group.querySelectorAll('.checkbox-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      card.classList.toggle('selected');
+      var errEl = document.getElementById('err-problems');
+      if (errEl) errEl.classList.remove('show');
+    });
+  });
+});
+
+/* === PROGRESS === */
+function updateProgress(step) {
+  document.getElementById('step-label-current').textContent = String(step);
+  document.getElementById('step-bg-num').textContent = String(step);
+  for (var i = 1; i <= 4; i++) {
+    var el = document.getElementById('ps-' + i);
+    if (!el) continue;
+    el.className = 'progress-step';
+    if (i < step) el.classList.add('done');
+    else if (i === step) el.classList.add('active');
+  }
+}
+
+/* === VALIDATION === */
+var errTexts = {
+  'err-name':     'ชื่อ-นามสกุล',
+  'err-position': 'ตำแหน่งของคุณ',
+  'err-company':  'ชื่อบริษัท',
+  'err-industry': 'ประเภทธุรกิจ',
+  'err-team':     'ขนาดทีมขาย',
+  'err-product':  'สินค้า / บริการหลัก',
+  'err-problems': 'เลือกปัญหาอย่างน้อย 1 ข้อ',
+  'err-phone':    'เบอร์โทรศัพท์'
+};
+var errMessages = {
+  'err-name':     'ใส่ชื่อของคุณก่อนครับ',
+  'err-position': 'เลือกตำแหน่งของคุณครับ',
+  'err-company':  'รบกวนขอชื่อบริษัทด้วยครับ',
+  'err-industry': 'เลือกประเภทธุรกิจของคุณครับ',
+  'err-team':     'ทีมขายมีประมาณกี่คนครับ?',
+  'err-product':  'สินค้า/บริการหลักคืออะไรครับ?',
+  'err-problems': 'เลือกปัญหาที่เจออยู่อย่างน้อย 1 ข้อครับ',
+  'err-phone':    'ขอเบอร์ติดต่อกลับด้วยครับ'
+};
+
+function validateStep(step) {
+  var valid = true;
+  var missing = [];
+
+  // set inline error messages
+  Object.keys(errMessages).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = errMessages[id];
+  });
+
+  function fail(errId) {
+    document.getElementById(errId).classList.add('show');
+    missing.push(errTexts[errId]);
+    valid = false;
+  }
+
+  if (step === 1) {
+    if (!document.getElementById('field-name').value.trim()) fail('err-name');
+    if (!document.querySelector('#rg-position .radio-card.selected')) fail('err-position');
+    if (!document.getElementById('field-company').value.trim()) fail('err-company');
+  }
+  if (step === 2) {
+    if (!document.querySelector('#rg-industry .radio-card.selected')) fail('err-industry');
+    if (!document.querySelector('#rg-team .radio-card.selected')) fail('err-team');
+    if (!document.getElementById('field-product').value.trim()) fail('err-product');
+  }
+  if (step === 3) {
+    if (document.querySelectorAll('#cg-problems .checkbox-card.selected').length === 0) fail('err-problems');
+  }
+  if (step === 4) {
+    var rawPhone = document.getElementById('field-phone').value.trim();
+    var digits = rawPhone.replace(/[\s\-().+]/g, '');
+    // handle +66 prefix → convert to 0xx
+    if (digits.startsWith('66') && digits.length === 11) digits = '0' + digits.slice(2);
+    var thaiMobile = /^0[689]\d{8}$/.test(digits);
+    if (!rawPhone) {
+      fail('err-phone');
+    } else if (!thaiMobile) {
+      document.getElementById('err-phone').textContent = 'กรอกเบอร์มือถือที่ถูกต้องด้วยครับ เช่น 081-234-5678';
+      document.getElementById('err-phone').classList.add('show');
+      missing.push('เบอร์โทรศัพท์ (รูปแบบไม่ถูกต้อง)');
+      valid = false;
+    }
+  }
+
+  var summary = document.getElementById('err-summary-' + step);
+  if (summary) {
+    if (!valid) {
+      summary.textContent = '';
+      var p = document.createElement('p');
+      p.textContent = 'กรุณากรอกข้อมูลที่ยังขาดอยู่ครับ:';
+      var ul = document.createElement('ul');
+      missing.forEach(function(text) {
+        var li = document.createElement('li');
+        li.textContent = text;
+        ul.appendChild(li);
+      });
+      summary.appendChild(p);
+      summary.appendChild(ul);
+      summary.classList.add('show');
+      summary.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      summary.classList.remove('show');
+      summary.textContent = '';
+    }
+  }
+
+  return valid;
+}
+
+/* === NAV === */
+function goNext(fromStep) {
+  if (!validateStep(fromStep)) return;
+  collectData(fromStep);
+  var current = document.getElementById('step-' + fromStep);
+  var next = document.getElementById('step-' + (fromStep + 1));
+  current.classList.add('exit');
+  setTimeout(function() {
+    current.classList.remove('active', 'exit');
+    next.classList.add('active');
+    currentStep = fromStep + 1;
+    updateProgress(currentStep);
+  }, 250);
+}
+
+function goBack(fromStep) {
+  document.getElementById('step-' + fromStep).classList.remove('active');
+  document.getElementById('step-' + (fromStep - 1)).classList.add('active');
+  currentStep = fromStep - 1;
+  updateProgress(currentStep);
+}
+
+/* === COLLECT === */
+function collectData(step) {
+  if (step === 1) {
+    formData.name          = document.getElementById('field-name').value.trim();
+    formData.position      = (document.querySelector('#rg-position .radio-card.selected') || {dataset:{val:''}}).dataset.val;
+    formData.positionOther = document.getElementById('field-position-other').value.trim();
+    formData.company       = document.getElementById('field-company').value.trim();
+  }
+  if (step === 2) {
+    formData.industry      = (document.querySelector('#rg-industry .radio-card.selected') || {dataset:{val:''}}).dataset.val;
+    formData.industryOther = document.getElementById('field-industry-other').value.trim();
+    formData.teamSize      = (document.querySelector('#rg-team .radio-card.selected') || {dataset:{val:''}}).dataset.val;
+    formData.product       = document.getElementById('field-product').value.trim();
+  }
+  if (step === 3) {
+    formData.problems = Array.from(document.querySelectorAll('#cg-problems .checkbox-card.selected')).map(function(c){ return c.dataset.val; });
+    formData.comment  = document.getElementById('field-comment').value.trim();
+  }
+  if (step === 4) {
+    formData.phone  = document.getElementById('field-phone').value.trim();
+    formData.line   = document.getElementById('field-line').value.trim();
+    formData.email  = document.getElementById('field-email').value.trim();
+    formData.source = (document.querySelector('#rg-source .radio-card.selected') || {dataset:{val:''}}).dataset.val;
+  }
+}
+
+/* === SCORING: Hot ≥8 | Warm 5-7 | Cold <5 === */
+function calculateScore() {
+  var score = 0;
+  var aiCount = 0;
+  var posScore = {'CEO / เจ้าของกิจการ':3,'Director':3,'Sales Manager':2,'Marketing Manager':2,'อื่นๆ':1};
+  score += posScore[formData.position] || 1;
+  var teamScore = {'1-3 คน':1,'4-10 คน':2,'11-20 คน':3,'มากกว่า 20 คน':3};
+  score += teamScore[formData.teamSize] || 1;
+  var aiKeywords = ['Owner ตัดสินใจ','งานแอดมิน','AI ช่วย','Automation','Commission','KPI','ลงไปทำเอง'];
+  (formData.problems || []).forEach(function(p) {
+    var isAi = aiKeywords.some(function(k){ return p.indexOf(k) !== -1; });
+    score += isAi ? 2 : 1;
+    if (isAi) aiCount++;
+  });
+  var tier = score >= 8 ? 'hot' : score >= 5 ? 'warm' : 'cold';
+  return { score: score, tier: tier, aiCount: aiCount };
+}
+
+/* === THANK YOU (safe DOM construction — no innerHTML with user data) === */
+function showThankYou(tier) {
+  document.getElementById('form-card').style.display = 'none';
+  document.getElementById('progress-wrap').style.display = 'none';
+  var tyScreen = document.getElementById('screen-thankyou');
+  tyScreen.style.display = 'block';
+
+  var configs = {
+    hot:  {
+      icon: '🎯', badgeText: '● PRIORITY SESSION',
+      title: 'ขอบคุณครับ! ผมได้รับข้อมูลของคุณแล้ว',
+      subtitleLines: ['ผมจะอ่านข้อมูลแล้วรีบติดต่อกลับภายใน 24 ชม.', 'เพื่อนัดคุย First Session ครับ'],
+      steps: ['ผมจะอ่านข้อมูลที่คุณส่งมาอย่างละเอียด','ผมจะติดต่อกลับ (โทร/LINE) เพื่อนัดวัน-เวลา','เราจะคุยกัน 30 นาที (ไม่มีค่าใช้จ่าย) เพื่อวิเคราะห์ปัญหาเบื้องต้นครับ']
+    },
+    warm: {
+      icon: '📋', badgeText: '● IN REVIEW',
+      title: 'ขอบคุณครับ ผมได้รับข้อมูลเรียบร้อย',
+      subtitleLines: ['ผมขอเวลา review เคสของคุณ แล้วจะส่ง Resource ที่น่าจะเป็นประโยชน์ให้ทาง LINE/Email', 'ภายใน 2-3 วันทำการครับ'],
+      steps: ['ผมอ่านข้อมูลเคสของคุณอย่างละเอียด','คุณจะได้รับ Resource ที่ผมคัดเลือกให้เป็นพิเศษ','ถ้าเคสของคุณเป็นเคสที่ผมช่วยได้ ผมจะติดต่อกลับเพื่อนัดคุย Session ครับ']
+    },
+    cold: {
+      icon: '📚', badgeText: '● RECEIVED',
+      title: 'ขอบคุณครับ ผมได้รับข้อมูลเรียบร้อย',
+      subtitleLines: ['จากข้อมูลที่ให้มา ผมคิดว่า E-Book เล่มนี้น่าจะเป็นประโยชน์กับคุณเป็นพิเศษ', 'ผมจะส่งให้ทาง LINE/Email ที่ให้ไว้นะครับ'],
+      steps: ['รอรับ E-Book จากผมทาง LINE/Email ได้เลย','ลองนำ Framework ใน E-Book ไปปรับใช้กับทีมดูนะครับ','หากสถานการณ์เปลี่ยนไป หรือมีคำถาม ทักมาคุยกับผมได้เสมอครับ']
+    }
+  };
+
+  var cfg = configs[tier];
+
+  // icon
+  var iconEl = document.getElementById('ty-icon');
+  iconEl.textContent = cfg.icon;
+  iconEl.className = 'thankyou-icon ' + tier;
+
+  // badge
+  var badgeEl = document.getElementById('ty-badge');
+  badgeEl.textContent = cfg.badgeText;
+  badgeEl.className = 'score-badge ' + tier;
+
+  // title
+  document.getElementById('ty-title').textContent = cfg.title;
+
+  // subtitle — build with text nodes + <br> only
+  var subtitleEl = document.getElementById('ty-subtitle');
+  subtitleEl.textContent = '';
+  cfg.subtitleLines.forEach(function(line, idx) {
+    subtitleEl.appendChild(document.createTextNode(line));
+    if (idx < cfg.subtitleLines.length - 1) subtitleEl.appendChild(document.createElement('br'));
+  });
+
+  // steps list
+  var listEl = document.getElementById('ty-steps');
+  listEl.textContent = '';
+  cfg.steps.forEach(function(text, idx) {
+    var li = document.createElement('li');
+    var iconSpan = document.createElement('span');
+    iconSpan.className = 'step-icon';
+    iconSpan.textContent = String(idx + 1);
+    var textSpan = document.createElement('span');
+    textSpan.textContent = text;
+    li.appendChild(iconSpan);
+    li.appendChild(textSpan);
+    listEl.appendChild(li);
+  });
+}
+
+/* === SUBMIT === */
+async function submitForm() {
+  if (!validateStep(4)) return;
+  collectData(4);
+  var result = calculateScore();
+  formData.tier = result.tier; // store for direct message use
+  var payload = Object.assign({}, formData, {
+    score: result.score,
+    tier: result.tier.toUpperCase(),
+    aiSignalCount: result.aiCount,
+    submittedAt: new Date().toISOString(),
+    source_page: 'intake-form-v2'
+  });
+
+  var btn = document.getElementById('btn-submit');
+  var spinner = document.createElement('div');
+  spinner.className = 'spinner';
+  btn.textContent = '';
+  btn.appendChild(spinner);
+  btn.appendChild(document.createTextNode(' สักครู่นะครับ...'));
+  btn.disabled = true;
+
+  if (MOCK_MODE) {
+    await new Promise(function(r){ setTimeout(r, 1200); });
+    showThankYou(result.tier);
+    return;
+  }
+
+  try {
+    await fetch(N8N_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {
+    console.error('Webhook error:', e);
+  }
+  showThankYou(result.tier);
+}
+
+/* === DIRECT MESSAGE === */
+async function sendDirectMessage() {
+  var msg = document.getElementById('field-direct-msg').value.trim();
+  if (!msg) return;
+  var btn = document.getElementById('btn-send-msg');
+  btn.disabled = true;
+  btn.textContent = 'กำลังส่ง...';
+  // Single path — no type branching, send all available formData + message
+  var payload = Object.assign({}, formData, {
+    message: msg,
+    source_page: 'intake-form-v2-dm',
+    submittedAt: new Date().toISOString()
+  });
+  if (!MOCK_MODE) {
+    try {
+      await fetch(N8N_WEBHOOK_URL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch(e) { console.error('DM send error:', e); }
+  }
+  btn.style.display = 'none';
+  document.getElementById('pun-dm-sent').style.display = 'block';
+}
+
+/* INIT */
+updateProgress(1);
+</script>
+</body>
+</html>

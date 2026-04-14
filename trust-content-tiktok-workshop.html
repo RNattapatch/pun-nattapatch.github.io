@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trust Content Workshop for TikTok — เปลี่ยนมือถือให้เป็นเครื่องจักรสร้างลูกค้า B2B | Pun Nattapatch</title>
+  <meta name="description" content="Workshop 1 วัน — สร้าง content TikTok ที่ทำให้ลูกค้าเชื่อใจและทักมาซื้อเอง ไม่ต้องจ้างคนทำ ไม่ต้องเป็น influencer ถ่ายจริง 3 คลิป + แผน 30 วัน">
+
+  <!-- DaisyUI + Tailwind v4 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Fonts: Bai Jamjuree (Display) + Sarabun (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- AOS Scroll Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: "Bai Jamjuree", sans-serif;
+      --font-body: "Sarabun", sans-serif;
+      --color-brand-navy: #072b4e;
+      --color-brand-coral: #dd4155;
+      --color-brand-coral-dark: #c43245;
+      --color-brand-violet: #7c3aed;
+      --color-brand-violet-dark: #6d28d9;
+    }
+  </style>
+
+  <style>
+    .dynamic-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(7,43,78,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(124,58,237,0.08) 0%, transparent 50%);
+      animation: bgShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+    .dot-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .avatar-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
+  </style>
+</head>
+
+<body class="font-body bg-[#0a0a0a] text-white min-h-screen relative">
+
+  <!-- Dynamic Background -->
+  <div class="dynamic-bg"></div>
+  <div class="dot-overlay"></div>
+
+  <!-- Content wrapper -->
+  <div class="relative z-10">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar bg-transparent backdrop-blur-sm sticky top-0 z-50 border-b border-white/5 px-4 lg:px-8">
+      <div class="navbar-start">
+        <a href="landing-page-v2.html" class="font-display font-bold text-lg tracking-tight hover:text-brand-coral transition-colors">Pun Nattapatch</a>
+      </div>
+      <div class="navbar-end">
+        <a href="#pricing" class="btn btn-sm bg-brand-violet border-none text-white hover:bg-brand-violet-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-violet/20">
+          ดูราคา
+        </a>
+      </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="min-h-[80vh] flex items-center px-4 lg:px-8 py-20">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <!-- Package badge -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-violet/30 bg-brand-violet/10 px-4 py-1.5 mb-4" data-aos="fade-up">
+          <i data-lucide="video" class="w-4 h-4 text-brand-violet"></i>
+          <span class="text-sm font-semibold text-brand-violet tracking-wide">SPECIAL WORKSHOP</span>
+        </div>
+
+        <!-- Early Bird badge -->
+        <div class="mb-8" data-aos="fade-up" data-aos-delay="50">
+          <span class="inline-block rounded-full bg-brand-coral/10 border border-brand-coral/25 px-4 py-1 text-xs font-bold text-brand-coral">5 ธุรกิจแรก — ราคาพิเศษ + Bonus 1-on-1 Visit</span>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6" data-aos="fade-up" data-aos-delay="100" id="headline-main">
+          Content สวยแต่<span class="text-brand-violet">ขายไม่ได้?</span><br class="hidden md:block">
+          ปัญหาไม่ใช่ content — แต่เป็น<span class="text-brand-coral">ความเชื่อใจ</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed mb-8" data-aos="fade-up" data-aos-delay="200">
+          Workshop 1 วัน — สร้าง TikTok content ที่ทำให้ลูกค้าเชื่อใจและทักมาซื้อเอง<br>
+          ไม่ต้องเป็น influencer ไม่ต้องจ้างคนทำ ไม่ต้องพึ่ง AI ล้วนๆ
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-12" data-aos="fade-up" data-aos-delay="300">
+          <a href="booking-form.html?package=trust-content-tiktok" class="btn bg-brand-violet border-none text-white hover:bg-brand-violet-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-violet/20 px-8">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            จอง Workshop นี้ →
+          </a>
+          <a href="intake-form.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30 px-8">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            ไม่แน่ใจ? นัดคุยกับปันก่อน
+          </a>
+        </div>
+
+        <!-- Proof stats -->
+        <div class="flex gap-8 md:gap-12 justify-center flex-wrap" data-aos="fade-up" data-aos-delay="400">
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-violet">500K+</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Viral Views</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-violet">0→TikTok</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">เปิดช่องจาก 0</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">ปิดขายได้</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">ผ่าน TikTok จริง</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROBLEM ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-violet tracking-widest uppercase mb-4" data-aos="fade-up">Problem</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4" data-aos="fade-up">
+          ปัญหาที่เจ้าของธุรกิจ B2B เจอกับ Content
+        </h2>
+        <p class="text-white/50 mb-12" data-aos="fade-up">ไม่ใช่ว่าไม่พยายาม — แต่วิธีที่ใช้อยู่มันไม่ work</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-violet/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+            <div class="w-10 h-10 rounded-full bg-brand-violet/10 flex items-center justify-center mb-4">
+              <i data-lucide="banknote" class="w-5 h-5 text-brand-violet"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">จ้างคนทำ content แพง แต่ไม่มีลูกค้าทักมา</h3>
+            <p class="text-sm text-white/70 leading-relaxed">จ่ายค่า agency หรือ freelance เดือนละหลายหมื่น ได้ content สวย ยอดวิวดี แต่ไม่เคยมี lead ทักมาถามซื้อจากคลิปเลยสักคน</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-violet/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-10 h-10 rounded-full bg-brand-violet/10 flex items-center justify-center mb-4">
+              <i data-lucide="eye" class="w-5 h-5 text-brand-violet"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">มียอดวิว แต่ไม่มียอดขาย</h3>
+            <p class="text-sm text-white/70 leading-relaxed">คลิปได้หลักหมื่นวิว คนกดไลค์เยอะ แต่พอถามว่า "มีลูกค้ามาจาก TikTok กี่ราย?" คำตอบคือศูนย์ เพราะ content ไม่ได้ถูกออกแบบมาเพื่อสร้างความเชื่อใจ</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-violet/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-10 h-10 rounded-full bg-brand-violet/10 flex items-center justify-center mb-4">
+              <i data-lucide="user-x" class="w-5 h-5 text-brand-violet"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">ไม่รู้จะเริ่มยังไง กลัวเสียหน้า</h3>
+            <p class="text-sm text-white/70 leading-relaxed">เจ้าของธุรกิจอยากทำ TikTok แต่กลัวโดนมอง ไม่อยากเป็น influencer ไม่อยากเต้น ไม่รู้จะพูดอะไร สุดท้ายไม่ได้เริ่มสักที</p>
+          </div>
+        </div>
+
+        <!-- Cost of Inaction -->
+        <div class="mt-8 rounded-2xl border border-brand-coral/20 bg-brand-coral/5 p-6 text-center" data-aos="fade-up">
+          <div class="text-xs text-brand-coral tracking-widest uppercase mb-2">ถ้าไม่แก้ คุณเสียอะไร</div>
+          <div class="font-display text-2xl md:text-3xl font-bold text-brand-coral mb-2">ลูกค้าที่ควรเป็นของคุณ กำลังไปซื้อคู่แข่ง</div>
+          <p class="text-sm text-white/50">เพราะคู่แข่งสร้างความเชื่อใจผ่าน content ได้เร็วกว่า — ลูกค้าเลือกซื้อกับคนที่เขา "รู้จัก" มากกว่าเลือกจากสเปคสินค้า</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA after Problem ===== -->
+    <section class="py-8 px-4 lg:px-8">
+      <div class="max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="rounded-2xl border-2 border-dashed border-brand-violet/30 bg-brand-violet/5 p-8 text-center hover:border-brand-violet/50 transition-all duration-300">
+          <p class="font-display text-xl font-bold mb-4">อยากรู้ว่า TikTok ช่วยธุรกิจ B2B ของคุณได้จริงไหม?</p>
+          <a href="booking-form.html?package=trust-content-tiktok" class="btn bg-brand-violet border-none text-white hover:bg-brand-violet-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-violet/20 px-8">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            กรอกแบบฟอร์ม 3 นาที →
+          </a>
+          <p class="text-xs text-white/30 mt-3">ไม่มีค่าใช้จ่าย | ปันอ่านเองทุกใบ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUTCOME ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-violet tracking-widest uppercase mb-4" data-aos="fade-up">Outcome</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4" data-aos="fade-up">
+          สิ่งที่คุณจะได้กลับบ้าน — วันเดียวจบ
+        </h2>
+        <p class="text-white/50 mb-12 max-w-2xl" data-aos="fade-up">ไม่ใช่แค่ knowledge — ได้ของจริงกลับไปใช้เลย</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="0">
+            <div class="w-12 h-12 rounded-full bg-brand-violet/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="film" class="w-6 h-6 text-brand-violet"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">3 คลิปถ่ายเสร็จ</h3>
+            <p class="text-sm text-white/50">ถ่ายจริงในวัน workshop ด้วยมือถือ พร้อมโพสต์ได้เลย</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-full bg-brand-violet/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="calendar" class="w-6 h-6 text-brand-violet"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">Content Calendar 30 วัน</h3>
+            <p class="text-sm text-white/50">แผนโพสต์ 30 วัน ออกแบบเฉพาะธุรกิจคุณ ไม่ต้องคิดเอง</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-full bg-brand-violet/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="heart-handshake" class="w-6 h-6 text-brand-violet"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">Trust Content Framework</h3>
+            <p class="text-sm text-white/50">สูตรสร้าง content ที่เปลี่ยนยอดวิวเป็นยอดขาย</p>
+          </div>
+        </div>
+
+        <!-- Deliverables detail -->
+        <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up">
+          <h3 class="font-display font-bold mb-4">Deliverables ทั้งหมดที่ได้กลับบ้าน</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70 text-sm"><strong class="text-white/90">Trust Content Framework (PDF)</strong> — สูตร 3 pillars ที่ทำให้คนดูเชื่อแล้วซื้อ</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70 text-sm"><strong class="text-white/90">Content Pillar Map</strong> — ออกแบบเฉพาะธุรกิจ พร้อม 30 ไอเดียคลิป</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70 text-sm"><strong class="text-white/90">3 คลิปถ่ายเสร็จ</strong> — ถ่ายจริงในวัน workshop พร้อมโพสต์</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70 text-sm"><strong class="text-white/90">Content Calendar 30 วัน</strong> — แผนโพสต์ที่ไม่ต้องคิดเอง</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70 text-sm"><strong class="text-white/90">Script Template Kit</strong> — template สำหรับ 5 content types ที่ B2B ใช้ได้ผลจริง</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outcome Promise -->
+        <div class="mt-6 rounded-2xl border border-brand-violet/20 bg-brand-violet/5 p-6 text-center" data-aos="fade-up">
+          <blockquote class="text-white/80 leading-relaxed italic">
+            "จบ workshop วันเดียว ธุรกิจคุณจะมี content TikTok พร้อมโพสต์ 3 คลิป + แผน 30 วัน<br>
+            ที่ออกแบบมาเพื่อสร้างความเชื่อใจและดึงลูกค้าใหม่เข้ามา"
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CURRICULUM ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-violet tracking-widest uppercase mb-4" data-aos="fade-up">Curriculum</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          ตารางเรียน 1 วัน
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Morning -->
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-block rounded-full bg-brand-violet/10 border border-brand-violet/25 px-3 py-1 text-xs font-bold text-brand-violet">MORNING</span>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">Trust Content Strategy</h3>
+            <p class="text-sm text-white/40 mb-4">3 ชั่วโมง</p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-violet/10 text-brand-violet text-xs font-bold flex items-center justify-center">1</span>
+                <div>
+                  <span class="text-white/80 text-sm font-semibold">ทำไม Content สวยไม่ปิดการขาย</span>
+                  <p class="text-white/40 text-xs mt-0.5">จิตวิทยาความเชื่อใจ (45 นาที)</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-violet/10 text-brand-violet text-xs font-bold flex items-center justify-center">2</span>
+                <div>
+                  <span class="text-white/80 text-sm font-semibold">Content ที่ขายได้ vs ได้ยอดวิว</span>
+                  <p class="text-white/40 text-xs mt-0.5">ความแตกต่างที่คนไม่พูดถึง (45 นาที)</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-violet/10 text-brand-violet text-xs font-bold flex items-center justify-center">3</span>
+                <div>
+                  <span class="text-white/80 text-sm font-semibold">Trust Content Framework</span>
+                  <p class="text-white/40 text-xs mt-0.5">3 pillars ที่ทำให้คนดูเชื่อแล้วซื้อ (90 นาที)</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Afternoon -->
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="inline-block rounded-full bg-brand-coral/10 border border-brand-coral/25 px-3 py-1 text-xs font-bold text-brand-coral">AFTERNOON</span>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">Hands-on TikTok Production</h3>
+            <p class="text-sm text-white/40 mb-4">3 ชั่วโมง</p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">4</span>
+                <div>
+                  <span class="text-white/80 text-sm font-semibold">สร้าง Content Pillar เฉพาะธุรกิจ</span>
+                  <p class="text-white/40 text-xs mt-0.5">Workshop ลงมือทำจริง (60 นาที)</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">5</span>
+                <div>
+                  <span class="text-white/80 text-sm font-semibold">พาถ่ายจริง: 3 คลิปแรกของคุณ</span>
+                  <p class="text-white/40 text-xs mt-0.5">ด้วยมือถือเท่านั้น — ไม่ต้องมีอุปกรณ์ (60 นาที)</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">6</span>
+                <div>
+                  <span class="text-white/80 text-sm font-semibold">Content Calendar + Posting Strategy</span>
+                  <p class="text-white/40 text-xs mt-0.5">แผน 30 วัน พร้อมกลยุทธ์การโพสต์ (60 นาที)</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5" id="pricing">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-xs text-brand-violet tracking-widest uppercase mb-4" data-aos="fade-up">Investment</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          ราคาและสิ่งที่รวม
+        </h2>
+
+        <div class="rounded-2xl border border-brand-violet/30 bg-white/[0.03] p-8 relative" data-aos="fade-up">
+          <div class="absolute top-3 right-3 badge badge-sm bg-brand-coral/20 text-brand-coral border-brand-coral/40 text-xs">5 ธุรกิจแรก</div>
+
+          <h3 class="font-display text-xl font-bold mb-1">Trust Content Workshop for TikTok</h3>
+          <p class="text-sm text-white/40 mb-4">1 วัน (6 ชั่วโมง) | In-House</p>
+
+          <p class="text-sm text-white/30 mb-1"><s>&#3647;50,000</s></p>
+          <div class="font-display text-4xl font-bold text-brand-violet mb-1">&#3647;39,900</div>
+          <span class="inline-block rounded-full bg-brand-coral/10 border border-brand-coral/25 px-3 py-1 text-xs font-bold text-brand-coral mb-6">ประหยัด &#3647;10,100 (20%)</span>
+
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">Trust Content Framework (PDF)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">Content Pillar Map เฉพาะธุรกิจ + 30 ไอเดียคลิป</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">3 คลิปถ่ายเสร็จพร้อมโพสต์</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">Content Calendar 30 วัน</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">Script Template Kit (5 content types)</span>
+            </li>
+          </ul>
+
+          <!-- Bonus -->
+          <div class="rounded-xl border border-brand-coral/20 bg-brand-coral/5 p-4 mb-6">
+            <div class="flex items-start gap-3">
+              <i data-lucide="gift" class="w-5 h-5 text-brand-coral flex-shrink-0 mt-0.5"></i>
+              <div>
+                <p class="text-sm font-bold text-brand-coral mb-1">Bonus: 1-on-1 Content Review Visit</p>
+                <p class="text-xs text-white/50">ปันเข้าเยี่ยมอีก 1 Session หลัง workshop — ดูว่า content ที่ทำไป direction ถูกไหม (มูลค่า &#3647;5,000 ฟรี)</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="booking-form.html?package=trust-content-tiktok" class="btn bg-brand-violet border-none text-white hover:bg-brand-violet-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-violet/20 w-full">
+            จอง Workshop นี้ →
+          </a>
+          <p class="text-xs text-white/20 mt-3 text-center">ชำระ 100% ก่อนเริ่มงาน | รับจำกัด 3 ธุรกิจ/เดือน</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUALIFY ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-violet tracking-widest uppercase mb-4" data-aos="fade-up">Is this for you?</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          เช็คก่อนว่าเราเหมาะกัน
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="rounded-2xl bg-emerald-500/5 border border-emerald-500/20 p-6" data-aos="fade-up">
+            <h3 class="font-display font-bold text-emerald-400 mb-4">เหมาะกับคุณถ้า...</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">เป็นเจ้าของธุรกิจ B2B ที่อยากใช้ TikTok ดึงลูกค้า</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">จ้างคนทำ content อยู่ แต่ไม่เห็น ROI — อยากทำเองให้ authentic</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">ต้องการ content ที่สร้างความเชื่อใจและเปลี่ยนเป็นลูกค้าได้จริง</span>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="font-display font-bold text-white/40 mb-4">ไม่เหมาะถ้า...</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <i data-lucide="minus" class="w-5 h-5 text-white/30 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/50">ขาย B2C / mass market — workshop นี้เน้น B2B โดยเฉพาะ</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="minus" class="w-5 h-5 text-white/30 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/50">ต้องการแค่เรียนรู้ algorithm TikTok — ไม่ใช่ growth hack workshop</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-8" data-aos="fade-up">
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-20 h-20 rounded-full bg-brand-navy/50 border-2 border-brand-violet/30 overflow-hidden flex-shrink-0">
+              <img src="pun-avatar.png" alt="ปัน ณัฐพัชร์" class="w-full h-full object-cover" id="avatar-img">
+              <div class="avatar-fallback hidden" id="avatar-fallback">P</div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold mb-1">ปัน ณัฐพัชร์</h3>
+              <p class="text-sm text-white/40 mb-4">B2B Sales Consulting &amp; AI Transformation</p>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-violet flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">เปิดช่อง TikTok จาก 0 — Viral content ครึ่งล้านวิว ปิดการขายผ่าน TikTok ได้จริง</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-violet flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">คลุกคลีกับงานขาย B2B มา 5 ปี — รู้ว่า B2B content ต้องต่างจาก B2C ยังไง</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-violet flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">สอนจากที่ทำจริง ไม่ใช่จากตำรา — ทุกเทคนิคผ่าน field test มาแล้ว</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CROSS-SELL ===== -->
+    <section class="px-4 lg:px-8 pb-8">
+      <div class="max-w-4xl mx-auto" data-aos="fade-up">
+        <a href="ai-day-workshop.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-violet/30 transition-all duration-300 group">
+          <div class="flex items-center justify-between">
+            <span class="text-white/60 group-hover:text-white/80 transition-colors">Content ดีแล้ว แต่ทีมขายยังทำงานซ้ำอยู่? ลองดู AI Day Workshop</span>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-violet transition-colors"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="rounded-2xl border-2 border-dashed border-brand-violet/30 bg-brand-violet/5 p-8 md:p-12 text-center">
+          <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">พร้อมเปลี่ยนมือถือให้เป็นเครื่องจักรสร้างลูกค้า?</h2>
+          <p class="text-white/50 mb-6">กรอกแบบฟอร์ม 3 นาที — ปันอ่านเองทุกใบ</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="booking-form.html?package=trust-content-tiktok" class="btn bg-brand-violet border-none text-white hover:bg-brand-violet-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-violet/20 px-8">
+              จอง Workshop นี้ →
+            </a>
+            <a href="intake-form.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30 px-8">
+              ไม่แน่ใจ? นัดคุยกับปันก่อน
+            </a>
+          </div>
+          <p class="text-xs text-white/30 mt-4">ไม่มีค่าใช้จ่าย | ไม่มี spam | ปันอ่านเองทุกใบ</p>
+          <p class="text-xs text-white/20 mt-2">ชำระ 100% ก่อนเริ่มงาน | รับจำกัด 3 ธุรกิจ/เดือน</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-white/5 py-8 px-4 lg:px-8 text-center">
+      <p class="text-sm text-white/30">
+        <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="hover:text-brand-coral transition-colors duration-300">@pun_nattapatch</a>
+      </p>
+      <p class="text-xs text-white/15 mt-2">&#169; 2026 Pun Nattapatch. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Avatar fallback
+    var avatarImg = document.getElementById('avatar-img');
+    if (avatarImg) {
+      avatarImg.addEventListener('error', function() {
+        this.style.display = 'none';
+        var fallback = document.getElementById('avatar-fallback');
+        if (fallback) fallback.classList.remove('hidden');
+      });
+    }
+  </script>
+
+  <!-- AOS Init -->
+  <script>
+    AOS.init({ duration: 600, once: true, offset: 60 });
+  </script>
+
+  <!-- Lucide Init -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>

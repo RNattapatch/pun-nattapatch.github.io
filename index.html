@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ปัน ณัฐพัชร์ — AI Sales System สำหรับ SME ไทย</title>
+  <meta name="description" content="ช่วยเจ้าของ SME เพิ่มยอดขาย 40%+ ด้วย AI Sales System — เหนือกว่าแค่การทำ Training">
+
+  <!-- DaisyUI + Tailwind v4 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Fonts: Bai Jamjuree (Display) + Sarabun (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- AOS Scroll Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: "Bai Jamjuree", sans-serif;
+      --font-body: "Sarabun", sans-serif;
+      --color-brand-navy: #072b4e;
+      --color-brand-coral: #dd4155;
+      --color-brand-coral-dark: #c43245;
+    }
+  </style>
+
+  <style>
+    /* Dynamic background — lightweight CSS-only animated gradient */
+    .dynamic-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(7,43,78,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(221,65,85,0.08) 0%, transparent 50%);
+      animation: bgShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+
+    /* Subtle dot grid overlay */
+    .dot-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* Horizontal scroll for service cards */
+    .scroll-container {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 1rem;
+    }
+    .scroll-container::-webkit-scrollbar { display: none; }
+    .scroll-card {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      width: 280px;
+    }
+
+    @media (min-width: 768px) {
+      .scroll-card { width: 320px; }
+    }
+
+    /* Avatar fallback */
+    .avatar-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 4rem;
+      opacity: 0.2;
+    }
+  </style>
+</head>
+
+<body class="font-body bg-[#0a0a0a] text-white min-h-screen relative">
+
+  <!-- Dynamic Background -->
+  <div class="dynamic-bg"></div>
+  <div class="dot-overlay"></div>
+
+  <!-- Content wrapper -->
+  <div class="relative z-10">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar bg-transparent backdrop-blur-sm sticky top-0 z-50 border-b border-white/5 px-4 lg:px-8">
+      <div class="navbar-start">
+        <span class="font-display font-bold text-lg tracking-tight">Pun Nattapatch</span>
+      </div>
+      <div class="navbar-end">
+        <a href="#pricing" class="btn btn-sm bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20">
+          เริ่มต้นเลย
+        </a>
+      </div>
+    </nav>
+
+    <!-- ===== HERO — Split Layout (Avatar Left + Text Right) ===== -->
+    <section class="min-h-[85vh] flex items-center px-4 lg:px-8 py-20">
+      <div class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+        <!-- Avatar (left) -->
+        <div class="lg:w-2/5 flex-shrink-0" data-aos="fade-right" data-aos-duration="800">
+          <div class="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full overflow-hidden">
+            <img src="pun-avatar.png" alt="ปัน ณัฐพัชร์" class="w-full h-full object-cover" id="avatar-img-hero">
+          </div>
+        </div>
+
+        <!-- Text (right) -->
+        <div class="lg:w-3/5" data-aos="fade-left" data-aos-duration="800">
+          <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-sm shadow-emerald-400/50"></span>
+            <span class="text-sm text-white/60 font-medium tracking-wide">@pun_nattapatch</span>
+          </div>
+
+          <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-4" id="headline-main">
+            B2B Sales Consultant<br>
+            <span class="text-brand-coral" id="headline-accent">& Agentic AI Transformation</span>
+          </h1>
+          <p class="text-xl md:text-2xl font-display font-semibold text-brand-coral/90 mb-8 tracking-wide">ที่ปรึกษาด้านการปั้นทีมขาย และ การสร้างระบบ AI สำหรับองค์กร</p>
+
+          <p class="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-4" id="headline-sub">
+            ผมไม่ใช่ 'โค้ช' — ผมคือคนที่ช่วยจับมือคุณ<br>
+            สร้างระบบขายด้วย AI ให้ SME
+          </p>
+
+          <!-- Proof stats -->
+          <div class="flex gap-8 md:gap-12 flex-wrap mt-12">
+            <div>
+              <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">10+</div>
+              <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Clients</div>
+            </div>
+            <div>
+              <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">100+</div>
+              <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Sessions</div>
+            </div>
+            <div>
+              <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">40%+</div>
+              <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Growth Goal</div>
+            </div>
+          </div>
+
+          <!-- (removed: seismograph line art) -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== PROBLEM ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto relative">
+        <!-- (removed: hourglass art) -->
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Problem</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12 max-w-2xl" data-aos="fade-up">
+          ปัญหาที่เจ้าของธุรกิจส่วนใหญ่หนีไม่พ้น
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+            <div class="text-3xl mb-4">&#128548;</div>
+            <h3 class="font-display font-bold mb-2">"แบกยอดอยู่คนเดียว"</h3>
+            <p class="text-sm text-white/70 leading-relaxed">ทีมขายมี 5-20 คน แต่ยอดขายกว่า 80% มาจากคุณเอง ถ้าคุณไม่อยู่ ยอดตก</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-3xl mb-4">&#128200;</div>
+            <h3 class="font-display font-bold mb-2">"ต้นทุนขึ้นทุกเดือน"</h3>
+            <p class="text-sm text-white/70 leading-relaxed">ค่าแรงขึ้น ค่า ads ขึ้น แต่ทีมขายยังใช้ Excel ยังพิมพ์ proposal ด้วยมือ</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-3xl mb-4">&#128561;</div>
+            <h3 class="font-display font-bold mb-2">"Training จบแล้วก็ลืม"</h3>
+            <p class="text-sm text-white/70 leading-relaxed">ส่งทีมไปเรียน workshop หลายหมื่น กลับมาตื่นเต้น 2 สัปดาห์ แล้วก็กลับไปทำแบบเดิม</p>
+          </div>
+        </div>
+
+        <!-- Cost of Inaction -->
+        <div class="mt-8 p-8 rounded-2xl bg-brand-coral/10 border border-brand-coral/30 text-center" data-aos="fade-up">
+          <div class="text-sm text-brand-coral font-bold mb-3">เสียโอกาสกว่าเดือนละ</div>
+          <div class="font-display text-3xl md:text-4xl font-bold text-white mb-3">&#3647;150,000 — 500,000</div>
+          <div class="text-sm text-brand-coral font-semibold mb-4">เพราะขาด "ระบบ" ที่ทำงานแทนคุณ</div>
+          <p class="text-sm text-white/60 max-w-lg mx-auto">ยอดขายที่น่าจะได้แต่ไม่ได้ + เงินเดือนเซลล์ที่ไม่ทำเงิน + เวลาที่ทีมเสียไปกับงานงอก</p>
+        </div>
+
+        <!-- CTA after Problem — Playful style -->
+        <div class="mt-12 relative" data-aos="fade-up">
+          <div class="max-w-md mx-auto text-center p-8 rounded-2xl border-2 border-dashed border-brand-coral/30 bg-brand-coral/[0.03] relative overflow-hidden">
+            <!-- Handwritten-style arrow -->
+            <img src="images/line-art/art3_pointing_hand.png" alt="" class="absolute -left-6 top-1/2 -translate-y-1/2 w-20 opacity-25 pointer-events-none select-none hidden md:block" aria-hidden="true">
+            <p class="text-white/70 text-lg mb-1 leading-relaxed">
+              ถ้าอ่านแล้วรู้สึกว่า
+            </p>
+            <p class="font-display text-xl font-bold text-brand-coral mb-4">
+              "เฮ้ย! นี่มันเรื่องของเราเลยนี่หว่า..."
+            </p>
+            <a href="https://rnattapatch.github.io/intake-form.github.io/" class="btn bg-brand-coral border-none text-white px-8 hover:bg-brand-coral-dark hover:scale-105 hover:shadow-xl hover:shadow-brand-coral/30 transition-all duration-300 text-base">
+              เช็คสุขภาพทีมขายฟรี &#8594;
+            </a>
+            <p class="text-xs text-white/30 mt-3">3 นาที &#183; ไม่มีค่าใช้จ่าย &#183; ปันอ่านเองทุกใบ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUTCOME ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Outcome</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          ไม่ใช่แค่ความรู้ แต่คือ '<span class="text-brand-coral">ระบบ</span>' ที่สร้างยอดขายให้ทีมของคุณได้จริง
+        </h2>
+
+        <!-- Flow line art connecting 3 outcomes -->
+        <div class="mb-8 flex justify-center" data-aos="fade-up">
+          <img src="images/line-art/art4_flow_line.png" alt="" class="w-full max-w-2xl h-20 object-contain opacity-25 pointer-events-none select-none" aria-hidden="true">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center p-6" data-aos="fade-up" data-aos-delay="0">
+            <div class="w-14 h-14 rounded-2xl bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="clock" class="w-7 h-7 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">More Time</h3>
+            <p class="text-sm text-white/50 leading-relaxed">ทีมขายได้เวลาคืน 5+ ชั่วโมง/สัปดาห์ เพราะ AI ช่วยทำงานจุกจิกแทน</p>
+          </div>
+          <div class="text-center p-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-14 h-14 rounded-2xl bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="trending-up" class="w-7 h-7 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">More Money</h3>
+            <p class="text-sm text-white/50 leading-relaxed">ระบบ KPI + Commission ที่แฟร์และวัดผลได้จริง ทำให้เซลล์อยากวิ่งปิดดีลมากขึ้น</p>
+          </div>
+          <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-14 h-14 rounded-2xl bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="shield" class="w-7 h-7 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2">Less Risk</h3>
+            <p class="text-sm text-white/50 leading-relaxed">คุณมีเวลาไปโฟกัสงานใหญ่ เพราะระบบขายเดินได้เอง ทีมมีเครื่องมือและวิธีทำงานที่ชัดเจน</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PHOTO GALLERY — รูปจริง ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Gallery</div>
+        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight mb-10" data-aos="fade-up">
+          จากห้องประชุม Corporate สู่การสร้างระบบให้ SME
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="0">
+            <img src="images/gallery/gallery1.JPG" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="50">
+            <img src="images/gallery/gallery2.jpg" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="100">
+            <img src="images/gallery/gallery3.JPG" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="150">
+            <img src="images/gallery/gallery4.JPG" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="200">
+            <img src="images/gallery/gallery5.JPG" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="250">
+            <img src="images/gallery/gallery6.JPG" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="300">
+            <img src="images/gallery/gallery7.JPG" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 aspect-square" data-aos="fade-up" data-aos-delay="350">
+            <img src="images/gallery/gallery8.JPG" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA — นัดคุยก่อน ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-5xl mx-auto">
+        <div class="mt-0 relative" data-aos="fade-up">
+          <div class="max-w-md mx-auto text-center p-8 rounded-2xl border-2 border-dashed border-brand-coral/30 bg-brand-coral/[0.03] relative overflow-hidden">
+            <p class="text-white/70 text-lg mb-1 leading-relaxed">
+              อยากเรียน workshop กับปัน
+            </p>
+            <p class="font-display text-xl font-bold text-brand-coral mb-4">
+              แต่ไม่รู้จะเลือกคอร์สไหน อยากนัดคุยก่อน
+            </p>
+            <a href="intake-form.html" class="btn bg-brand-coral border-none text-white px-8 hover:bg-brand-coral-dark hover:scale-105 hover:shadow-xl hover:shadow-brand-coral/30 transition-all duration-300 text-base">
+              นัดคุยกับปัน &#8594;
+            </a>
+            <p class="text-xs text-white/30 mt-3">ไม่มีค่าใช้จ่าย &#183; ไม่มี spam &#183; ตอบกลับภายใน 24 ชม.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIAL — แชทจริงจากลูกค้า ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Testimonial</div>
+        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight mb-10" data-aos="fade-up">
+          เสียงจากผู้ประกอบการที่ให้ผมดูแล
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div class="group rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+            <img src="images/testimonial/testimonial1.png" alt="" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="50">
+            <img src="images/testimonial/testimonial2.png" alt="" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <img src="images/testimonial/testimonial3.png" alt="" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
+            <img src="images/testimonial/testimonial4.png" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="group rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300 col-span-2 md:col-span-1" data-aos="fade-up" data-aos-delay="200">
+            <img src="images/testimonial/testimonial5.png" alt="" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WHY PUN — 3-Column Positioning ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Why Pun</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6" data-aos="fade-up">
+          ทำไมต้องเป็นปัน?
+        </h2>
+        <p class="text-white/50 mb-14 max-w-2xl" data-aos="fade-up">ในตลาดมีทั้งที่ปรึกษาการขายและ AI Guru แต่ทั้งสองฝั่งมีจุดบอดที่ทำให้ SME ยังใช้ AI ได้ไม่เต็มที่</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up">
+
+          <!-- Column 1: ที่ปรึกษาการขายทั่วไป -->
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6">
+            <div class="w-10 h-10 rounded-lg bg-white/[0.05] flex items-center justify-center mb-4">
+              <i data-lucide="megaphone" class="w-5 h-5 text-white/40"></i>
+            </div>
+            <h3 class="font-display font-bold text-white/50 mb-3">ที่ปรึกษาการขายทั่วไป</h3>
+            <ul class="space-y-3 text-sm text-white/40">
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> เน้นพัฒนาทักษะเซลล์อย่างเดียว</li>
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> ใช้ AI แค่เขียนอีเมล หรือวิเคราะห์ lead พื้นฐาน</li>
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> ใช้ ChatGPT / Gemini แบบถาม-ตอบทั่วไป</li>
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> ไม่รู้จัก AI Agent, n8n หรือ Automation จริงๆ</li>
+            </ul>
+          </div>
+
+          <!-- Column 2: AI Guru ทั่วไป -->
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6">
+            <div class="w-10 h-10 rounded-lg bg-white/[0.05] flex items-center justify-center mb-4">
+              <i data-lucide="binary" class="w-5 h-5 text-white/40"></i>
+            </div>
+            <h3 class="font-display font-bold text-white/50 mb-3">AI Guru ทั่วไป</h3>
+            <ul class="space-y-3 text-sm text-white/40">
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> สายเทคจ๋า ชอบใช้ศัพท์ยาก</li>
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> สอน concept เก่ง แต่ลูกค้ากลับไปทำเองไม่ได้</li>
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> ไม่เข้าใจจิตวิทยาการขาย หรือ pain ของฝ่ายขาย</li>
+              <li class="flex items-start gap-2"><span class="text-white/30">&#8226;</span> Use case ไกลตัว SME ทำตามไม่ได้</li>
+            </ul>
+          </div>
+
+          <!-- Column 3: ปัน (Sweet Spot) -->
+          <div class="rounded-2xl bg-brand-coral/[0.10] border-2 border-brand-coral/50 p-6 relative shadow-lg shadow-brand-coral/10 scale-[1.02]">
+            <div class="absolute top-4 right-4 bg-brand-coral text-white text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full">Sweet Spot</div>
+            <div class="w-10 h-10 rounded-lg bg-brand-coral/20 flex items-center justify-center mb-4">
+              <i data-lucide="target" class="w-5 h-5 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold text-white text-lg mb-3">ปัน ณัฐพัชร์</h3>
+            <ul class="space-y-3 text-sm text-white/80">
+              <li class="flex items-start gap-2"><span class="text-brand-coral">&#10004;</span> เข้าใจทั้งการขาย การบริหาร และ AI</li>
+              <li class="flex items-start gap-2"><span class="text-brand-coral">&#10004;</span> สร้าง AI Agent จริง ด้วย Claude Code, n8n, NotebookLM</li>
+              <li class="flex items-start gap-2"><span class="text-brand-coral">&#10004;</span> ถ่ายทอดเรื่องยากให้เข้าใจง่าย จับมือทำทุกขั้นตอน</li>
+              <li class="flex items-start gap-2"><span class="text-brand-coral">&#10004;</span> พนักงานเอาไปใช้จริงได้ทันที ไม่ต้องรอ vendor</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto" data-aos="fade-up">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4">About</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">
+          ผมไม่ใช่ 'โค้ช' — ผมคือคนที่ลงมือ<br>สร้างระบบขายด้วย AI ให้ SME
+        </h2>
+
+        <p class="text-white/50 leading-relaxed mb-8">
+          ผมคลุกคลีกับงานขาย B2B มา 5 ปี ทั้งฝั่ง Corporate และ SME
+          ตอนนี้ผมช่วยเจ้าของธุรกิจสร้างทีมขายที่ทำเงินได้จริงด้วย AI + ระบบที่จับต้องได้
+        </p>
+
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3 text-white/70">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-coral shrink-0 mt-0.5"></i>
+            <span>วางระบบให้ทีมขาย SME มาแล้วกว่า 10 ราย+</span>
+          </li>
+          <li class="flex items-start gap-3 text-white/70">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-coral shrink-0 mt-0.5"></i>
+            <span>ลงมือสร้างระบบ AI Agent ที่ทำงานแทนคนได้ด้วย n8n, Claude Code, Gemini Gems + NotebookLM — ไม่ได้มาสอนแค่ทฤษฎี</span>
+          </li>
+          <li class="flex items-start gap-3 text-white/70">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-coral shrink-0 mt-0.5"></i>
+            <span>อ่านทุกฟอร์มเอง เพื่อดูว่าผมช่วยธุรกิจคุณได้จริงไหม ก่อนนัดคุย</span>
+          </li>
+          <li class="flex items-start gap-3 text-white/70">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-coral shrink-0 mt-0.5"></i>
+            <span>ลูกค้าทุกคนได้ AI workflow กลับไปใช้จริงอย่างน้อย 1 ตัว</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- (old Photo Gallery mock-up removed — moved up as real gallery) -->
+
+    <!-- ===== QUALIFY ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Is This For You?</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          เช็คก่อนว่าเราเหมาะกันไหม
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="rounded-2xl bg-emerald-400/[0.05] border border-emerald-400/20 border-l-4 border-l-emerald-400 p-6" data-aos="fade-up" data-aos-delay="0">
+            <h3 class="font-display font-bold text-emerald-400 text-lg mb-4">&#10003; บริการของผมเหมาะกับธุรกิจคุณ ถ้า...</h3>
+            <ul class="space-y-3 text-sm text-white/80">
+              <li class="flex items-start gap-2"><span class="text-emerald-400">&#10004;</span> มีทีมขายอยู่แล้ว แต่ยอดไม่ไปไหน</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400">&#10004;</span> รู้สึกเหมือน 'แบกยอดอยู่คนเดียว' ทั้งที่มีทีม</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400">&#10004;</span> อยากให้มีระบบที่เดินได้เอง ไม่ต้องจ้ำจี้จ้ำไช</li>
+              <li class="flex items-start gap-2"><span class="text-emerald-400">&#10004;</span> พร้อมลงทุนเพื่อสร้างระบบจริงๆ จังๆ</li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 border-l-4 border-l-white/30 p-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="font-display font-bold text-white/60 text-lg mb-4">&#10007; อาจยังไม่เหมาะกับคุณ ถ้า...</h3>
+            <ul class="space-y-3 text-sm text-white/50">
+              <li class="flex items-start gap-2"><span>&#10060;</span> เป็น Freelancer หรือทำงานคนเดียว</li>
+              <li class="flex items-start gap-2"><span>&#10060;</span> ทำธุรกิจ B2C ขายของจำนวนเยอะ ราคาไม่สูง</li>
+              <li class="flex items-start gap-2"><span>&#10060;</span> อยากได้ 'เทคนิคปิดการขาย' แบบทางลัด</li>
+              <li class="flex items-start gap-2"><span>&#10060;</span> มองหาของฟรี หรือยังไม่มีงบลงทุน</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FREE STUFF LIBRARY ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Free Resources</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4" data-aos="fade-up">
+          ยังไม่พร้อมใช้บริการผม? เริ่มจากเนื้อหาฟรีตรงนี้ก่อนก็ได้
+        </h2>
+        <p class="text-white/50 mb-12" data-aos="fade-up">เครื่องมือและเนื้อหาที่ปันทำให้ใช้ได้เลย ไม่ต้องสมัครอะไร</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
+          <!-- E-book 1 -->
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 hover:bg-white/[0.07] transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+            <div class="w-12 h-12 rounded-xl bg-brand-coral/10 flex items-center justify-center mb-4">
+              <i data-lucide="file-text" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg mb-2">รวม 60+ คำถามสัมภาษณ์เซลล์ที่ควรถาม</h3>
+            <p class="text-sm text-white/50 leading-relaxed mb-4">E-book สำหรับเจ้าของธุรกิจที่อยากคัดคนขายให้ตรงจุด ไม่ต้องเดาสุ่ม</p>
+            <a href="https://drive.google.com/file/d/1GXUOGavkL9vXhlcUcM1ztbZqCf5n8xgb/view" target="_blank" rel="noopener" class="btn btn-outline btn-sm border-white/20 text-white/70 hover:bg-brand-coral hover:border-brand-coral hover:text-white transition-all duration-300 w-full">
+              ดาวน์โหลดฟรี <i data-lucide="download" class="w-4 h-4 ml-1 inline"></i>
+            </a>
+          </div>
+
+          <!-- E-book 2 -->
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 hover:bg-white/[0.07] transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-xl bg-brand-coral/10 flex items-center justify-center mb-4">
+              <i data-lucide="book-open" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg mb-2">คู่มือสร้างทีมขาย 100 ล้าน คุณก็ทำได้</h3>
+            <p class="text-sm text-white/50 leading-relaxed mb-4">E-book สำหรับเจ้าของ SME ที่อยากสร้างทีมขายให้วิ่งเองได้ ไม่ต้องแบกยอดคนเดียว</p>
+            <a href="https://drive.google.com/file/d/1FXouSCK7XXo_xig8nrk-Gc_mshotCNgX/view" target="_blank" rel="noopener" class="btn btn-outline btn-sm border-white/20 text-white/70 hover:bg-brand-coral hover:border-brand-coral hover:text-white transition-all duration-300 w-full">
+              ดาวน์โหลดฟรี <i data-lucide="download" class="w-4 h-4 ml-1 inline"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ — Always Open ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">FAQ</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          คำถามที่คนถามบ่อย
+        </h2>
+
+        <div class="space-y-6" data-aos="fade-up">
+          <!-- Q1 -->
+          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-6">
+            <h3 class="font-display font-bold text-base text-white/90 mb-3">ปันช่วยธุรกิจแบบไหนได้บ้าง?</h3>
+            <div class="text-sm text-white/60 leading-relaxed">
+              <p>SME ที่มีทีมขาย 5-20 คน แล้วอยากขยายทีม</p>
+              <p class="mt-1">ธุรกิจ B2B ที่ต้องขายด้วยพนักงานขาย</p>
+              <p class="mt-2">ผมช่วยได้ 2 เรื่องหลักๆ:</p>
+              <ul class="mt-1 space-y-1 ml-4">
+                <li>&#8226; การวางระบบทีมขาย (KPI / Commission / Process)</li>
+                <li>&#8226; การนำ AI Agent มาลดงานซ้ำให้ทีม มีเวลาไปหาลูกค้ามากขึ้น</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-6">
+            <h3 class="font-display font-bold text-base text-white/90 mb-3">ไม่เก่ง tech เริ่มใช้ AI ได้ไหม?</h3>
+            <div class="text-sm text-white/60 leading-relaxed">
+              <p>ได้เลยครับ ลูกค้าผมไม่มีใครเขียน code</p>
+              <p class="mt-2">ตัวอย่าง: ทีมขาย Forklift 5 คน ไม่มีใครเก่ง tech แต่ใช้ AI ลดงาน report จาก 2 ชม. เหลือ 15 นาทีแล้ว</p>
+            </div>
+          </div>
+
+          <!-- Q3 — Public course -->
+          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-6">
+            <h3 class="font-display font-bold text-base text-white/90 mb-3">มี public course หรือ workshop เปิดรับทั่วไปไหม?</h3>
+            <div class="text-sm text-white/60 leading-relaxed">
+              <p>ตอนนี้ยังไม่จัดครับ</p>
+              <p class="mt-2">เหตุผลตรงๆ: ถ้าจัดรุ่นละ 30 คน ผมให้เวลาแต่ละคนได้แค่ไม่กี่นาที แล้วก็จะกลายเป็นแบบที่ผมไม่อยากทำ — พูดเร็ว ข้ามเร็ว ใครตามไม่ทัน ก็แค่ตามไม่ทัน</p>
+              <p class="mt-2">ผมเลือกทำ in-house เท่านั้น เพราะอยากให้เวลากับทีมของลูกค้าทุกคนจริงๆ ลูกค้าต้องได้มากกว่าที่จ่ายมาเสมอ</p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-6">
+            <h3 class="font-display font-bold text-base text-white/90 mb-3">นัดคุยก่อนได้ไหม? มีค่าใช้จ่ายไหม?</h3>
+            <div class="text-sm text-white/60 leading-relaxed">
+              <p>ได้ครับ รับสัปดาห์ละ 3 slot คุยครั้งแรกไม่มีค่าใช้จ่าย</p>
+              <p class="mt-2">กรอกฟอร์มสั้นๆ แล้วปันจะติดต่อกลับใน 24 ชม. พร้อม link นัดเวลา</p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-6">
+            <h3 class="font-display font-bold text-base text-white/90 mb-3">จ่ายยังไง? ต้องจ่ายล่วงหน้าเต็มจำนวนเลยไหม?</h3>
+            <div class="text-sm text-white/60 leading-relaxed">
+              <p>ใช่ครับ จ่าย 100% ก่อนเริ่มงานทุกครั้ง ไม่มีค่าใช้จ่ายแอบแฝง</p>
+              <p class="mt-2">เริ่มต้นจาก Workshop &#3647;30,000 ได้เลย ไม่ต้องตัดสินใจก้อนใหญ่ก่อน — ลองแล้วค่อยต่อ Follow-up ทีหลังได้</p>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="rounded-xl bg-white/[0.05] border border-white/10 p-6">
+            <h3 class="font-display font-bold text-base text-white/90 mb-3">ทำเสร็จแล้วทีมใช้เองต่อได้เลยไหม?</h3>
+            <div class="text-sm text-white/60 leading-relaxed">
+              <p>ได้ครับ ทุก package ออกแบบมาให้ทีมดูแลต่อเองได้</p>
+              <p class="mt-2">สอน team lead ดูแลระบบ + ให้ Handover checklist + Async LINE support 30 วันหลังจบงาน</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ROI COMPARISON ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Why In-House</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6" data-aos="fade-up">
+          ทำไมผมไม่จัดคอร์สเปิดทั่วไป
+        </h2>
+        <p class="text-white/50 mb-12" data-aos="fade-up">ลูกค้าของผมต้องได้มากกว่าที่จ่ายมาเสมอ — ไม่ใช่แค่ได้ฟังบรรยาย</p>
+
+        <!-- Comparison table -->
+        <div class="overflow-x-auto rounded-2xl border border-white/10" data-aos="fade-up">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-white/10">
+                <th class="text-left p-4 text-white/40 font-normal w-1/3"></th>
+                <th class="text-center p-4 text-white/50 font-semibold">คอร์สทั่วไป (Public)</th>
+                <th class="text-center p-4 text-brand-coral font-bold bg-brand-coral/[0.05]">เรียนกับปัน (In-house)</th>
+              </tr>
+            </thead>
+            <tbody class="text-white/60">
+              <tr class="border-b border-white/5">
+                <td class="p-4 text-white/70 font-medium">รูปแบบ</td>
+                <td class="p-4 text-center">พูดเร็ว ข้ามเร็ว ตามไม่ทันก็ช่างมัน</td>
+                <td class="p-4 text-center bg-brand-coral/[0.03] text-white/80">ไม่ปล่อยกลับบ้านถ้ายังไม่เข้าใจ</td>
+              </tr>
+              <tr class="border-b border-white/5">
+                <td class="p-4 text-white/70 font-medium">Workshop</td>
+                <td class="p-4 text-center">ดูสไลด์แล้วจบ</td>
+                <td class="p-4 text-center bg-brand-coral/[0.03] text-white/80">จับมือทำทุกขั้นตอน</td>
+              </tr>
+              <tr class="border-b border-white/5">
+                <td class="p-4 text-white/70 font-medium">กลับไปแล้ว</td>
+                <td class="p-4 text-center">ทำเองไม่ได้</td>
+                <td class="p-4 text-center bg-brand-coral/[0.03] text-white/80">พนักงานใช้งานได้จริงทันที</td>
+              </tr>
+              <tr class="border-b border-white/5">
+                <td class="p-4 text-white/70 font-medium">ค่า Software</td>
+                <td class="p-4 text-center">จ่ายรายเดือนไปเรื่อยๆ</td>
+                <td class="p-4 text-center bg-brand-coral/[0.03] text-white/80">เขียน App ใช้เองได้เลย</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-white/70 font-medium">ทีมขาย</td>
+                <td class="p-4 text-center">ท่องสเปคไปขอส่วนลด</td>
+                <td class="p-4 text-center bg-brand-coral/[0.03] text-white/80">คุยกับลูกค้าได้ลึก เข้าใจ pain จริงๆ</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ROI calculation -->
+        <div class="mt-8 p-6 rounded-2xl bg-white/[0.05] border border-white/15 text-center" data-aos="fade-up">
+          <p class="text-white/70 mb-2">ถ้าองค์กรของคุณจ่ายค่า Software เดือนละ <strong class="text-white">&#3647;300,000</strong></p>
+          <p class="font-display text-2xl md:text-3xl font-bold text-brand-coral mb-2">ค่าอบรมคืนทุนใน 1 เดือน</p>
+          <p class="text-sm text-white/40">แล้วหลังจากนั้นคือกำไรทุกเดือน — เพราะทีมสร้าง tool เองได้</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING — 2 Paths ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5" id="pricing">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Services</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-6" data-aos="fade-up">
+          เลือกทางที่เหมาะกับธุรกิจคุณที่สุด
+        </h2>
+        <p class="text-white/50 mb-14 max-w-2xl" data-aos="fade-up">
+          ผมมี 2 แนวทางให้เลือก ตามเป้าหมายของธุรกิจคุณตอนนี้
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          <!-- ===== PATH 1: AI Transformation ===== -->
+          <div class="rounded-2xl border border-cyan-400/20 bg-cyan-400/[0.03] p-6 lg:p-8" data-aos="fade-up" data-aos-delay="0">
+            <!-- Path header -->
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-lg bg-cyan-400/10 flex items-center justify-center">
+                <i data-lucide="cpu" class="w-5 h-5 text-cyan-400"></i>
+              </div>
+              <div>
+                <div class="text-xs text-cyan-400 tracking-widest uppercase font-bold">Path A</div>
+              </div>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-2">AI Transformation</h3>
+            <p class="text-white/50 text-sm mb-6">ปลดล็อกเวลาทีมขายด้วย AI ลดงานซ้ำซ้อน สร้าง Workflow อัตโนมัติ</p>
+
+            <div class="space-y-4">
+              <!-- AI Package 1 -->
+              <div class="rounded-xl bg-white/[0.03] border border-white/10 p-5 hover:border-cyan-400/30 transition-all duration-300">
+                <div class="flex items-center justify-between mb-3">
+                  <div>
+                    <span class="text-xs text-white/40 tracking-widest uppercase">1 Day</span>
+                    <h4 class="font-display text-lg font-bold"><a href="ai-day-workshop.html" class="hover:text-cyan-400 transition-colors">AI Day Workshop</a></h4>
+                  </div>
+                  <div class="font-display text-xl font-bold text-brand-coral">&#3647;30,000</div>
+                </div>
+                <p class="text-white/50 text-sm mb-3">ปลดล็อกเวลาให้ทีมขาย 5+ ชม./สัปดาห์ เห็นผลตั้งแต่วันแรก</p>
+                <ul class="space-y-1.5 text-sm text-white/60 mb-4">
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>วิเคราะห์ workflow ทีมขาย</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>Build AI tool ใช้ได้จริงในวันนั้น</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>สอน team lead maintain เอง</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>วัดผล Before / After ทันที</li>
+                </ul>
+                <a href="ai-day-workshop.html" class="block text-center text-xs text-cyan-400/70 hover:text-cyan-400 transition-colors mb-2">ดูรายละเอียดเพิ่มเติม &#8594;</a>
+                <a href="booking-form.html?package=ai-day-workshop" class="btn btn-outline btn-sm border-white/20 text-white/70 hover:bg-cyan-400 hover:border-cyan-400 hover:text-black hover:scale-105 transition-all duration-300 w-full">จองเลย</a>
+                <a href="intake-form.html" class="btn btn-ghost btn-sm text-white/40 hover:text-cyan-400 w-full mt-1.5 text-xs">ไม่แน่ใจ? นัดคุยกับปันก่อน &#8594;</a>
+              </div>
+
+              <!-- AI Package 2 (Featured) -->
+              <div class="rounded-xl bg-white/[0.03] border border-cyan-400/40 p-5 shadow-lg shadow-cyan-400/5 relative hover:bg-white/[0.05] transition-all duration-300">
+                <div class="absolute top-3 right-3 badge badge-sm bg-cyan-400/20 text-cyan-400 border-cyan-400/40 text-xs">แนะนำ</div>
+                <div class="flex items-center justify-between mb-3">
+                  <div>
+                    <span class="text-xs text-white/40 tracking-widest uppercase">1 Day + 30 Days</span>
+                    <h4 class="font-display text-lg font-bold"><a href="ai-workshop-followup.html" class="hover:text-cyan-400 transition-colors">AI Workshop + Follow-up</a></h4>
+                  </div>
+                  <div class="font-display text-xl font-bold text-brand-coral">&#3647;50,000</div>
+                </div>
+                <p class="text-white/50 text-sm mb-3">มั่นใจได้ว่าระบบ AI ที่สร้างจะยังถูกใช้งานจริง แม้เวลาผ่านไป 30 วัน</p>
+                <ul class="space-y-1.5 text-sm text-white/60 mb-4">
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>ทุกอย่างใน Workshop รวมอยู่แล้ว</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>Follow-up 4 ครั้ง (สัปดาห์ละ 1)</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>ปรับ workflow ตาม feedback จริง</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"></span>Async LINE support 30 วัน</li>
+                </ul>
+                <a href="ai-workshop-followup.html" class="block text-center text-xs text-cyan-400/70 hover:text-cyan-400 transition-colors mb-2">ดูรายละเอียดเพิ่มเติม &#8594;</a>
+                <a href="booking-form.html?package=ai-workshop-followup" class="btn btn-sm bg-cyan-400 border-none text-black font-bold hover:bg-cyan-300 hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-400/20 w-full">จองเลย &#8594;</a>
+                <a href="intake-form.html" class="btn btn-ghost btn-sm text-white/40 hover:text-cyan-400 w-full mt-1.5 text-xs">ไม่แน่ใจ? นัดคุยกับปันก่อน &#8594;</a>
+              </div>
+            </div>
+
+            <div class="mt-5 text-center text-xs text-white/30">เริ่มจาก Workshop &#3647;30K &#8594; ต่อ Follow-up ได้ภายหลัง</div>
+          </div>
+
+          <!-- ===== PATH 2: ปั้นทีมขาย ===== -->
+          <div class="rounded-2xl border border-brand-coral/20 bg-brand-coral/[0.03] p-6 lg:p-8" data-aos="fade-up" data-aos-delay="100">
+            <!-- Path header -->
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-lg bg-brand-coral/10 flex items-center justify-center">
+                <i data-lucide="target" class="w-5 h-5 text-brand-coral"></i>
+              </div>
+              <div>
+                <div class="text-xs text-brand-coral tracking-widest uppercase font-bold">Path B</div>
+              </div>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-2">ปั้นทีมขาย</h3>
+            <p class="text-white/50 text-sm mb-6">วางโครงสร้างทีมขาย ทั้งระบบ KPI, Commission และ Training</p>
+
+            <div class="space-y-4">
+              <!-- Sales Package 1 -->
+              <div class="rounded-xl bg-white/[0.03] border border-white/10 p-5 hover:border-brand-coral/30 transition-all duration-300">
+                <div class="flex items-center justify-between mb-3">
+                  <div>
+                    <span class="text-xs text-white/40 tracking-widest uppercase">2 Days</span>
+                    <h4 class="font-display text-lg font-bold"><a href="sale-training-bundle.html" class="hover:text-brand-coral transition-colors">Sale Training Bundle</a></h4>
+                  </div>
+                  <div class="font-display text-xl font-bold text-brand-coral">&#3647;52,800</div>
+                </div>
+                <p class="text-white/50 text-sm mb-3">Workshop 2 วันเต็ม: สอนทีมให้ปิดการขายด้วย 'คุณค่า' ไม่ใช่แค่ 'ลูกเล่น'</p>
+                <ul class="space-y-1.5 text-sm text-white/60 mb-4">
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>Day 1: Value-Based Selling</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>Day 2: Consultative Closing</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>Role-play + Real Case Practice</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>Post-training KPI tracking</li>
+                </ul>
+                <a href="sale-training-bundle.html" class="block text-center text-xs text-brand-coral/70 hover:text-brand-coral transition-colors mb-2">ดูรายละเอียดเพิ่มเติม &#8594;</a>
+                <a href="booking-form.html?package=sale-training-bundle" class="btn btn-outline btn-sm border-white/20 text-white/70 hover:bg-brand-coral hover:border-brand-coral hover:text-white hover:scale-105 transition-all duration-300 w-full">จองเลย</a>
+                <a href="intake-form.html" class="btn btn-ghost btn-sm text-white/40 hover:text-brand-coral w-full mt-1.5 text-xs">ไม่แน่ใจ? นัดคุยกับปันก่อน &#8594;</a>
+              </div>
+
+              <!-- Sales Package 2 (Featured) -->
+              <div class="rounded-xl bg-white/[0.03] border border-brand-coral/40 p-5 shadow-lg shadow-brand-coral/5 relative hover:bg-white/[0.05] transition-all duration-300">
+                <div class="absolute top-3 right-3 badge badge-sm bg-brand-coral/20 text-brand-coral border-brand-coral/40 text-xs">ครบจบ</div>
+                <div class="flex items-center justify-between mb-3">
+                  <div>
+                    <span class="text-xs text-white/40 tracking-widest uppercase">1 Month</span>
+                    <h4 class="font-display text-lg font-bold"><a href="sales-system-sprint.html" class="hover:text-brand-coral transition-colors duration-200">Sales System Sprint</a></h4>
+                  </div>
+                  <div class="font-display text-xl font-bold text-brand-coral">&#3647;65,000</div>
+                </div>
+                <p class="text-white/50 text-sm mb-3">วางระบบทีมขายให้จบในเดือนเดียว: KPI, Commission, AI Workflow, Training</p>
+                <ul class="space-y-1.5 text-sm text-white/60 mb-4">
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>Discovery &#8594; Design &#8594; Build &#8594; Training</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>KPI Dashboard + Commission Calculator</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>n8n workflow + AI tools สำหรับทีม</li>
+                  <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand-coral mt-2 shrink-0"></span>Async LINE support 30 วัน</li>
+                </ul>
+                <a href="sales-system-sprint.html" class="block text-center text-xs text-brand-coral/70 hover:text-brand-coral transition-colors mb-2">ดูรายละเอียดเพิ่มเติม &#8594;</a>
+                <a href="booking-form.html?package=sales-system-sprint" class="btn btn-sm bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 w-full">สำหรับธุรกิจที่พร้อม &#8594;</a>
+                <a href="intake-form.html" class="btn btn-ghost btn-sm text-white/40 hover:text-brand-coral w-full mt-1.5 text-xs">ไม่แน่ใจ? นัดคุยกับปันก่อน &#8594;</a>
+              </div>
+            </div>
+
+            <div class="mt-5 text-center text-xs text-white/30">ไม่แน่ใจ? เริ่มจาก Training 2 วัน &#8594; ต่อ Sprint ได้ภายหลัง</div>
+          </div>
+
+        </div>
+
+        <!-- Connector note -->
+        <div class="mt-10 text-center" data-aos="fade-up">
+          <div class="inline-flex items-center gap-3 bg-white/[0.03] border border-white/10 rounded-full px-6 py-3">
+            <i data-lucide="sparkles" class="w-4 h-4 text-brand-coral"></i>
+            <span class="text-sm text-white/60"><strong class="text-white/80">ทำได้ทั้งสองทาง</strong> — ลูกค้าหลายเจ้าเริ่มจาก AI Workshop แล้วค่อยต่อด้วย Sales System Sprint</span>
+          </div>
+        </div>
+
+        <!-- ===== SPECIAL WORKSHOP: Trust Content TikTok ===== -->
+        <div class="mt-12 rounded-2xl border border-violet-500/20 bg-violet-500/[0.03] p-6 lg:p-8 relative" data-aos="fade-up">
+          <div class="absolute top-4 right-4 badge badge-sm bg-violet-500/20 text-violet-400 border-violet-500/40 text-xs">Special Workshop</div>
+
+          <div class="flex flex-col lg:flex-row gap-8 items-start">
+            <!-- Left: Info -->
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-lg bg-violet-500/10 flex items-center justify-center">
+                  <i data-lucide="video" class="w-5 h-5 text-violet-400"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-violet-400 tracking-widest uppercase font-bold">New</div>
+                </div>
+              </div>
+              <h3 class="font-display text-2xl font-bold mb-2">Trust Content Workshop for TikTok</h3>
+              <p class="text-white/50 text-sm mb-4">เปลี่ยนมือถือเครื่องเดียว ให้เป็นเครื่องจักรสร้างลูกค้า B2B ผ่าน TikTok — content ที่ปิดการขาย ไม่ใช่แค่ได้ยอดวิว</p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white/[0.05] border border-white/10 px-3 py-1 text-xs text-white/60">
+                  <i data-lucide="film" class="w-3 h-3"></i> 3 คลิปถ่ายเสร็จ
+                </span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white/[0.05] border border-white/10 px-3 py-1 text-xs text-white/60">
+                  <i data-lucide="calendar" class="w-3 h-3"></i> Content Calendar 30 วัน
+                </span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white/[0.05] border border-white/10 px-3 py-1 text-xs text-white/60">
+                  <i data-lucide="file-text" class="w-3 h-3"></i> Trust Framework PDF
+                </span>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-white/[0.05] border border-white/10 px-3 py-1 text-xs text-white/60">
+                  <i data-lucide="scroll-text" class="w-3 h-3"></i> Script Template Kit
+                </span>
+              </div>
+            </div>
+
+            <!-- Right: Pricing -->
+            <div class="lg:w-64 flex-shrink-0 rounded-xl bg-white/[0.03] border border-violet-500/20 p-5 text-center">
+              <span class="text-xs text-white/40 tracking-widest uppercase">1 Day In-House</span>
+              <p class="text-sm text-white/30 mt-2"><s>&#3647;50,000</s></p>
+              <div class="font-display text-3xl font-bold text-violet-400 mb-1">&#3647;39,900</div>
+              <span class="inline-block rounded-full bg-brand-coral/10 border border-brand-coral/25 px-2.5 py-0.5 text-xs font-bold text-brand-coral mb-3">5 ธุรกิจแรก</span>
+              <a href="booking-form.html?package=trust-content-tiktok" class="btn btn-sm bg-violet-500 border-none text-white hover:bg-violet-600 hover:scale-105 transition-all duration-300 shadow-lg shadow-violet-500/20 w-full">จอง Workshop &#8594;</a>
+              <a href="trust-content-tiktok-workshop.html" class="btn btn-ghost btn-sm text-white/40 hover:text-violet-400 w-full mt-1.5 text-xs">ดูรายละเอียดเพิ่มเติม &#8594;</a>
+              <a href="intake-form.html" class="btn btn-ghost btn-sm text-white/40 hover:text-violet-400 w-full mt-0.5 text-xs">ไม่แน่ใจ? นัดคุยกับปันก่อน &#8594;</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CTA — Trust-building (HelloFresh style) ===== -->
+    <section class="py-20 px-4 lg:px-8 bg-gradient-to-b from-transparent via-brand-coral/[0.06] to-brand-coral/[0.12] border-t border-brand-coral/10 relative overflow-hidden">
+      <!-- Handshake art background -->
+      <img src="images/line-art/art6_handshake.png" alt="" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl opacity-[0.06] pointer-events-none select-none" aria-hidden="true">
+      <div class="max-w-3xl mx-auto relative z-10" data-aos="fade-up">
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight text-center mb-12">พร้อมจะเลิกแบกยอดคนเดียวรึยัง?</h2>
+
+        <!-- Trust points grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center">
+              <i data-lucide="clock" class="w-6 h-6 text-white/60"></i>
+            </div>
+            <p class="font-display font-bold text-sm mb-1">กรอกฟอร์ม 3 นาที</p>
+            <p class="text-xs text-white/40">ใช้เวลาไม่ถึง 3 นาที</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-6 h-6 text-white/60"></i>
+            </div>
+            <p class="font-display font-bold text-sm mb-1">ประเมินฟรี</p>
+            <p class="text-xs text-white/40">ไม่มีค่าใช้จ่าย ไม่มีข้อผูกมัด</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center">
+              <i data-lucide="user-check" class="w-6 h-6 text-white/60"></i>
+            </div>
+            <p class="font-display font-bold text-sm mb-1">ปันอ่านและตอบเอง</p>
+            <p class="text-xs text-white/40">ไม่ใช่ bot — ปันดูเองทุกใบ</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-white/[0.08] border border-white/10 flex items-center justify-center">
+              <i data-lucide="message-circle" class="w-6 h-6 text-white/60"></i>
+            </div>
+            <p class="font-display font-bold text-sm mb-1">ได้คำตอบใน 24 ชม.</p>
+            <p class="text-xs text-white/40">ได้ feedback ภายในวันถัดไป</p>
+          </div>
+        </div>
+
+        <!-- Big CTA button -->
+        <div class="text-center">
+          <a href="intake-form.html" class="btn btn-lg bg-brand-coral border-none text-white px-10 text-lg hover:bg-brand-coral-dark hover:scale-105 hover:shadow-2xl hover:shadow-brand-coral/30 transition-all duration-300">
+            เช็คสุขภาพทีมขายของคุณ &#8594;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT / SOCIAL ===== -->
+    <section class="py-12 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-3xl mx-auto text-center">
+        <h3 class="font-display text-xl font-bold mb-6" data-aos="fade-up">ติดตามและติดต่อปัน</h3>
+
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6" data-aos="fade-up">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61584893736763" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 hover:border-blue-500/40 hover:bg-white/[0.08] transition-all duration-300 group">
+            <svg class="w-5 h-5 text-white/50 group-hover:text-blue-500 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span class="text-sm text-white/60 group-hover:text-white/80 transition-colors">Facebook</span>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/pun_nattapatch" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 hover:border-pink-500/40 hover:bg-white/[0.08] transition-all duration-300 group">
+            <svg class="w-5 h-5 text-white/50 group-hover:text-pink-500 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            <span class="text-sm text-white/60 group-hover:text-white/80 transition-colors">Instagram</span>
+          </a>
+
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@pun_nattapatch" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 hover:border-brand-coral/40 hover:bg-white/[0.08] transition-all duration-300 group">
+            <svg class="w-5 h-5 text-white/50 group-hover:text-brand-coral transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.79a8.18 8.18 0 0 0 4.76 1.52V6.86a4.83 4.83 0 0 1-1-.17z"/></svg>
+            <span class="text-sm text-white/60 group-hover:text-white/80 transition-colors">TikTok</span>
+          </a>
+
+          <!-- LINE OA -->
+          <a href="https://lin.ee/ioSnSUG" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 hover:border-emerald-400/40 hover:bg-white/[0.08] transition-all duration-300 group">
+            <svg class="w-5 h-5 text-white/50 group-hover:text-emerald-400 transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.82 2 10.5c0 2.83 1.63 5.35 4.17 7.03l-.72 2.62a.5.5 0 0 0 .72.56l3.05-1.86c.9.15 1.83.15 2.78.15 5.52 0 10-3.82 10-8.5S17.52 2 12 2z"/></svg>
+            <span class="text-sm text-white/60 group-hover:text-white/80 transition-colors">LINE OA</span>
+          </a>
+
+          <!-- Email — mailto + copy fallback -->
+          <a href="mailto:r.nattapatch@gmail.com" onclick="event.preventDefault(); window.location.href='mailto:r.nattapatch@gmail.com'; navigator.clipboard.writeText('r.nattapatch@gmail.com').then(function(){var el=document.getElementById('email-toast');el.classList.remove('hidden');setTimeout(function(){el.classList.add('hidden')},2000)})" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/10 hover:border-brand-coral/40 hover:bg-white/[0.08] transition-all duration-300 group cursor-pointer relative">
+            <i data-lucide="mail" class="w-5 h-5 text-white/50 group-hover:text-brand-coral transition-colors"></i>
+            <span class="text-sm text-white/60 group-hover:text-white/80 transition-colors">r.nattapatch@gmail.com</span>
+          </a>
+          <span id="email-toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-sm px-4 py-2 rounded-lg shadow-lg z-50 transition-all">คัดลอก email แล้ว!</span>
+
+        </div>
+
+        <p class="text-xs text-white/30 mt-6">DM คำว่า <strong class="text-white/50">AI</strong> หรือ <strong class="text-white/50">ทีมขาย</strong> แล้วปันจะติดต่อกลับครับ</p>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-white/5 py-8 px-4 lg:px-8 text-center">
+      <p class="text-sm text-white/30">
+        <a href="https://www.openlink.co/pun_nattapatch" class="hover:text-brand-coral transition-colors duration-300">@pun_nattapatch</a>
+      </p>
+      <p class="text-xs text-white/15 mt-2">&#169; 2026 Pun Nattapatch. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- A/B Hook System -->
+  <script>
+    var HOOKS = {
+      A: 'ต้นทุนแพงขึ้นทุกวัน แต่ทีมขายคุณยังทำงานแบบเดิมๆ?',
+      B: 'คู่แข่งคุณเริ่มให้ AI ทำงานแทนเซลล์แล้ว',
+      C: 'เจ้าของที่ฉลาด ไม่ได้หาคนเพิ่ม แต่ใช้ AI ทำงานแทน',
+      D: 'ในวันที่ต้นทุนสูงขึ้น ธุรกิจจะรอดได้ ต้องมี \'ระบบ\' ขายที่แข็งแรง',
+      E: 'คนอื่นใช้ AI หาเงินเข้ารัวๆ ทีมคุณยังนั่งคีย์ Excel อยู่เลยเหรอ?'
+    };
+
+    var hookParam = new URLSearchParams(window.location.search).get('hook');
+    if (hookParam && HOOKS[hookParam]) {
+      var mainEl = document.getElementById('headline-main');
+      var accentEl = document.getElementById('headline-accent');
+      var subEl = document.getElementById('headline-sub');
+      mainEl.textContent = HOOKS[hookParam];
+      accentEl.textContent = '';
+      subEl.textContent = '';
+    }
+
+    if (hookParam) {
+      var links = document.querySelectorAll('a[href*="intake-form"]');
+      for (var i = 0; i < links.length; i++) {
+        var url = new URL(links[i].href);
+        url.searchParams.set('hook', hookParam);
+        links[i].href = url.toString();
+      }
+    }
+
+    // Avatar fallback
+    var avatarImg = document.getElementById('avatar-img-hero');
+    if (avatarImg) {
+      avatarImg.addEventListener('error', function() {
+        this.parentElement.textContent = '';
+        var fallback = document.createElement('div');
+        fallback.className = 'avatar-fallback';
+        fallback.textContent = 'P';
+        this.parentElement.appendChild(fallback);
+      });
+    }
+  </script>
+
+  <!-- Init Libraries -->
+  <script>
+    lucide.createIcons();
+    AOS.init({ once: true, duration: 600, offset: 50 });
+  </script>
+
+</body>
+</html>
