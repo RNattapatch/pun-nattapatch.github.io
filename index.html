@@ -222,72 +222,172 @@
     </section>
 
     <!-- ===== QUICK NAV TO PACKAGES ===== -->
-    <section class="py-12 px-4 lg:px-8">
-      <div class="max-w-4xl mx-auto" data-aos="fade-up">
-        <div class="rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-xl p-6 md:p-8">
-          <p class="font-display font-bold text-xl mb-2 text-center">เจอปัญหาไหนอยู่?</p>
-          <p class="text-white/40 text-sm mb-8 text-center">กดเลือกดูว่าผมช่วยได้ยังไง</p>
+    <section class="py-20 px-4 lg:px-8 relative overflow-hidden">
+      <!-- Section ambient glow -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand-coral/[0.04] rounded-full blur-[120px]"></div>
+      </div>
 
-          <!-- 5 columns: Pain (top) + Solution (bottom) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-
-            <!-- 1: AI Workshop -->
-            <div class="flex flex-col gap-2">
-              <div class="rounded-xl border border-cyan-400/30 bg-cyan-400/[0.06] p-4 flex-1">
-                <p class="text-sm text-cyan-400 font-bold leading-snug">"ทีมทำ report ด้วยมือ copy-paste ข้อมูลลูกค้าทีละคน ทุกวัน"</p>
-              </div>
-              <a href="ai-day-workshop.html" class="rounded-xl bg-cyan-400/[0.12] border border-cyan-400/25 p-4 hover:bg-cyan-400/20 hover:border-cyan-400/50 transition-all group no-underline text-center">
-                <h4 class="font-display font-bold text-sm text-white group-hover:text-cyan-400 transition mb-1">AI Workshop 1 วัน</h4>
-                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
-              </a>
-            </div>
-
-            <!-- 2: AI + Follow-up -->
-            <div class="flex flex-col gap-2">
-              <div class="rounded-xl border border-cyan-400/30 bg-cyan-400/[0.06] p-4 flex-1">
-                <p class="text-sm text-cyan-400 font-bold leading-snug">"สอน AI ไปแล้ว ตื่นเต้นได้ 2 อาทิตย์ แล้วทีมก็กลับไปทำแบบเดิม"</p>
-              </div>
-              <a href="ai-workshop-followup.html" class="rounded-xl bg-cyan-400/[0.12] border border-cyan-400/25 p-4 hover:bg-cyan-400/20 hover:border-cyan-400/50 transition-all group no-underline text-center">
-                <h4 class="font-display font-bold text-sm text-white group-hover:text-cyan-400 transition mb-1">AI + Follow-up 30 วัน</h4>
-                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
-              </a>
-            </div>
-
-            <!-- 3: Sale Training -->
-            <div class="flex flex-col gap-2">
-              <div class="rounded-xl border border-brand-coral/30 bg-brand-coral/[0.06] p-4 flex-1">
-                <p class="text-sm text-brand-coral font-bold leading-snug">"ขายได้ก็ต่อเมื่อยอมตัดราคาสู้ ลูกค้าต่อทีไร เซลล์ก็ลดให้ทุกที"</p>
-              </div>
-              <a href="sale-training-bundle.html" class="rounded-xl bg-brand-coral/[0.12] border border-brand-coral/25 p-4 hover:bg-brand-coral/20 hover:border-brand-coral/50 transition-all group no-underline text-center">
-                <h4 class="font-display font-bold text-sm text-white group-hover:text-brand-coral transition mb-1">Sale Training 2 วัน</h4>
-                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
-              </a>
-            </div>
-
-            <!-- 4: Sales System Sprint -->
-            <div class="flex flex-col gap-2">
-              <div class="rounded-xl border border-brand-coral/30 bg-brand-coral/[0.06] p-4 flex-1">
-                <p class="text-sm text-brand-coral font-bold leading-snug">"มีทีมขาย แต่ยอด 80% มาจากเจ้าของคนเดียว ถ้าไม่ push ก็ไม่ไป"</p>
-              </div>
-              <a href="sales-system-sprint.html" class="rounded-xl bg-brand-coral/[0.12] border border-brand-coral/25 p-4 hover:bg-brand-coral/20 hover:border-brand-coral/50 transition-all group no-underline text-center">
-                <h4 class="font-display font-bold text-sm text-white group-hover:text-brand-coral transition mb-1">Sales System Sprint</h4>
-                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
-              </a>
-            </div>
-
-            <!-- 5: TikTok Trust Content -->
-            <div class="flex flex-col gap-2">
-              <div class="rounded-xl border border-violet-500/30 bg-violet-500/[0.06] p-4 flex-1">
-                <p class="text-sm text-violet-400 font-bold leading-snug">"จ้างคนทำ content แพงๆ ยอดวิวดี แต่ไม่เคยมีลูกค้าทักมาซื้อสักคน"</p>
-              </div>
-              <a href="trust-content-tiktok-workshop.html" class="rounded-xl bg-violet-500/[0.12] border border-violet-500/25 p-4 hover:bg-violet-500/20 hover:border-violet-500/50 transition-all group no-underline text-center">
-                <h4 class="font-display font-bold text-sm text-white group-hover:text-violet-400 transition mb-1">TikTok Trust Content</h4>
-                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
-              </a>
-            </div>
-
+      <div class="max-w-6xl mx-auto relative">
+        <!-- Header -->
+        <div class="text-center mb-14" data-aos="fade-up">
+          <div class="inline-flex items-center gap-2 rounded-full border border-brand-coral/30 bg-brand-coral/10 px-4 py-1.5 mb-6">
+            <i data-lucide="scan" class="w-4 h-4 text-brand-coral"></i>
+            <span class="text-xs font-bold text-brand-coral tracking-widest uppercase">Diagnose</span>
           </div>
+          <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-3">
+            เจอปัญหาไหนอยู่?
+          </h2>
+          <p class="text-white/40 text-base">กดที่ปัญหาของคุณ — ผมมีบริการที่แก้ได้ตรงจุด</p>
         </div>
+
+        <!-- Cards grid: 2 + 3 layout on desktop for visual rhythm -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- Card 1: AI Workshop — CYAN -->
+          <a href="ai-day-workshop.html" class="group block no-underline relative rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_40px_rgba(34,211,238,0.15)]" data-aos="fade-up" data-aos-delay="0">
+            <!-- Glow edge -->
+            <div class="absolute inset-0 rounded-2xl border border-cyan-400/20 group-hover:border-cyan-400/50 transition-all duration-500"></div>
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <!-- Content -->
+            <div class="relative p-6 bg-gradient-to-b from-cyan-400/[0.06] to-transparent">
+              <!-- Pain zone -->
+              <div class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-cyan-400/15 flex items-center justify-center">
+                    <i data-lucide="clock" class="w-4 h-4 text-cyan-400"></i>
+                  </div>
+                  <span class="text-[11px] font-bold text-cyan-400/60 tracking-widest uppercase">Pain Point</span>
+                </div>
+                <p class="text-[15px] text-white/90 font-semibold leading-relaxed">"ทีมทำ report ด้วยมือ copy-paste ข้อมูลลูกค้าทีละคน <span class="text-cyan-400">ทุกวัน</span>"</p>
+              </div>
+              <!-- Divider -->
+              <div class="h-px bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent mb-5"></div>
+              <!-- Solution zone -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-display font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">AI Workshop 1 วัน</h4>
+                  <p class="text-xs text-white/35 mt-0.5">แก้ได้ใน 1 วัน — ทีมได้ AI tool กลับไปใช้เลย</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-cyan-400/10 group-hover:bg-cyan-400 flex items-center justify-center transition-all duration-300 shrink-0 ml-3">
+                  <i data-lucide="arrow-right" class="w-4 h-4 text-cyan-400 group-hover:text-black transition-colors duration-300"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: AI + Follow-up — CYAN -->
+          <a href="ai-workshop-followup.html" class="group block no-underline relative rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_40px_rgba(34,211,238,0.15)]" data-aos="fade-up" data-aos-delay="60">
+            <div class="absolute inset-0 rounded-2xl border border-cyan-400/20 group-hover:border-cyan-400/50 transition-all duration-500"></div>
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative p-6 bg-gradient-to-b from-cyan-400/[0.06] to-transparent">
+              <div class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-cyan-400/15 flex items-center justify-center">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 text-cyan-400"></i>
+                  </div>
+                  <span class="text-[11px] font-bold text-cyan-400/60 tracking-widest uppercase">Pain Point</span>
+                </div>
+                <p class="text-[15px] text-white/90 font-semibold leading-relaxed">"สอน AI ไปแล้ว ตื่นเต้นได้ 2 อาทิตย์ แล้วทีม<span class="text-cyan-400">ก็กลับไปทำแบบเดิม</span>"</p>
+              </div>
+              <div class="h-px bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent mb-5"></div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-display font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">AI + Follow-up 30 วัน</h4>
+                  <p class="text-xs text-white/35 mt-0.5">ปันติดตามให้ 30 วัน จนทีมใช้จนเป็นนิสัย</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-cyan-400/10 group-hover:bg-cyan-400 flex items-center justify-center transition-all duration-300 shrink-0 ml-3">
+                  <i data-lucide="arrow-right" class="w-4 h-4 text-cyan-400 group-hover:text-black transition-colors duration-300"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3: Sale Training — CORAL -->
+          <a href="sale-training-bundle.html" class="group block no-underline relative rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_40px_rgba(221,65,85,0.15)]" data-aos="fade-up" data-aos-delay="120">
+            <div class="absolute inset-0 rounded-2xl border border-brand-coral/20 group-hover:border-brand-coral/50 transition-all duration-500"></div>
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-coral/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative p-6 bg-gradient-to-b from-brand-coral/[0.06] to-transparent">
+              <div class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-brand-coral/15 flex items-center justify-center">
+                    <i data-lucide="trending-down" class="w-4 h-4 text-brand-coral"></i>
+                  </div>
+                  <span class="text-[11px] font-bold text-brand-coral/60 tracking-widest uppercase">Pain Point</span>
+                </div>
+                <p class="text-[15px] text-white/90 font-semibold leading-relaxed">"ขายได้ก็ต่อเมื่อ<span class="text-brand-coral">ยอมตัดราคาสู้</span> ลูกค้าต่อทีไร เซลล์ก็ลดให้ทุกที"</p>
+              </div>
+              <div class="h-px bg-gradient-to-r from-transparent via-brand-coral/20 to-transparent mb-5"></div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-display font-bold text-white group-hover:text-brand-coral transition-colors duration-300">Sale Training 2 วัน</h4>
+                  <p class="text-xs text-white/35 mt-0.5">สอนทีมปิดดีลด้วยคุณค่า ไม่ใช่ส่วนลด</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-brand-coral/10 group-hover:bg-brand-coral flex items-center justify-center transition-all duration-300 shrink-0 ml-3">
+                  <i data-lucide="arrow-right" class="w-4 h-4 text-brand-coral group-hover:text-white transition-colors duration-300"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4: Sales System Sprint — CORAL -->
+          <a href="sales-system-sprint.html" class="group block no-underline relative rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_40px_rgba(221,65,85,0.15)]" data-aos="fade-up" data-aos-delay="180">
+            <div class="absolute inset-0 rounded-2xl border border-brand-coral/20 group-hover:border-brand-coral/50 transition-all duration-500"></div>
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-coral/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative p-6 bg-gradient-to-b from-brand-coral/[0.06] to-transparent">
+              <div class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-brand-coral/15 flex items-center justify-center">
+                    <i data-lucide="user" class="w-4 h-4 text-brand-coral"></i>
+                  </div>
+                  <span class="text-[11px] font-bold text-brand-coral/60 tracking-widest uppercase">Pain Point</span>
+                </div>
+                <p class="text-[15px] text-white/90 font-semibold leading-relaxed">"มีทีมขาย แต่ยอด 80% มาจาก<span class="text-brand-coral">เจ้าของคนเดียว</span> ถ้าไม่ push ก็ไม่ไป"</p>
+              </div>
+              <div class="h-px bg-gradient-to-r from-transparent via-brand-coral/20 to-transparent mb-5"></div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-display font-bold text-white group-hover:text-brand-coral transition-colors duration-300">Sales System Sprint</h4>
+                  <p class="text-xs text-white/35 mt-0.5">วางระบบ KPI + Commission + AI ครบใน 1 เดือน</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-brand-coral/10 group-hover:bg-brand-coral flex items-center justify-center transition-all duration-300 shrink-0 ml-3">
+                  <i data-lucide="arrow-right" class="w-4 h-4 text-brand-coral group-hover:text-white transition-colors duration-300"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 5: TikTok Trust Content — VIOLET (wider, centered) -->
+          <a href="trust-content-tiktok-workshop.html" class="group block no-underline relative rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_40px_rgba(124,58,237,0.15)] md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="240">
+            <div class="absolute inset-0 rounded-2xl border border-violet-500/20 group-hover:border-violet-500/50 transition-all duration-500"></div>
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-violet-400/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative p-6 bg-gradient-to-b from-violet-500/[0.06] to-transparent">
+              <div class="mb-5">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-8 h-8 rounded-lg bg-violet-500/15 flex items-center justify-center">
+                    <i data-lucide="video" class="w-4 h-4 text-violet-400"></i>
+                  </div>
+                  <span class="text-[11px] font-bold text-violet-400/60 tracking-widest uppercase">Pain Point</span>
+                </div>
+                <p class="text-[15px] text-white/90 font-semibold leading-relaxed">"จ้างคนทำ content แพงๆ ยอดวิวดี แต่<span class="text-violet-400">ไม่เคยมีลูกค้าทักมาซื้อสักคน</span>"</p>
+              </div>
+              <div class="h-px bg-gradient-to-r from-transparent via-violet-400/20 to-transparent mb-5"></div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-display font-bold text-white group-hover:text-violet-400 transition-colors duration-300">TikTok Trust Content</h4>
+                  <p class="text-xs text-white/35 mt-0.5">สร้าง content ที่คนเชื่อแล้วทักมาซื้อเอง</p>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-violet-500/10 group-hover:bg-violet-500 flex items-center justify-center transition-all duration-300 shrink-0 ml-3">
+                  <i data-lucide="arrow-right" class="w-4 h-4 text-violet-400 group-hover:text-white transition-colors duration-300"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Bottom hint -->
+        <p class="text-center text-white/25 text-xs mt-8" data-aos="fade-up" data-aos-delay="300">ไม่แน่ใจว่าเหมาะกับบริการไหน? <a href="intake-form.html" class="text-white/40 hover:text-brand-coral transition underline underline-offset-2">ให้ปันช่วยดูให้</a></p>
       </div>
     </section>
 
