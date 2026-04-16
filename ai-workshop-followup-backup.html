@@ -56,6 +56,14 @@
       background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 28px 28px;
     }
+    .avatar-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
   </style>
 </head>
 
@@ -114,15 +122,15 @@
         <div class="flex gap-8 md:gap-12 justify-center flex-wrap" data-aos="fade-up" data-aos-delay="400">
           <div>
             <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">10+</div>
-            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">ลูกค้าที่ไว้วางใจ</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Clients</div>
           </div>
           <div>
             <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">100+</div>
-            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">เซสชั่นที่ปรึกษา</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Sessions</div>
           </div>
           <div>
             <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">40%+</div>
-            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">เป้าหมายการเติบโต</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Growth Goal</div>
           </div>
         </div>
       </div>
@@ -212,34 +220,6 @@
       </div>
     </section>
 
-    <!-- ===== TESTIMONIAL ===== -->
-    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Testimonials</div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
-          เสียงจากลูกค้าที่ใช้จริง
-        </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          <div class="rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
-            <img src="images/testimonial/testimonial1.png" alt="รีวิวจากลูกค้า 1" class="w-full h-auto" loading="lazy">
-          </div>
-          <div class="rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="50">
-            <img src="images/testimonial/testimonial2.png" alt="รีวิวจากลูกค้า 2" class="w-full h-auto" loading="lazy">
-          </div>
-          <div class="rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-            <img src="images/testimonial/testimonial3.png" alt="รีวิวจากลูกค้า 3" class="w-full h-auto" loading="lazy">
-          </div>
-          <div class="rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="150">
-            <img src="images/testimonial/testimonial4.png" alt="รีวิวจากลูกค้า 4" class="w-full h-auto" loading="lazy">
-          </div>
-          <div class="rounded-2xl overflow-hidden border border-white/10 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-            <img src="images/testimonial/testimonial5.png" alt="รีวิวจากลูกค้า 5" class="w-full h-auto" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== PRICING ===== -->
     <section class="py-16 px-4 lg:px-8 border-t border-white/5" id="pricing">
       <div class="max-w-2xl mx-auto">
@@ -318,7 +298,7 @@
               </li>
               <li class="flex items-start gap-3">
                 <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
-                <span class="text-white/70">อยากมีคนคอยดูให้ว่าทีมไม่หยุดใช้ระบบที่สร้างไว้</span>
+                <span class="text-white/70">ต้องการ accountability ระหว่าง transition</span>
               </li>
               <li class="flex items-start gap-3">
                 <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
@@ -343,43 +323,6 @@
       </div>
     </section>
 
-    <!-- ===== FAQ ===== -->
-    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">FAQ</div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
-          คำถามที่เจอบ่อย
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="0">
-            <h3 class="font-display font-bold text-sm mb-2">Follow-up ทำอะไรบ้าง?</h3>
-            <p class="text-sm text-white/60 leading-relaxed">ผมเข้ามาดูว่าทีมใช้ระบบที่สร้างไว้จริงไหม ติดตรงไหน แล้วปรับให้ สัปดาห์ละ 1 ครั้ง ครั้งละ 45-60 นาที</p>
-          </div>
-          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="50">
-            <h3 class="font-display font-bold text-sm mb-2">ต้องซื้อคู่กับ Workshop เลยไหม?</h3>
-            <p class="text-sm text-white/60 leading-relaxed">ครับ package นี้รวม Workshop 1 วัน + Follow-up 30 วัน ถ้าอยากลอง Workshop เดี่ยวก่อนก็ได้ &#3647;30,000</p>
-          </div>
-          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="font-display font-bold text-sm mb-2">จ่ายเพิ่มอีก &#3647;20,000 คุ้มไหม?</h3>
-            <p class="text-sm text-white/60 leading-relaxed">คุ้มครับ เพราะ workshop จบวันเดียว ทีมอาจยังใช้ไม่คล่อง Follow-up ทำให้มั่นใจว่าระบบที่สร้างไว้ไม่ถูกทิ้ง</p>
-          </div>
-          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="150">
-            <h3 class="font-display font-bold text-sm mb-2">ทีมใช้ต่อเองได้ไหมหลัง 30 วัน?</h3>
-            <p class="text-sm text-white/60 leading-relaxed">ได้ครับ เป้าหมายของ Follow-up คือให้ทีมใช้เป็นเอง ไม่ต้องพึ่งผมอีก</p>
-          </div>
-          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="font-display font-bold text-sm mb-2">ต้องจ่ายเต็มก่อนเริ่มเลยเหรอ?</h3>
-            <p class="text-sm text-white/60 leading-relaxed">ใช่ครับ จ่ายก่อนเริ่ม ราคาที่เห็นคือราคาจริง</p>
-          </div>
-          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="250">
-            <h3 class="font-display font-bold text-sm mb-2">ถ้า Follow-up จบแล้วอยากให้ช่วยต่อ?</h3>
-            <p class="text-sm text-white/60 leading-relaxed">ได้ครับ ต่อรายเดือนได้ นัดคุยกันก่อน</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== ABOUT ===== -->
     <section class="py-16 px-4 lg:px-8 border-t border-white/5">
       <div class="max-w-4xl mx-auto">
@@ -387,16 +330,25 @@
           <div class="flex flex-col md:flex-row gap-6 items-start">
             <div class="w-20 h-20 rounded-full bg-brand-navy/50 border-2 border-brand-coral/30 overflow-hidden flex-shrink-0">
               <img src="pun-avatar.png" alt="ปัน ณัฐพัชร์" class="w-full h-full object-cover" id="avatar-img">
+              <div class="avatar-fallback hidden" id="avatar-fallback">P</div>
             </div>
             <div>
               <h3 class="font-display text-xl font-bold mb-1">ปัน ณัฐพัชร์</h3>
-              <p class="text-sm text-white/40 mb-4">ที่ปรึกษาด้านการขาย B2B &amp; ระบบ AI สำหรับทีมขาย</p>
-              <p class="text-white/60 text-sm leading-relaxed mb-3">
-                จบวิศวะเครื่องกล ม.เกษตร แต่ชอบงานขายมากกว่า เลยไปเป็น Sale Engineer ที่ค่ายรถญี่ปุ่น จากนั้นออกมาทำธุรกิจเอง แล้วได้ช่วยเพื่อนๆ นักธุรกิจจัดระบบทีมขาย จนตัดสินใจมาทำเต็มตัว
-              </p>
-              <p class="text-white/60 text-sm leading-relaxed">
-                ผมใช้ AI + n8n + Claude Code สร้างระบบจริงให้ลูกค้าทุกราย แล้วก็ยังอยู่ช่วยปรับให้ fit กับงานจริง ไม่ใช่สร้างแล้วจบ
-              </p>
+              <p class="text-sm text-white/40 mb-4">B2B Sales Consulting &amp; AI Transformation</p>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">ใช้ AI + n8n + Claude Code สร้างระบบจริงให้ลูกค้า</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">วางระบบให้ทีมขาย SME กว่า 10 ราย</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">ลูกค้าทุกคนได้ AI workflow ใช้งานได้กลับไปอย่างน้อย 1 ตัว</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -404,51 +356,16 @@
     </section>
 
     <!-- ===== CROSS-SELL ===== -->
-    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">คอร์สอื่นที่น่าสนใจ</div>
-        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
-          ดูบริการอื่นของปัน
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a href="sale-training-bundle.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-coral/30 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="0">
-            <div class="flex items-center justify-between">
-              <div>
-                <h3 class="font-display font-bold text-white/80 group-hover:text-white transition-colors mb-1">Sale Training Bundle</h3>
-                <p class="text-sm text-white/50 group-hover:text-white/60 transition-colors">2 วัน สอนทีมขายด้วยคุณค่า + จิตวิทยา ไม่ต้องลดราคาให้ margin หาย</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-coral transition-colors flex-shrink-0 ml-4"></i>
+    <section class="px-4 lg:px-8 pb-8">
+      <div class="max-w-4xl mx-auto" data-aos="fade-up">
+        <a href="sales-system-sprint.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-coral/30 transition-all duration-300 group">
+          <div class="flex items-center justify-between">
+            <div class="text-white/60 group-hover:text-white/80 transition-colors">
+              <strong class="text-white/80">AI เป็นแค่ส่วนหนึ่ง</strong> — ถ้าอยากแก้ทั้งระบบทีมขาย (KPI, Commission) ดู Sales System Sprint
             </div>
-          </a>
-          <a href="sales-system-sprint.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-coral/30 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="50">
-            <div class="flex items-center justify-between">
-              <div>
-                <h3 class="font-display font-bold text-white/80 group-hover:text-white transition-colors mb-1">Sales System Sprint</h3>
-                <p class="text-sm text-white/50 group-hover:text-white/60 transition-colors">วางระบบขาย KPI + Commission + AI ครบในเดือนเดียว ไม่ต้องจ้างหลายคน</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-coral transition-colors flex-shrink-0 ml-4"></i>
-            </div>
-          </a>
-          <a href="ai-day-workshop.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-coral/30 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
-            <div class="flex items-center justify-between">
-              <div>
-                <h3 class="font-display font-bold text-white/80 group-hover:text-white transition-colors mb-1">Advance AI & Business Automation</h3>
-                <p class="text-sm text-white/50 group-hover:text-white/60 transition-colors">Workshop 1 วัน สอนทีมใช้ AI + Automation ลดงานซ้ำ เพิ่มเวลาขายจริง</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-coral transition-colors flex-shrink-0 ml-4"></i>
-            </div>
-          </a>
-          <a href="trust-content-tiktok-workshop.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-coral/30 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="150">
-            <div class="flex items-center justify-between">
-              <div>
-                <h3 class="font-display font-bold text-white/80 group-hover:text-white transition-colors mb-1">Trust Content Workshop for TikTok</h3>
-                <p class="text-sm text-white/50 group-hover:text-white/60 transition-colors">สอนทำ TikTok ที่สร้างความเชื่อใจ เปลี่ยนมือถือเป็นเครื่องจักรหาลูกค้า B2B</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-coral transition-colors flex-shrink-0 ml-4"></i>
-            </div>
-          </a>
-        </div>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-coral transition-colors flex-shrink-0 ml-4"></i>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -466,10 +383,6 @@
               ไม่แน่ใจ? นัดคุยกับปันก่อน
             </a>
           </div>
-          <div class="flex items-center justify-center gap-2 mt-6">
-            <svg class="w-5 h-5 text-[#06C755]" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-            <a href="https://lin.ee/ioSnSUG" target="_blank" rel="noopener" class="text-sm text-white/50 hover:text-[#06C755] transition-colors">แอด LINE: @pun_nattapatch</a>
-          </div>
           <p class="text-xs text-white/30 mt-4">ไม่มีค่าใช้จ่าย | ไม่มี spam | ปันอ่านเองทุกใบ</p>
           <p class="text-xs text-white/20 mt-2">ชำระ 100% ก่อนเริ่มงาน</p>
         </div>
@@ -479,7 +392,7 @@
     <!-- ===== FOOTER ===== -->
     <footer class="border-t border-white/5 py-8 px-4 lg:px-8 text-center">
       <p class="text-sm text-white/30">
-        <a href="index.html" class="hover:text-brand-coral transition-colors duration-300">@pun_nattapatch</a>
+        <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="hover:text-brand-coral transition-colors duration-300">@pun_nattapatch</a>
       </p>
       <p class="text-xs text-white/15 mt-2">&#169; 2026 Pun Nattapatch. All rights reserved.</p>
     </footer>
@@ -528,11 +441,13 @@
       });
     }
 
-    // Avatar fallback — hide if image fails to load
+    // Avatar fallback
     var avatarImg = document.getElementById('avatar-img');
     if (avatarImg) {
       avatarImg.addEventListener('error', function() {
-        this.parentElement.style.display = 'none';
+        this.style.display = 'none';
+        var fallback = document.getElementById('avatar-fallback');
+        if (fallback) fallback.classList.remove('hidden');
       });
     }
   </script>
