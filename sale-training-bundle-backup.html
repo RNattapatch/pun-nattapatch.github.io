@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sale Training Bundle (B+C) — 2 วัน ปิดการขายด้วยคุณค่า | Pun Nattapatch</title>
+  <meta name="description" content="2 หลักสูตร 2 วัน — สอนทีมขายด้วยคุณค่า + จิตวิทยาการตัดสินใจ ไม่ต้องลดราคาให้ margin หาย">
+
+  <!-- DaisyUI + Tailwind v4 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Fonts: Bai Jamjuree (Display) + Sarabun (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- AOS Scroll Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: "Bai Jamjuree", sans-serif;
+      --font-body: "Sarabun", sans-serif;
+      --color-brand-navy: #072b4e;
+      --color-brand-coral: #dd4155;
+      --color-brand-coral-dark: #c43245;
+    }
+  </style>
+
+  <style>
+    .dynamic-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(7,43,78,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(221,65,85,0.08) 0%, transparent 50%);
+      animation: bgShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+    .dot-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .avatar-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
+  </style>
+</head>
+
+<body class="font-body bg-[#0a0a0a] text-white min-h-screen relative">
+
+  <!-- Dynamic Background -->
+  <div class="dynamic-bg"></div>
+  <div class="dot-overlay"></div>
+
+  <!-- Content wrapper -->
+  <div class="relative z-10">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar bg-transparent backdrop-blur-sm sticky top-0 z-50 border-b border-white/5 px-4 lg:px-8">
+      <div class="navbar-start">
+        <a href="index.html" class="font-display font-bold text-lg tracking-tight hover:text-brand-coral transition-colors">Pun Nattapatch</a>
+      </div>
+      <div class="navbar-end">
+        <a href="#pricing" class="btn btn-sm bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20">
+          ดูราคา
+        </a>
+      </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="min-h-[80vh] flex items-center px-4 lg:px-8 py-20">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <!-- Package badge -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-brand-coral/30 bg-brand-coral/10 px-4 py-1.5 mb-8" data-aos="fade-up">
+          <i data-lucide="users" class="w-4 h-4 text-brand-coral"></i>
+          <span class="text-sm font-semibold text-brand-coral tracking-wide">SALE TRAINING</span>
+        </div>
+
+        <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6" data-aos="fade-up" data-aos-delay="100" id="headline-main">
+          ทีมขายยังปิดการขายด้วยการลดราคา<span class="text-brand-coral" id="headline-accent">อยู่เหรอ?</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed mb-8" data-aos="fade-up" data-aos-delay="200">
+          2 หลักสูตร 2 วัน — สอนทีมขายด้วยคุณค่า + จิตวิทยาการตัดสินใจ ไม่ต้องลดราคาให้ margin หาย
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center mb-12" data-aos="fade-up" data-aos-delay="300">
+          <a href="booking-form.html?package=sale-training-bundle" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 px-8">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            จองที่นั่งสำหรับทีมของคุณ →
+          </a>
+          <a href="intake-form.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30 px-8">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            ไม่แน่ใจ? นัดคุยกับปันก่อน
+          </a>
+        </div>
+
+        <!-- Proof stats -->
+        <div class="flex gap-8 md:gap-12 justify-center flex-wrap" data-aos="fade-up" data-aos-delay="400">
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">10+</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Clients</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">100+</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Sessions</div>
+          </div>
+          <div>
+            <div class="font-display text-3xl md:text-4xl font-bold text-brand-coral">40%+</div>
+            <div class="text-xs text-white/40 tracking-widest uppercase mt-1">Growth Goal</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROBLEM ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Problem</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          ปัญหาที่กัดกินกำไรทุกเดือน
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+            <div class="text-3xl mb-4">&#128200;</div>
+            <h3 class="font-display font-bold mb-2">ปิดการขายได้แค่วิธีเดียว — ลดราคา</h3>
+            <p class="text-sm text-white/70 leading-relaxed">ลูกค้าต่อราคา เซลล์ก็ลดให้ทันที ไม่มีทักษะนำเสนอคุณค่า ไม่รู้จะจัดการข้อโต้แย้งยังไง margin หาย กำไรบาง</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+            <div class="text-3xl mb-4">&#129504;</div>
+            <h3 class="font-display font-bold mb-2">เก่ง product knowledge แต่ปิดไม่ได้</h3>
+            <p class="text-sm text-white/70 leading-relaxed">รู้สเปคหมดทุกตัว แต่พอถึงเวลาปิด ลูกค้าบอก "ขอคิดก่อน" แล้วเงียบ เพราะลูกค้าตัดสินใจซื้อเพราะอารมณ์ + ความไว้วางใจ ไม่ใช่สเปค</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/15 p-6 hover:border-brand-coral/30 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+            <div class="text-3xl mb-4">&#128553;</div>
+            <h3 class="font-display font-bold mb-2">ส่งไปเรียน Training มาแล้ว ไม่เห็นเปลี่ยน</h3>
+            <p class="text-sm text-white/70 leading-relaxed">Training ส่วนใหญ่สอนเทคนิคแบบท่องจำ ไม่ได้สอนหลักคิดที่อยู่เบื้องหลัง เจอสถานการณ์จริงที่ไม่ตรง script ก็ใช้ไม่ได้</p>
+          </div>
+        </div>
+
+        <!-- Cost of Inaction -->
+        <div class="mt-8 rounded-2xl border border-brand-coral/20 bg-brand-coral/5 p-6 text-center" data-aos="fade-up">
+          <div class="text-xs text-brand-coral tracking-widest uppercase mb-2">ถ้าไม่แก้ คุณเสียอะไร</div>
+          <div class="font-display text-2xl md:text-3xl font-bold text-brand-coral mb-2">กำไรหายปีละหลักล้าน</div>
+          <p class="text-sm text-white/50">ทุก deal ที่ปิดด้วยการลดราคา 10% → กำไรที่หายไปตลอดชีวิตลูกค้ารายนั้น</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OUTCOME ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Outcome</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          สิ่งที่ทีมจะเปลี่ยนหลัง 2 วัน
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="0">
+            <div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="gem" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">ปิดการขายโดยไม่ลดราคา</h3>
+            <p class="text-sm text-white/50">ทีมเข้าใจว่าลูกค้าซื้อเพราะคุณค่า</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="brain" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">เข้าใจจิตวิทยาลูกค้า</h3>
+            <p class="text-sm text-white/50">รู้ว่าสมองตัดสินใจซื้อยังไง ใช้ได้กับทุกสถานการณ์</p>
+          </div>
+          <div class="rounded-2xl bg-white/[0.05] border border-white/10 p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="handshake" class="w-6 h-6 text-brand-coral"></i>
+            </div>
+            <h3 class="font-display font-bold mb-2">ทีมขายเป็นที่ปรึกษา</h3>
+            <p class="text-sm text-white/50">ลูกค้าไว้วางใจ ซื้อซ้ำ บอกต่อ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CURRICULUM ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Curriculum</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          2 หลักสูตร ครบในแพ็คเกจเดียว
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Course B -->
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up">
+            <div class="flex items-center gap-3 mb-4">
+              <h3 class="font-display text-lg font-bold">หลักสูตร B: Value &amp; Relationship Selling</h3>
+            </div>
+            <span class="inline-block rounded-full bg-brand-coral/10 border border-brand-coral/25 px-3 py-1 text-xs font-bold text-brand-coral mb-4">1 วัน</span>
+            <p class="text-sm text-white/50 mb-4">เปลี่ยนทีมจากคนขายของเป็นคู่คิดธุรกิจที่ลูกค้าไว้วางใจ</p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">1</span>
+                <span class="text-white/70 text-sm">จากสงครามราคาสู่การขายด้วยคุณค่า (Jobs to be Done)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">2</span>
+                <span class="text-white/70 text-sm">คัดกรองลูกค้า — รู้ว่าใคร "ใช่"</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">3</span>
+                <span class="text-white/70 text-sm">จิตวิทยาการให้ (Give &amp; Take Mindset)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">4</span>
+                <span class="text-white/70 text-sm">เจรจาแบบ Win-Win</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Course C -->
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center gap-3 mb-4">
+              <h3 class="font-display text-lg font-bold">หลักสูตร C: Sale Psychology</h3>
+            </div>
+            <span class="inline-block rounded-full bg-brand-coral/10 border border-brand-coral/25 px-3 py-1 text-xs font-bold text-brand-coral mb-4">1 วัน</span>
+            <p class="text-sm text-white/50 mb-4">เข้าใจกลไกสมองตอนตัดสินใจซื้อ — ปิดการขายได้อย่างเป็นธรรมชาติ</p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">1</span>
+                <span class="text-white/70 text-sm">ถอดรหัสกระบวนการตัดสินใจ</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">2</span>
+                <span class="text-white/70 text-sm">First Impression Code</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">3</span>
+                <span class="text-white/70 text-sm">Trust &amp; Social Proof</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-coral/10 text-brand-coral text-xs font-bold flex items-center justify-center">4</span>
+                <span class="text-white/70 text-sm">Psychological Tactics for Closing</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRICING ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5" id="pricing">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Investment</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          ราคาและสิ่งที่รวม
+        </h2>
+
+        <div class="rounded-2xl border border-brand-coral/20 bg-white/[0.03] p-8" data-aos="fade-up">
+          <h3 class="font-display text-xl font-bold mb-1">Sale Training Bundle (B+C)</h3>
+          <p class="text-sm text-white/40 mb-4">2 วัน (วันละ 1 หลักสูตร) | In-House Training</p>
+
+          <p class="text-sm text-white/30 mb-1"><s>ราคาแยก &#3647;50,000</s></p>
+          <div class="font-display text-4xl font-bold text-brand-coral mb-1">&#3647;42,500</div>
+          <span class="inline-block rounded-full bg-brand-coral/10 border border-brand-coral/25 px-3 py-1 text-xs font-bold text-brand-coral mb-6">ประหยัด &#3647;7,500</span>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">หลักสูตร B: Value &amp; Relationship Selling (1 วัน)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">หลักสูตร C: Sale Psychology (1 วัน)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">In-House Training ณ สถานที่ลูกค้า</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">ผู้เข้าร่วมไม่เกิน 20 คน</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i data-lucide="check" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span class="text-white/70">ชำระ 100% ก่อนเริ่มงาน</span>
+            </li>
+          </ul>
+
+          <a href="booking-form.html?package=sale-training-bundle" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 w-full">
+            จองที่นั่งสำหรับทีมของคุณ →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUALIFY ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-xs text-brand-coral tracking-widest uppercase mb-4" data-aos="fade-up">Is this for you?</div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-12" data-aos="fade-up">
+          เช็คก่อนว่าเราเหมาะกัน
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="rounded-2xl bg-emerald-500/5 border border-emerald-500/20 p-6" data-aos="fade-up">
+            <h3 class="font-display font-bold text-emerald-400 mb-4">เหมาะกับคุณถ้า...</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">ทีมขายปิดการขายด้วยลดราคาเป็นหลัก</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">มีทีม Telesales, Chat Commerce, หรือ Field Sales ที่ต้องเปลี่ยนวิธีขาย</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="check-circle" class="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/70">อยากให้ทีมเข้าใจหลักคิด ไม่ใช่แค่ท่องจำเทคนิค</span>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="font-display font-bold text-white/40 mb-4">ไม่เหมาะถ้า...</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <i data-lucide="minus" class="w-5 h-5 text-white/30 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/50">ต้องการแค่ motivational speaker มาจุดไฟวันเดียวจบ</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="minus" class="w-5 h-5 text-white/30 flex-shrink-0 mt-0.5"></i>
+                <span class="text-white/50">ทีมขาย 1-2 คน (ไม่คุ้มค่า in-house)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-4xl mx-auto">
+        <div class="rounded-2xl bg-white/[0.03] border border-white/10 p-8" data-aos="fade-up">
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <div class="w-20 h-20 rounded-full bg-brand-navy/50 border-2 border-brand-coral/30 overflow-hidden flex-shrink-0">
+              <img src="pun-avatar.png" alt="ปัน ณัฐพัชร์" class="w-full h-full object-cover" id="avatar-img">
+              <div class="avatar-fallback hidden" id="avatar-fallback">P</div>
+            </div>
+            <div>
+              <h3 class="font-display text-xl font-bold mb-1">ปัน ณัฐพัชร์</h3>
+              <p class="text-sm text-white/40 mb-4">B2B Sales Consulting &amp; AI Transformation</p>
+              <ul class="space-y-2">
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">คลุกคลีกับงานขาย B2B มา 5 ปี — ถอดรหัสจากสนามจริง</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">วางระบบให้ทีมขาย SME กว่า 10 ราย</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <i data-lucide="zap" class="w-4 h-4 text-brand-coral flex-shrink-0 mt-1"></i>
+                  <span class="text-white/70 text-sm">ผลลัพธ์ที่เคยทำ: ทีมเซลล์ที่เคยต้องลดราคา 15% เพื่อปิดงาน กลับมาปิดดีลที่ราคาเต็มได้</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CROSS-SELL ===== -->
+    <section class="px-4 lg:px-8 pb-8">
+      <div class="max-w-4xl mx-auto" data-aos="fade-up">
+        <a href="ai-day-workshop.html" class="block rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-coral/30 transition-all duration-300 group">
+          <div class="flex items-center justify-between">
+            <span class="text-white/60 group-hover:text-white/80 transition-colors">ทีมขายเก่งขึ้นแล้ว แต่อยากให้ทำงานไวกว่าเดิม? ให้ AI ช่วยงานซ้ำๆ ด้วย Advance AI &amp; Business Automation</span>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-white/30 group-hover:text-brand-coral transition-colors"></i>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="py-16 px-4 lg:px-8 border-t border-white/5">
+      <div class="max-w-2xl mx-auto" data-aos="fade-up">
+        <div class="rounded-2xl border-2 border-dashed border-brand-coral/30 bg-brand-coral/5 p-8 md:p-12 text-center">
+          <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">พร้อมให้ทีมขายเลิกใช้ส่วนลด แล้วหันมาปิดดีลด้วยคุณค่ารึยัง?</h2>
+          <p class="text-white/50 mb-6">กรอกแบบฟอร์ม 3 นาที — ปันอ่านเองทุกใบ</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="booking-form.html?package=sale-training-bundle" class="btn bg-brand-coral border-none text-white hover:bg-brand-coral-dark hover:scale-105 transition-all duration-300 shadow-lg shadow-brand-coral/20 px-8">
+              จองที่นั่งสำหรับทีมของคุณ →
+            </a>
+            <a href="intake-form.html" class="btn btn-outline border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30 px-8">
+              ไม่แน่ใจ? นัดคุยกับปันก่อน
+            </a>
+          </div>
+          <p class="text-xs text-white/30 mt-4">ไม่มีค่าใช้จ่าย | ไม่มี spam | ปันอ่านเองทุกใบ</p>
+          <p class="text-xs text-white/20 mt-2">ชำระ 100% ก่อนเริ่มงาน</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-white/5 py-8 px-4 lg:px-8 text-center">
+      <p class="text-sm text-white/30">
+        <a href="https://line.me/ti/p/@pun_nattapatch" target="_blank" rel="noopener" class="hover:text-brand-coral transition-colors duration-300">@pun_nattapatch</a>
+      </p>
+      <p class="text-xs text-white/15 mt-2">&#169; 2026 Pun Nattapatch. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- A/B Hook System -->
+  <script>
+    var HOOKS = {
+      A: 'ทีมขายลดราคาทุกครั้งที่ลูกค้าต่อ — margin คุณหายไปไหน?',
+      B: 'เซลล์รู้สเปคหมด แต่ทำไมยังปิดไม่ได้?',
+      C: 'ทีมขายที่แข็งแกร่งขายด้วยคุณค่า ไม่ใช่ส่วนลด',
+      D: 'ทุกดีลที่ลด 10% คือกำไรที่คุณไม่ได้คืน',
+      E: 'ลูกค้าไม่ได้ซื้อสเปค เขาซื้อความไว้วางใจ — ทีมคุณรู้เรื่องนี้ไหม?'
+    };
+
+    var hookParam = new URLSearchParams(window.location.search).get('hook');
+    if (hookParam && HOOKS[hookParam]) {
+      var mainEl = document.getElementById('headline-main');
+      if (mainEl) mainEl.textContent = HOOKS[hookParam];
+      var accentEl = document.getElementById('headline-accent');
+      if (accentEl) accentEl.textContent = '';
+    }
+
+    if (hookParam) {
+      var links = document.querySelectorAll('a[href*="intake-form"]');
+      for (var i = 0; i < links.length; i++) {
+        try {
+          var url = new URL(links[i].href, window.location.href);
+          url.searchParams.set('hook', hookParam);
+          links[i].href = url.toString();
+        } catch (e) {}
+      }
+    }
+
+    // Avatar fallback
+    var avatarImg = document.getElementById('avatar-img');
+    if (avatarImg) {
+      avatarImg.addEventListener('error', function() {
+        this.style.display = 'none';
+        var fallback = document.getElementById('avatar-fallback');
+        if (fallback) fallback.classList.remove('hidden');
+      });
+    }
+  </script>
+
+  <!-- AOS Init -->
+  <script>
+    AOS.init({ duration: 600, once: true, offset: 60 });
+  </script>
+
+  <!-- Lucide Init -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>
