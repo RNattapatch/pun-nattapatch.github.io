@@ -226,28 +226,66 @@
       <div class="max-w-4xl mx-auto" data-aos="fade-up">
         <div class="rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-xl p-6 md:p-8">
           <p class="font-display font-bold text-xl mb-2 text-center">เจอปัญหาไหนอยู่?</p>
-          <p class="text-white/40 text-sm mb-6 text-center">กดเลือกดูว่าผมช่วยได้ยังไง</p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-            <a href="#pricing" class="rounded-xl bg-cyan-400/[0.08] border border-cyan-400/20 p-4 hover:border-cyan-400/40 transition-all group no-underline">
-              <p class="text-xs text-cyan-400 font-semibold mb-2">"ทีมเสียเวลากับงานซ้ำทุกวัน"</p>
-              <h4 class="font-display font-bold text-sm text-white group-hover:text-cyan-400 transition">AI Workshop 1 วัน</h4>
-            </a>
-            <a href="#pricing" class="rounded-xl bg-cyan-400/[0.08] border border-cyan-400/20 p-4 hover:border-cyan-400/40 transition-all group no-underline">
-              <p class="text-xs text-cyan-400 font-semibold mb-2">"สอน AI ไปแล้ว แต่ทีมกลับมาก็ไม่ใช้"</p>
-              <h4 class="font-display font-bold text-sm text-white group-hover:text-cyan-400 transition">AI + Follow-up 30 วัน</h4>
-            </a>
-            <a href="#pricing" class="rounded-xl bg-brand-coral/[0.08] border border-brand-coral/20 p-4 hover:border-brand-coral/40 transition-all group no-underline">
-              <p class="text-xs text-brand-coral font-semibold mb-2">"ขายได้ก็ต่อเมื่อยอมตัดราคาสู้"</p>
-              <h4 class="font-display font-bold text-sm text-white group-hover:text-brand-coral transition">Sale Training 2 วัน</h4>
-            </a>
-            <a href="#pricing" class="rounded-xl bg-brand-coral/[0.08] border border-brand-coral/20 p-4 hover:border-brand-coral/40 transition-all group no-underline">
-              <p class="text-xs text-brand-coral font-semibold mb-2">"แบกยอดอยู่คนเดียว ทั้งที่มีทีม"</p>
-              <h4 class="font-display font-bold text-sm text-white group-hover:text-brand-coral transition">Sales System Sprint</h4>
-            </a>
-            <a href="#pricing" class="rounded-xl bg-violet-500/[0.08] border border-violet-500/20 p-4 hover:border-violet-500/40 transition-all group no-underline">
-              <p class="text-xs text-violet-400 font-semibold mb-2">"ทำ content แล้ว ไม่มีคนทักมาซื้อ"</p>
-              <h4 class="font-display font-bold text-sm text-white group-hover:text-violet-400 transition">TikTok Trust Content</h4>
-            </a>
+          <p class="text-white/40 text-sm mb-8 text-center">กดเลือกดูว่าผมช่วยได้ยังไง</p>
+
+          <!-- 5 columns: Pain (top) + Solution (bottom) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+
+            <!-- 1: AI Workshop -->
+            <div class="flex flex-col gap-2">
+              <div class="rounded-xl border border-cyan-400/30 bg-cyan-400/[0.06] p-4 flex-1">
+                <p class="text-sm text-cyan-400 font-bold leading-snug">"ทีมทำ report ด้วยมือ copy-paste ข้อมูลลูกค้าทีละคน ทุกวัน"</p>
+              </div>
+              <a href="ai-day-workshop.html" class="rounded-xl bg-cyan-400/[0.12] border border-cyan-400/25 p-4 hover:bg-cyan-400/20 hover:border-cyan-400/50 transition-all group no-underline text-center">
+                <h4 class="font-display font-bold text-sm text-white group-hover:text-cyan-400 transition mb-1">AI Workshop 1 วัน</h4>
+                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
+              </a>
+            </div>
+
+            <!-- 2: AI + Follow-up -->
+            <div class="flex flex-col gap-2">
+              <div class="rounded-xl border border-cyan-400/30 bg-cyan-400/[0.06] p-4 flex-1">
+                <p class="text-sm text-cyan-400 font-bold leading-snug">"สอน AI ไปแล้ว ตื่นเต้นได้ 2 อาทิตย์ แล้วทีมก็กลับไปทำแบบเดิม"</p>
+              </div>
+              <a href="ai-workshop-followup.html" class="rounded-xl bg-cyan-400/[0.12] border border-cyan-400/25 p-4 hover:bg-cyan-400/20 hover:border-cyan-400/50 transition-all group no-underline text-center">
+                <h4 class="font-display font-bold text-sm text-white group-hover:text-cyan-400 transition mb-1">AI + Follow-up 30 วัน</h4>
+                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
+              </a>
+            </div>
+
+            <!-- 3: Sale Training -->
+            <div class="flex flex-col gap-2">
+              <div class="rounded-xl border border-brand-coral/30 bg-brand-coral/[0.06] p-4 flex-1">
+                <p class="text-sm text-brand-coral font-bold leading-snug">"ขายได้ก็ต่อเมื่อยอมตัดราคาสู้ ลูกค้าต่อทีไร เซลล์ก็ลดให้ทุกที"</p>
+              </div>
+              <a href="sale-training-bundle.html" class="rounded-xl bg-brand-coral/[0.12] border border-brand-coral/25 p-4 hover:bg-brand-coral/20 hover:border-brand-coral/50 transition-all group no-underline text-center">
+                <h4 class="font-display font-bold text-sm text-white group-hover:text-brand-coral transition mb-1">Sale Training 2 วัน</h4>
+                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
+              </a>
+            </div>
+
+            <!-- 4: Sales System Sprint -->
+            <div class="flex flex-col gap-2">
+              <div class="rounded-xl border border-brand-coral/30 bg-brand-coral/[0.06] p-4 flex-1">
+                <p class="text-sm text-brand-coral font-bold leading-snug">"มีทีมขาย แต่ยอด 80% มาจากเจ้าของคนเดียว ถ้าไม่ push ก็ไม่ไป"</p>
+              </div>
+              <a href="sales-system-sprint.html" class="rounded-xl bg-brand-coral/[0.12] border border-brand-coral/25 p-4 hover:bg-brand-coral/20 hover:border-brand-coral/50 transition-all group no-underline text-center">
+                <h4 class="font-display font-bold text-sm text-white group-hover:text-brand-coral transition mb-1">Sales System Sprint</h4>
+                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
+              </a>
+            </div>
+
+            <!-- 5: TikTok Trust Content -->
+            <div class="flex flex-col gap-2">
+              <div class="rounded-xl border border-violet-500/30 bg-violet-500/[0.06] p-4 flex-1">
+                <p class="text-sm text-violet-400 font-bold leading-snug">"จ้างคนทำ content แพงๆ ยอดวิวดี แต่ไม่เคยมีลูกค้าทักมาซื้อสักคน"</p>
+              </div>
+              <a href="trust-content-tiktok-workshop.html" class="rounded-xl bg-violet-500/[0.12] border border-violet-500/25 p-4 hover:bg-violet-500/20 hover:border-violet-500/50 transition-all group no-underline text-center">
+                <h4 class="font-display font-bold text-sm text-white group-hover:text-violet-400 transition mb-1">TikTok Trust Content</h4>
+                <p class="text-xs text-white/40">ดูรายละเอียด &rarr;</p>
+              </a>
+            </div>
+
           </div>
         </div>
       </div>
